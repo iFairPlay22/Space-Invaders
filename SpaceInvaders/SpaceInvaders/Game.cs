@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
-using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.Shooters.Ennemies;
 
@@ -36,6 +31,7 @@ namespace SpaceInvaders
         {
             pendingNewGameObjects.Add(gameObject);
         }
+
         #endregion
 
         #region game technical elements
@@ -48,6 +44,12 @@ namespace SpaceInvaders
         /// State of the keyboard
         /// </summary>
         public HashSet<Keys> keyPressed = new HashSet<Keys>();
+
+        /// <summary>
+        /// True if game is paused
+        /// False else
+        /// </summary>
+        private bool pause = false;
 
         #endregion
 
@@ -98,6 +100,16 @@ namespace SpaceInvaders
         #region methods
 
         /// <summary>
+        /// Force a given key to be ignored in following updates until the user
+        /// explicitily retype it or the system autofires it again.
+        /// </summary>
+        /// <param name="key">key to ignore</param>
+        public void ReleaseKey(Keys key)
+        {
+            keyPressed.Remove(key);
+        }
+
+        /// <summary>
         /// Create game objects when launching the game
         /// </summary>
         public void Load()
@@ -133,6 +145,20 @@ namespace SpaceInvaders
         /// </summary>
         public void Update(double deltaT)
         {
+            // check if pause
+            if (keyPressed.Contains(Keys.P))
+            {
+                // update pause state
+                pause = !pause;
+                ReleaseKey(Keys.P);
+            }
+
+            // if game is paused
+            if (pause) { 
+                // don't update the game
+                return; 
+            }
+
             // add new game objects
             gameObjects.UnionWith(pendingNewGameObjects);
             pendingNewGameObjects.Clear();

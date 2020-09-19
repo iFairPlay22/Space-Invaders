@@ -82,7 +82,15 @@ namespace SpaceInvaders.GameObjects
                 // move player to right or left direction
                 Move(gameInstance, deltaT, right, null);
             }
+        }
 
+        public override bool IsAlive()
+        {
+            bool alive = base.IsAlive();
+
+            if (!alive) throw new Exception("Game over!");
+
+            return alive;
         }
 
         #endregion
