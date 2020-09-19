@@ -1,0 +1,64 @@
+﻿using System;
+using System.Drawing;
+
+namespace SpaceInvaders.GameObjects.Shooters
+{
+
+    abstract class MovingObject : ImageObject
+    {
+
+        private double speed;
+        private readonly double speedDecalage;
+
+        private static readonly double MAX_SPEED = 250;
+
+        public MovingObject(TeamManager team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage) : 
+            base(team, coords, image) 
+        {
+            this.speed = (double) GameException.RequirePositive(speed);
+            this.speedDecalage = (double)GameException.RequirePositive(speedDecalage);
+        }
+
+        public void Accelerate()
+        {
+            if (speed + speedDecalage <= MAX_SPEED)
+                speed += speedDecalage;
+        }
+
+        public virtual bool CanMove(Game gameInstance, double deltaT, bool? right, bool? top)
+        {
+            Vecteur2D next = NextCoords(right, top, deltaT);
+
+            if (right.HasValue && !(0 <= next.x && next.x + ImageDimentions.x < gameInstance.gameSize.Width))
+            {
+                return false;
+            }
+
+            if (top.HasValue && !(0 <= next.y && next.y + ImageDimentions.y < gameInstance.gameSize.Height))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void Move(Game gameInstance, double deltaT, bool? right, bool? top)
+        {
+            if (!CanMove(gameInstance, deltaT, right, top)) throw new InvalidOperationException();
+
+            coords = NextCoords(right, top, deltaT);
+        }
+
+        protected Vecteur2D NextCoords(bool? right, bool? top, double deltaT)
+        {
+            int dx = 0, dy = 0;
+            if (right.HasValue)
+                dx = (right.Value ? 1 : -1);
+
+            if (top.HasValue)
+                dy = (top.Value ? 1 : -1);
+
+            return new Vecteur2D(coords.x + dx * (speed * deltaT), coords.y - dy * (speed * deltaT));
+        }
+    }
+}
