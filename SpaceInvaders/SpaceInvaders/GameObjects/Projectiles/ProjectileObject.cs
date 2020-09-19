@@ -13,11 +13,6 @@ namespace SpaceInvaders.GameObjects.Projectiles
         #region Fields
 
         /// <summary>
-        /// Ball speed in pixel/second
-        /// </summary>
-        private readonly double projectileSpeed;
-
-        /// <summary>
         /// True if object have to be print, 
         /// False else
         /// </summary>
@@ -36,11 +31,10 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// Simple constructor
         /// </summary>
         /// <param name="v">Vecteur</param>
-        public ProjectileObject(TeamManager team, Vecteur2D v, Bitmap image, double projectileSpeed, bool top) : 
+        public ProjectileObject(Team team, Vecteur2D v, Bitmap image, double projectileSpeed) : 
             base(team, v, image, projectileSpeed, 0)
         {
-            this.projectileSpeed = GameException.RequirePositive(projectileSpeed);
-            this.top = top;
+            this.top = team == Team.PLAYER;
         }
 
         #endregion
@@ -49,8 +43,9 @@ namespace SpaceInvaders.GameObjects.Projectiles
 
         public override void Update(Game gameInstance, double deltaT)
         {
-            coords = NextCoords(null, top, deltaT);
-            if (coords.y <= 0)
+            if (CanMove(gameInstance, deltaT, null, top))
+                Move(gameInstance, deltaT, null, top);
+            else
                 alive = false;
 
             foreach (GameObject gameObject in Game.game.gameObjects)
@@ -66,34 +61,13 @@ namespace SpaceInvaders.GameObjects.Projectiles
             return alive;
         }
 
-        public override bool CanCollision(ProjectileObject projectile)
-        {
-            return TeamManager.Team == projectile.TeamManager.getEnnemy() && base.CanCollision(projectile);
-        }
-
-
         public override void OnCollision(ProjectileObject projectile)
         {
-            if (this.TeamManager.getEnnemy() == projectile.TeamManager.Team)
+            if (this.team != projectile.team)
             {
                 this.alive = false;
                 projectile.alive = false;
             }
-        }
-
-        public Vecteur2D[] getExtremities()
-        {
-            Vecteur2D v = coords;
-            Vecteur2D d = ImageDimentions;
-
-            Vecteur2D[] res = {
-                v,
-                new Vecteur2D(v.x + d.x  , v.y      ),
-                new Vecteur2D(v.x        , v.y + d.y),
-                new Vecteur2D(v.x + d.x  , v.y + d.y),
-            };
-
-            return res;
         }
 
         #endregion

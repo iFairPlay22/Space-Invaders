@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Shooters;
+using SpaceInvaders.GameObjects.Shooters.Ennemies;
 
 namespace SpaceInvaders
 {
@@ -104,15 +105,15 @@ namespace SpaceInvaders
             AddNewGameObject(new User(new Vecteur2D(gameSize.Width / 2, gameSize.Height - gameSize.Height / 4)));
 
             GameObject gameObject = new EnnemyContainer(
-                new Ennemy(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 4)),
-                new Ennemy(new Vecteur2D(gameSize.Width / 4 +100, gameSize.Height / 4)),
-                new Ennemy(new Vecteur2D(gameSize.Width / 4 +200, gameSize.Height / 4)),
-                new Ennemy(new Vecteur2D(gameSize.Width / 4 +300, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4 +100, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4 +200, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4 +300, gameSize.Height / 4)),
 
-                new Ennemy(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 3)),
-                new Ennemy(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 3)),
-                new Ennemy(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 3)),
-                new Ennemy(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 3))
+                new Ennemy2(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 3)),
+                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 3)),
+                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 3)),
+                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 3))
             );
             AddNewGameObject(gameObject);
         }

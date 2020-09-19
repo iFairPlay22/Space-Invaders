@@ -22,7 +22,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// </summary>
         /// <param name="v">Vecteur</param>
         public EnnemyProjectile(Vecteur2D v) :
-            base(new TeamManager(GameObjects.Team.ENNEMY), v, SpaceInvaders.Properties.Resources.shoot1, ENNEMY_PROJECTILE_SPEED, false)
+            base(Team.ENNEMY, v, SpaceInvaders.Properties.Resources.shoot1, ENNEMY_PROJECTILE_SPEED)
         {
             this.coords += new Vecteur2D(0, GameException.RequireNonNull(ImageDimentions).y);
         }

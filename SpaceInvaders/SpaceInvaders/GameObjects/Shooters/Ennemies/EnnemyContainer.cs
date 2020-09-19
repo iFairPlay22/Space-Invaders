@@ -7,18 +7,18 @@ namespace SpaceInvaders.GameObjects.Shooters
 {
     class EnnemyContainer : GameObject
     {
-        private readonly HashSet<Ennemy> ennemies = new HashSet<Ennemy>();
+        private readonly HashSet<EnnemyObject> ennemies = new HashSet<EnnemyObject>();
 
         private bool right = true;
 
-        public EnnemyContainer(params Ennemy[] ennemies) : 
-            this(new HashSet<Ennemy>(GameException.RequireNonNull(ennemies))) {}
+        public EnnemyContainer(params EnnemyObject[] ennemies) : 
+            this(new HashSet<EnnemyObject>(GameException.RequireNonNull(ennemies))) {}
 
-        private EnnemyContainer(HashSet<Ennemy> ennemies) : base(new TeamManager(GameObjects.Team.ENNEMY), new Vecteur2D(0, 0))
+        private EnnemyContainer(HashSet<EnnemyObject> ennemies) : base(Team.ENNEMY, new Vecteur2D(0, 0))
         {
             this.ennemies = GameException.RequireNonNull(ennemies);
 
-            foreach (Ennemy ennemy in ennemies)
+            foreach (EnnemyObject ennemy in ennemies)
                 Game.game.AddNewGameObject(ennemy);
         }
 
@@ -36,16 +36,17 @@ namespace SpaceInvaders.GameObjects.Shooters
             if (decalage) right = !right;
             
 
-            foreach (Ennemy ennemy in ennemies)
+            foreach (EnnemyObject ennemy in ennemies)
             {
                 if (decalage)
                 {
                     ennemy.Accelerate();
                     
                     for (int i = 0; i < 2; i++)
-                        ennemy.Move(gameInstance, deltaT, right, false);
+                        if (ennemy.CanMove(gameInstance, deltaT, right, null))
+                            ennemy.Move(gameInstance, deltaT, right, false);
 
-                } else
+                } else if (ennemy.CanMove(gameInstance, deltaT, right, null))
                 {
                     ennemy.Move(gameInstance, deltaT, right, null);
                 }

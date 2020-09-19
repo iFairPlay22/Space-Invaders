@@ -12,7 +12,7 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         private static readonly double MAX_SPEED = 250;
 
-        public MovingObject(TeamManager team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage) : 
+        public MovingObject(Team team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage) : 
             base(team, coords, image) 
         {
             this.speed = (double) GameException.RequirePositive(speed);
@@ -30,14 +30,10 @@ namespace SpaceInvaders.GameObjects.Shooters
             Vecteur2D next = NextCoords(right, top, deltaT);
 
             if (right.HasValue && !(0 <= next.x && next.x + ImageDimentions.x < gameInstance.gameSize.Width))
-            {
                 return false;
-            }
 
             if (top.HasValue && !(0 <= next.y && next.y + ImageDimentions.y < gameInstance.gameSize.Height))
-            {
                 return false;
-            }
 
             return true;
         }
@@ -49,7 +45,7 @@ namespace SpaceInvaders.GameObjects.Shooters
             coords = NextCoords(right, top, deltaT);
         }
 
-        protected Vecteur2D NextCoords(bool? right, bool? top, double deltaT)
+        private Vecteur2D NextCoords(bool? right, bool? top, double deltaT)
         {
             int dx = 0, dy = 0;
             if (right.HasValue)

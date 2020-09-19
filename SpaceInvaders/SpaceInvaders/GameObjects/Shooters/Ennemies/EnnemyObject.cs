@@ -1,28 +1,15 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Ships;
+using SpaceInvaders.Util;
 using System;
+using System.Drawing;
 using System.Timers;
 
 namespace SpaceInvaders.GameObjects.Shooters
 {
-    class Ennemy : MovingShooterObject
+    abstract class EnnemyObject : MovingShooterObject
     {
         #region Fields
-
-        /// <summary>
-        /// Ball speed in pixel/second
-        /// </summary>
-        private static readonly double ENNEMY_SPEED = 50;
-
-        /// <summary>
-        /// Ball speed in pixel/second
-        /// </summary>
-        private static readonly double ENNEMY_SPEED_DECALAGE = 10;
-
-        /// <summary>
-        /// Time between 2 shoots in milliseconds
-        /// </summary>
-        private static readonly int SHOOT_TIME = 10000;
 
         /// <summary>
         /// Timer
@@ -30,15 +17,15 @@ namespace SpaceInvaders.GameObjects.Shooters
         private readonly Timer timer;
 
         /// <summary>
-        /// True if can shoot
-        /// False else
+        /// Percentage to shoot between 0 and 100
         /// </summary>
-        private bool canShoot = true;
+        private readonly int shootPercentage;
 
         /// <summary>
-        /// Ennemy life
+        /// True if it's time to try a shoot
+        /// False else
         /// </summary>
-        private static readonly int ENNEMY_LIFE = 1;
+        private bool timeToShoot = true;
 
         #endregion
 
@@ -48,12 +35,15 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// </summary>
         /// <param name="coords">Initial coords</param>
         /// 
-        public Ennemy(Vecteur2D coords) : 
-            base(new TeamManager(Team.ENNEMY), coords, Properties.Resources.ship2, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, ENNEMY_LIFE) 
+        public EnnemyObject(Vecteur2D coords, Bitmap image, double speed, double speedDecalage, double shootTime, int shootPercentage, int life) : 
+            base(Team.ENNEMY, coords, image, speed, speedDecalage, life) 
             {
-                timer = new Timer { Interval = SHOOT_TIME };
+                this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);
+                timer = new Timer { 
+                    Interval = GameException.RequirePositive(shootTime) 
+                };
                 timer.Elapsed += (object sender, ElapsedEventArgs e) => {
-                    canShoot = true;
+                    timeToShoot = true;
                     timer.Stop();
                 };
             }
@@ -71,32 +61,31 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         public override bool CanMove(Game gameInstance, double deltaT, bool? right, bool? top)
         {
-
             if (top.HasValue && top.Value == true)
                 throw new InvalidOperationException();
 
             return base.CanMove(gameInstance, deltaT, right, top);
         }
 
-        public override bool CanShoot()
+        protected override bool CanShoot()
         {
-            base.CanShoot();
-            return canShoot;
+            return base.CanShoot() && timeToShoot;
         }
 
-        public override void Shoot()
+        protected override void Shoot()
         {
             base.Shoot();
 
-            canShoot = false;
-            timer.Start();
+            if (RandomNumbers.Randint(0, 100) <= shootPercentage)
+                Projectile = new EnnemyProjectile(ProjectileCoords());
 
-            Game.game.AddNewGameObject(new EnnemyProjectile(ProjectileCoords()));
+            timeToShoot = false;
+            timer.Start();
         }
 
         public override void Update(Game gameInstance, double deltaT)
         {
-            if (CanShoot())
+            if (CanShoot()) 
                 Shoot();
         }
 

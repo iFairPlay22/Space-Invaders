@@ -1,7 +1,6 @@
 ﻿
 
 using SpaceInvaders.GameObjects.Projectile;
-using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Ships;
 using System;
 using System.Windows.Forms;
@@ -23,11 +22,6 @@ namespace SpaceInvaders.GameObjects
         private static readonly double ENNEMY_SPEED_DECALAGE = 0;
 
         /// <summary>
-        /// Projectile
-        /// </summary>
-        private UserProjectile projectile = null;
-
-        /// <summary>
         /// Ennemy life
         /// </summary>
         private static readonly int USER_LIFE = 2;
@@ -40,7 +34,7 @@ namespace SpaceInvaders.GameObjects
         /// </summary>
         /// <param name="coords">Initial coordsx</param>
         public User(Vecteur2D coords) : 
-            base(new TeamManager(Team.PLAYER), coords, Properties.Resources.ship3, USER_SPEED, ENNEMY_SPEED_DECALAGE, USER_LIFE) {}
+            base(Team.PLAYER, coords, Properties.Resources.ship3, USER_SPEED, ENNEMY_SPEED_DECALAGE, USER_LIFE) {}
 
         #endregion
 
@@ -63,26 +57,15 @@ namespace SpaceInvaders.GameObjects
 
         }
 
-        public override bool CanShoot()
-        {
-            return projectile == null;
-        }
-
-        public override void Shoot()
+        protected override void Shoot()
         {
             base.Shoot();
 
-            projectile = new UserProjectile(ProjectileCoords());
-            Game.game.AddNewGameObject(projectile);
+            Projectile = new UserProjectile(ProjectileCoords());
         }
 
         public override void Update(Game gameInstance, double deltaT)
         {
-            base.Update(gameInstance, deltaT);
-
-            if (projectile != null && projectile.IsAlive() == false)
-                projectile = null;
-
             // if space is pressed
             if (gameInstance.keyPressed.Contains(Keys.Space) && CanShoot())
             {

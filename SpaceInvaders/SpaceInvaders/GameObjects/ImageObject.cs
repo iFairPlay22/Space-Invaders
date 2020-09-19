@@ -1,9 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders.GameObjects
 {
@@ -30,11 +27,10 @@ namespace SpaceInvaders.GameObjects
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
         
-        public ImageObject(TeamManager team, Vecteur2D coords, Bitmap image) : base(team, coords)
+        public ImageObject(Team team, Vecteur2D coords, Bitmap image) : base(team, coords)
         {
-            this.coords = GameException.RequireNonNull(coords);
             this.image = GameException.RequireNonNull(image);
-            this.ImageDimentions = new Vecteur2D(image.Width, image.Height);
+            ImageDimentions = new Vecteur2D(image.Width, image.Height);
         }
         #endregion
 
@@ -47,16 +43,23 @@ namespace SpaceInvaders.GameObjects
 
         public override bool CanCollision(ProjectileObject projectile)
         {
-           return projectile.getExtremities().Any(
+            if (team == projectile.team) return false;
+
+            Vecteur2D projectileCoords = GameException.RequireNonNull(projectile).coords;
+            Vecteur2D projectileDimentions = projectile.ImageDimentions;
+
+            Vecteur2D[] res = {
+                projectileCoords,
+                new Vecteur2D(projectileCoords.x + projectileDimentions.x, projectileCoords.y),
+                new Vecteur2D(projectileCoords.x, projectileCoords.y + projectileDimentions.y),
+                new Vecteur2D(projectileCoords.x + projectileDimentions.x, projectileCoords.y + projectileDimentions.y),
+            };
+
+            return res.Any(
                v => 
                     (coords.x <= GameException.RequireNonNull(v).x && v.x < coords.x + ImageDimentions.x) && 
                     (coords.y <= v.y && v.y < coords.y + ImageDimentions.y)
            );
-        }
-
-        public override void Update(Game gameInstance, double deltaT)
-        {
-
         }
 
         public override bool IsAlive()

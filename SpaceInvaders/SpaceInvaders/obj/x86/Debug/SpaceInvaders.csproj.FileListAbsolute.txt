@@ -8,3 +8,13 @@ C:\Users\david\OneDrive\Documents\FAMILLE\EWEN\ESIEE\E3\S1\C#\SpaceInvaders\Spac
 C:\Users\david\OneDrive\Documents\FAMILLE\EWEN\ESIEE\E3\S1\C#\SpaceInvaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
 C:\Users\david\OneDrive\Documents\FAMILLE\EWEN\ESIEE\E3\S1\C#\SpaceInvaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb
 C:\Users\david\OneDrive\Documents\FAMILLE\EWEN\ESIEE\E3\S1\C#\SpaceInvaders\SpaceInvaders\SpaceInvaders\bin\Debug\SpaceInvaders.exe.config
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\bin\Debug\SpaceInvaders.exe.config
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\bin\Debug\SpaceInvaders.exe
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\bin\Debug\SpaceInvaders.pdb
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csprojAssemblyReference.cache
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.GameForm.resources
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.Properties.Resources.resources
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csproj.GenerateResource.cache
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.csproj.CoreCompileInputs.cache
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.exe
+C:\Users\david\OneDrive\Documents\GitHub\Space-Invaders\SpaceInvaders\SpaceInvaders\obj\x86\Debug\SpaceInvaders.pdb

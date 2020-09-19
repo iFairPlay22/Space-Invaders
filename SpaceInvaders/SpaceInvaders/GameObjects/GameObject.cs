@@ -1,10 +1,6 @@
 ﻿using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Projectiles;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders
 {
@@ -14,16 +10,16 @@ namespace SpaceInvaders
     abstract class GameObject
     {
 
-        public readonly TeamManager TeamManager;
+        public readonly Team team;
 
         /// <summary>
         /// Position coords
         /// </summary>
-        public Vecteur2D coords;
+        protected Vecteur2D coords;
 
-        public GameObject(TeamManager team, Vecteur2D coords) {
-            this.TeamManager = GameException.RequireNonNull(team);
-            this.coords = coords;
+        public GameObject(Team team, Vecteur2D coords) {
+            this.team = GameException.RequireNonNull(team);
+            this.coords = GameException.RequireNonNull(coords);
         }
 
         /// <summary>

@@ -1,15 +1,29 @@
-﻿using SpaceInvaders.GameObjects.Projectile;
-using SpaceInvaders.GameObjects.Projectiles;
+﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Shooters;
 using System;
 using System.Drawing;
-using System.Timers;
 
 namespace SpaceInvaders.GameObjects.Ships
 {
     abstract class MovingShooterObject : MovingObject
     {
         #region Fields
+
+        /// <summary>
+        /// Projectile
+        /// </summary>
+        
+        private ProjectileObject projectile;
+        protected ProjectileObject Projectile {
+            private get { 
+                return projectile; 
+            }
+            set {
+                projectile = value;
+                if (projectile != null) 
+                    Game.game.AddNewGameObject(projectile);
+            } 
+        }
 
         /// <summary>
         /// Game object life
@@ -24,24 +38,29 @@ namespace SpaceInvaders.GameObjects.Ships
         /// </summary>
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
-        public MovingShooterObject(TeamManager team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage, int life) : 
+        public MovingShooterObject(Team team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage, int life) : 
             base(team, coords, image, speed, speedDecalage)
         {
             this.life = (int) GameException.RequirePositive(life);
         }
-        
+
         #endregion
 
         #region Methods
 
-        public virtual bool CanShoot()
+        protected virtual bool CanShoot()
         {
-            return true;
+            return Projectile == null || (Projectile != null && !Projectile.IsAlive());
         }
 
-        public virtual void Shoot()
+        protected virtual void Shoot()
         {
             if (!CanShoot()) throw new InvalidOperationException();
+        }
+
+        public override void OnCollision(ProjectileObject projectile)
+        {
+            life--;
         }
 
         public override bool IsAlive()
@@ -52,17 +71,6 @@ namespace SpaceInvaders.GameObjects.Ships
         protected Vecteur2D ProjectileCoords()
         {
             return new Vecteur2D(coords.x + ImageDimentions.x / 2, coords.y);
-        }
-
-        public override bool CanCollision(ProjectileObject projectile)
-        {
-            return TeamManager.Team == projectile.TeamManager.getEnnemy() && base.CanCollision(projectile);
-        }
-
-
-        public override void OnCollision(ProjectileObject projectile)
-        {
-            life--;
         }
 
         #endregion
