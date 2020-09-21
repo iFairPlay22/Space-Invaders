@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\Background\BackgroundImage.cs" />
+    <Compile Include="GameObjects\Background\DefeatBackground.cs" />
+    <Compile Include="GameObjects\Background\GameBackground.cs" />
+    <Compile Include="GameObjects\Background\StartingBackground.cs" />
+    <Compile Include="GameObjects\Background\VictoryBackground.cs" />
     <Compile Include="GameObjects\Projectiles\EnnemyProjectile.cs" />
     <Compile Include="GameObjects\Shooters\Ennemies\Ennemy1.cs" />
     <Compile Include="GameObjects\Shooters\Ennemies\Ennemy2.cs" />
@@ -70,6 +75,7 @@
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\GameState.cs" />
     <Compile Include="Util\RandomNumbers.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -144,7 +150,18 @@
   <ItemGroup>
     <None Include="Resources\shoot1.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\game_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loose_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\win_background.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

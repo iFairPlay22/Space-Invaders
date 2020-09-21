@@ -2,8 +2,10 @@
 using System.Drawing;
 using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
+using SpaceInvaders.GameObjects.Background;
 using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.Shooters.Ennemies;
+using SpaceInvaders.Util;
 
 namespace SpaceInvaders
 {
@@ -46,10 +48,9 @@ namespace SpaceInvaders
         public HashSet<Keys> keyPressed = new HashSet<Keys>();
 
         /// <summary>
-        /// True if game is paused
-        /// False else
+        /// Game state
         /// </summary>
-        private bool pause = false;
+        public GameStateManager gameStateManager;
 
         #endregion
 
@@ -112,22 +113,51 @@ namespace SpaceInvaders
         /// <summary>
         /// Create game objects when launching the game
         /// </summary>
-        public void Load()
+        public void Load() {
+            gameStateManager = new GameStateManager(this);
+        }
+
+        private void BeforeSwitch()
         {
+            gameObjects.Clear();
+        }
+
+        public void SwitchToStart()
+        {
+            BeforeSwitch();
+
+            AddNewGameObject(new StartingBackground(this));
+        }
+
+        public void SwitchToGame()
+        {
+            BeforeSwitch();
+
+            AddNewGameObject(new GameBackground(this));
+
             AddNewGameObject(new User(new Vecteur2D(gameSize.Width / 2, gameSize.Height - gameSize.Height / 4)));
 
-            GameObject gameObject = new EnnemyContainer(
+            AddNewGameObject(new EnnemyContainer(
                 new Ennemy1(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 4)),
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4 +100, gameSize.Height / 4)),
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4 +200, gameSize.Height / 4)),
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4 +300, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 4)),
 
                 new Ennemy2(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 3)),
                 new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 3)),
                 new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 3)),
                 new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 3))
-            );
-            AddNewGameObject(gameObject);
+            ));
+        }
+
+        public void SwitchToEnd(bool victory)
+        {
+            BeforeSwitch();
+
+            if (victory) 
+                AddNewGameObject(new VictoryBackground(this));
+            else
+                AddNewGameObject(new DefeatBackground(this));
         }
 
         /// <summary>
@@ -145,18 +175,19 @@ namespace SpaceInvaders
         /// </summary>
         public void Update(double deltaT)
         {
-            // check if pause
-            if (keyPressed.Contains(Keys.P))
-            {
-                // update pause state
-                pause = !pause;
-                ReleaseKey(Keys.P);
-            }
+            // init menu --> game
+            if (gameStateManager.StartMode() && keyPressed.Contains(Keys.Space))
+                gameStateManager.StartGame();
 
-            // if game is paused
-            if (pause) { 
-                // don't update the game
-                return; 
+            // game --> pause ?
+            if (gameStateManager.GameMode())
+            {
+                if (keyPressed.Contains(Keys.P))
+                {
+                    gameStateManager.PausedGame();
+                    keyPressed.Remove(Keys.P);
+                }
+                if (gameStateManager.Paused()) return;
             }
 
             // add new game objects
@@ -165,10 +196,8 @@ namespace SpaceInvaders
             
             // update each game object
             foreach (GameObject gameObject in gameObjects)
-            {
                 gameObject.Update(this, deltaT);
-            }
-
+            
             // remove dead objects
             gameObjects.RemoveWhere(gameObject => !gameObject.IsAlive());
         }

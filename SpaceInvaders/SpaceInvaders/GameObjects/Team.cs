@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace SpaceInvaders.GameObjects
+﻿namespace SpaceInvaders.GameObjects
 {
     public enum Team
     {
         PLAYER,
-        ENNEMY
+        ENNEMY,
+        NEUTRAL
     }
 }

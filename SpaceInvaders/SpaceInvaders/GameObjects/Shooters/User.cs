@@ -2,6 +2,7 @@
 
 using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Ships;
+using SpaceInvaders.Util;
 using System;
 using System.Windows.Forms;
 
@@ -87,8 +88,8 @@ namespace SpaceInvaders.GameObjects
         public override bool IsAlive()
         {
             bool alive = base.IsAlive();
-
-            if (!alive) throw new Exception("Game over!");
+            
+            if (!alive) Game.game.gameStateManager.FinishGame(false);
 
             return alive;
         }

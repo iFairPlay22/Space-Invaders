@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.Util;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -56,7 +57,7 @@ namespace SpaceInvaders.GameObjects.Shooters
                     ennemy.Move(gameInstance, deltaT, right, null);
                 }
 
-                if (!IsAlive()) throw new Exception("You loose2!");
+                if (!IsAlive()) Game.game.gameStateManager.FinishGame(true);
             }
 
             ennemies.RemoveWhere(gameObject => !gameObject.IsAlive());
