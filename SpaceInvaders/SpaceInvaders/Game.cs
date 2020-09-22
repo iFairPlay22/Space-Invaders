@@ -138,26 +138,27 @@ namespace SpaceInvaders
             AddNewGameObject(new User(new Vecteur2D(gameSize.Width / 2, gameSize.Height - gameSize.Height / 4)));
 
             AddNewGameObject(new EnnemyContainer(
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 4)),
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 4)),
+                new Ennemy1(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 4))
+                /*new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 4)),
                 new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 4)),
                 new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 4)),
 
                 new Ennemy2(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 3)),
                 new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 3)),
                 new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 3)),
-                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 3))
+                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 3))*/
             ));
         }
 
-        public void SwitchToEnd(bool victory)
+        public void SwitchToEnd(bool win)
         {
             BeforeSwitch();
 
-            if (victory) 
+            if (win) 
                 AddNewGameObject(new VictoryBackground(this));
             else
                 AddNewGameObject(new DefeatBackground(this));
+
         }
 
         /// <summary>
@@ -177,7 +178,10 @@ namespace SpaceInvaders
         {
             // init menu --> game
             if (gameStateManager.StartMode() && keyPressed.Contains(Keys.Space))
+            {
                 gameStateManager.StartGame();
+                keyPressed.Remove(Keys.Space);
+            }
 
             // game --> pause ?
             if (gameStateManager.GameMode())
@@ -193,7 +197,7 @@ namespace SpaceInvaders
             // add new game objects
             gameObjects.UnionWith(pendingNewGameObjects);
             pendingNewGameObjects.Clear();
-            
+
             // update each game object
             foreach (GameObject gameObject in gameObjects)
                 gameObject.Update(this, deltaT);

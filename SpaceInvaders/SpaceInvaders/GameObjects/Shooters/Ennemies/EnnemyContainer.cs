@@ -26,13 +26,14 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         public override void Draw(Game gameInstance, Graphics graphics) {}
 
+
         public override bool IsAlive()
         {
-            bool isAlive = ennemies.Count() != 0;
+            bool alive = ennemies.Count() != 0;
+            
+            if (!alive) Game.game.gameStateManager.FinishGame(true);
 
-            if (!isAlive) throw new Exception("You loose!");
-
-            return isAlive;
+            return alive;
         }
 
         public override void Update(Game gameInstance, double deltaT)
@@ -47,17 +48,16 @@ namespace SpaceInvaders.GameObjects.Shooters
                 if (decalage)
                 {
                     ennemy.Accelerate();
-                    
+
                     for (int i = 0; i < 2; i++)
                         if (ennemy.CanMove(gameInstance, deltaT, right, null))
                             ennemy.Move(gameInstance, deltaT, right, false);
 
-                } else if (ennemy.CanMove(gameInstance, deltaT, right, null))
+                }
+                else if (ennemy.CanMove(gameInstance, deltaT, right, null))
                 {
                     ennemy.Move(gameInstance, deltaT, right, null);
-                }
-
-                if (!IsAlive()) Game.game.gameStateManager.FinishGame(true);
+                }      
             }
 
             ennemies.RemoveWhere(gameObject => !gameObject.IsAlive());
