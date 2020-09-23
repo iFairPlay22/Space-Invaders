@@ -42,8 +42,8 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         /// </summary>
         /// <param name="coords">Initial coords</param>
         
-        public Ennemy1(Vecteur2D coords) :
-            base(coords, Properties.Resources.ship2, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_TIME, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
+        public Ennemy1(Vecteur2D src, Vecteur2D dst) :
+            base(src, dst, Properties.Resources.ship2, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_TIME, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
         {}
 
         #endregion

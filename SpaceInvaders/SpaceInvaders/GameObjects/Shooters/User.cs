@@ -2,7 +2,6 @@
 
 using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Ships;
-using SpaceInvaders.Util;
 using System;
 using System.Windows.Forms;
 
@@ -34,8 +33,19 @@ namespace SpaceInvaders.GameObjects
         /// Simple constructor
         /// </summary>
         /// <param name="coords">Initial coordsx</param>
-        public User(Vecteur2D coords) : 
-            base(Team.PLAYER, coords, Properties.Resources.ship3, USER_SPEED, ENNEMY_SPEED_DECALAGE, USER_LIFE) {}
+        public User(Game gameInstance) :
+            base(
+                Team.PLAYER,
+                new Vecteur2D(
+                    GameException.RequireNonNull(gameInstance).gameSize.Width / 2,
+                    gameInstance.gameSize.Height - gameInstance.gameSize.Height / 4
+                ), 
+                Properties.Resources.ship3, 
+                USER_SPEED, 
+                ENNEMY_SPEED_DECALAGE, 
+                USER_LIFE
+             ) 
+                {}
 
         #endregion
 

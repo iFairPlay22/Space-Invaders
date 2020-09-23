@@ -3,6 +3,7 @@ using SpaceInvaders.GameObjects.Ships;
 using SpaceInvaders.Util;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Timers;
 
 namespace SpaceInvaders.GameObjects.Shooters
@@ -27,6 +28,8 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// </summary>
         private bool timeToShoot = true;
 
+        private Vecteur2D destinationCoords;
+
         #endregion
 
         #region Constructor
@@ -35,9 +38,10 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// </summary>
         /// <param name="coords">Initial coords</param>
         /// 
-        public EnnemyObject(Vecteur2D coords, Bitmap image, double speed, double speedDecalage, double shootTime, int shootPercentage, int life) : 
-            base(Team.ENNEMY, coords, image, speed, speedDecalage, life) 
+        public EnnemyObject(Vecteur2D src, Vecteur2D dst, Bitmap image, double speed, double speedDecalage, double shootTime, int shootPercentage, int life) : 
+            base(Team.ENNEMY, GameException.RequireNonNull(src), image, speed, speedDecalage, life) 
             {
+                destinationCoords = GameException.RequireNonNull(dst);
                 this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);
                 timer = new Timer { 
                     Interval = GameException.RequirePositive(shootTime) 
@@ -59,6 +63,11 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="deltaT">Game deltaT</param>
         /// <param name="right">True if right direction, False else</param>
 
+        public bool IsArrivedToDestination()
+        {
+            return destinationCoords.y < coords.y;
+        }
+
         public override bool CanMove(Game gameInstance, double deltaT, bool? right, bool? top)
         {
             if (top.HasValue && top.Value == true)
@@ -67,9 +76,16 @@ namespace SpaceInvaders.GameObjects.Shooters
             return base.CanMove(gameInstance, deltaT, right, top);
         }
 
+        public void MoveDown(Game gameInstance, double deltaT)
+        {
+            double decalage = (IsArrivedToDestination() ? 500 : 100) * deltaT;
+            if (coords.y < GameException.RequireNonNull(gameInstance).gameSize.Height)
+                coords += new Vecteur2D(0, decalage);
+        }
+
         protected override bool CanShoot()
         {
-            return base.CanShoot() && timeToShoot;
+            return base.CanShoot() && timeToShoot && IsArrivedToDestination();
         }
 
         protected override void Shoot()

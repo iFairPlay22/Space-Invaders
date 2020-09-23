@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace SpaceInvaders.GameObjects.Shooters.Ennemies
 {
     class Ennemy2 : EnnemyObject
@@ -42,8 +38,8 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         /// </summary>
         /// <param name="coords">Initial coords</param>
 
-        public Ennemy2(Vecteur2D coords) :
-            base(coords, Properties.Resources.ship4, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_TIME, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
+        public Ennemy2(Vecteur2D src, Vecteur2D dst) :
+            base(src, dst, Properties.Resources.ship4, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_TIME, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
         { }
 
         #endregion

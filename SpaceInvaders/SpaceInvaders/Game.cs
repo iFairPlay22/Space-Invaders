@@ -135,19 +135,9 @@ namespace SpaceInvaders
 
             AddNewGameObject(new GameBackground(this));
 
-            AddNewGameObject(new User(new Vecteur2D(gameSize.Width / 2, gameSize.Height - gameSize.Height / 4)));
+            AddNewGameObject(new User(this));
 
-            AddNewGameObject(new EnnemyContainer(
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 4))
-                /*new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 4)),
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 4)),
-                new Ennemy1(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 4)),
-
-                new Ennemy2(new Vecteur2D(gameSize.Width / 4, gameSize.Height / 3)),
-                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 100, gameSize.Height / 3)),
-                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 200, gameSize.Height / 3)),
-                new Ennemy2(new Vecteur2D(gameSize.Width / 4 + 300, gameSize.Height / 3))*/
-            ));
+            AddNewGameObject(new EnnemyContainer(this));
         }
 
         public void SwitchToEnd(bool win)
