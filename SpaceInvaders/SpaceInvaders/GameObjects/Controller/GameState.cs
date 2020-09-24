@@ -42,7 +42,7 @@ namespace SpaceInvaders.Util
 
         public void StartGame()
         {
-            if (!StartMode()) throw new InvalidOperationException();
+            if (!(StartMode() || EndMode())) throw new InvalidOperationException();
 
             gameState = GameState.IN_GAME;
             gameInstance.SwitchToGame();
@@ -68,7 +68,7 @@ namespace SpaceInvaders.Util
         {
             if (!GameMode()) throw new InvalidOperationException();
 
-            // paused or continue
+            // win or loose
             gameState = win ? GameState.WIN : GameState.GAME_OVER;
        
             // release key

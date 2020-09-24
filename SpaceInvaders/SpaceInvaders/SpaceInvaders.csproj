@@ -76,7 +76,7 @@
     <Compile Include="GameObjects\Model\GameObjects\GameObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameObjects\Model\Util\GameState.cs" />
+    <Compile Include="GameObjects\Controller\GameState.cs" />
     <Compile Include="GameObjects\Model\Util\RandomNumbers.cs" />
     <EmbeddedResource Include="GameObjects\Controller\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

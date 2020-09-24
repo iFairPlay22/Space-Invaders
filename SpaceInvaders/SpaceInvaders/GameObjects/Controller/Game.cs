@@ -167,7 +167,7 @@ namespace SpaceInvaders
         public void Update(double deltaT)
         {
             // init menu --> game
-            if (gameStateManager.StartMode() && keyPressed.Contains(Keys.Space))
+            if ((gameStateManager.StartMode() || gameStateManager.EndMode()) && keyPressed.Contains(Keys.Space))
             {
                 gameStateManager.StartGame();
                 keyPressed.Remove(Keys.Space);

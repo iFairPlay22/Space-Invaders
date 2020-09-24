@@ -15,8 +15,8 @@ namespace SpaceInvaders.GameObjects.Shooters
         public MovingObject(Team team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage) : 
             base(team, coords, image) 
         {
-            this.speed = (double) GameException.RequirePositive(speed);
-            this.speedDecalage = (double)GameException.RequirePositive(speedDecalage);
+            this.speed = GameException.RequirePositive(speed);
+            this.speedDecalage = GameException.RequirePositive(speedDecalage);
         }
 
         public virtual void Accelerate()
