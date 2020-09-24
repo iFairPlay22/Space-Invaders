@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
 
+
+// Add WindowsBase + PresentationCore
+// https://www.spriters-resource.com/search/?q=mario
+// https://themushroomkingdom.net/media/smb/wav
+// https://themushroomkingdom.net/mp3.shtml
+
 namespace SpaceInvaders.GameObjects.View.Sounds
 {
     class SongManager
@@ -16,17 +22,13 @@ namespace SpaceInvaders.GameObjects.View.Sounds
 
         public void Load()
         {
-            SetPlayList(
+            LoadPlayList(
                 new List<string> { "background_music_1.wav" }
-            ); ;
+            );
 
-            // Add WindowsBase + PresentationCore
-            // https://www.spriters-resource.com/search/?q=mario
-            // https://themushroomkingdom.net/media/smb/wav
-            // https://themushroomkingdom.net/mp3.shtml
         }
 
-        private void SetPlayList(List<string> urls)
+        private void LoadPlayList(List<string> urls)
         {
 
             foreach (string url in urls)

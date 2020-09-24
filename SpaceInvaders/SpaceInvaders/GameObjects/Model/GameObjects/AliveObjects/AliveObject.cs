@@ -1,5 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Shooters;
+using SpaceInvaders.GameObjects.View.Sounds;
 using System;
 using System.Drawing;
 
@@ -25,6 +26,9 @@ namespace SpaceInvaders.GameObjects.Alive
             int damages = Math.Min(life, projectile.life);
             life -= damages;
             projectile.life -= damages;
+
+            if (life == 0) 
+                SongManager.instance.AddVolatileSong("volatile_ennemy_dead.wav");
         }
 
         public override bool IsAlive()
