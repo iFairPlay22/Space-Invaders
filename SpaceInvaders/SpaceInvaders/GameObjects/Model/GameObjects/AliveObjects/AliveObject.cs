@@ -22,7 +22,9 @@ namespace SpaceInvaders.GameObjects.Alive
 
         public override void OnCollision(ProjectileObject projectile)
         {
-            life -= Math.Min(life, projectile.life);
+            int damages = Math.Min(life, projectile.life);
+            life -= damages;
+            projectile.life -= damages;
         }
 
         public override bool IsAlive()

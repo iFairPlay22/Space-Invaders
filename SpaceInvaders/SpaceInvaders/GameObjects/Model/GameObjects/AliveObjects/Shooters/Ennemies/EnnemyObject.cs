@@ -65,7 +65,7 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         public bool IsArrivedToDestination()
         {
-            return destinationCoords.y < coords.y;
+            return destinationCoords.Y < coords.Y;
         }
 
         public override bool CanMove(Game gameInstance, double deltaT, bool? right, bool? top)
@@ -79,7 +79,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         public void MoveDown(Game gameInstance, double deltaT)
         {
             double decalage = (IsArrivedToDestination() ? 500 : 100) * deltaT;
-            if (coords.y < GameException.RequireNonNull(gameInstance).gameSize.Height)
+            if (coords.Y < GameException.RequireNonNull(gameInstance).gameSize.Height)
                 coords += new Vecteur2D(0, decalage);
         }
 

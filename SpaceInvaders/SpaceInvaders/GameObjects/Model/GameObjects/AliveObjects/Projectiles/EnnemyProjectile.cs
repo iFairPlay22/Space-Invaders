@@ -17,7 +17,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// <summary>
         /// Projectile life
         /// </summary>
-        private static readonly int ENNEMY_PROJECTILE_LIFE = 2;
+        private static readonly int ENNEMY_PROJECTILE_LIFE = 1;
 
         #endregion
 
@@ -29,7 +29,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         public EnnemyProjectile(Vecteur2D v) :
             base(Team.ENNEMY, v, SpaceInvaders.Properties.Resources.shoot1, ENNEMY_PROJECTILE_SPEED, ENNEMY_PROJECTILE_LIFE)
         {
-            this.coords += new Vecteur2D(0, GameException.RequireNonNull(ImageDimentions).y);
+            this.coords += new Vecteur2D(0, GameException.RequireNonNull(ImageDimentions).Y);
         }
 
         #endregion

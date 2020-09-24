@@ -26,7 +26,7 @@ namespace SpaceInvaders.GameObjects.Projectile
         /// <param name="v">Vecteur</param>
         public UserProjectile(Vecteur2D v) : 
             base(Team.PLAYER, v, Properties.Resources.shoot1, USER_PROJECTILE_SPEED, USER_PROJECTILE_LIFE) {
-            coords += new Vecteur2D(0, -GameException.RequireNonNull(ImageDimentions).y);
+            coords += new Vecteur2D(0, -GameException.RequireNonNull(ImageDimentions).Y);
         }
 
         #endregion

@@ -22,14 +22,15 @@ namespace SpaceInvaders.GameObjects.Shooters
             {
                 (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst),
                 (Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst),
-                (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst)
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst),
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst)
             };
 
             for (int i = 0; i < list.Count; i++)
                 AddLine(
                     gameInstance,
                     list[i],
-                    RandomNumbers.Randint(1, 5),
+                    RandomNumbers.Randint(6, 8),
                     i,
                     list.Count
                 );

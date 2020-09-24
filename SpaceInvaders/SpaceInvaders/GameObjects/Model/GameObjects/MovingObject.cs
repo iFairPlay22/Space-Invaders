@@ -29,10 +29,10 @@ namespace SpaceInvaders.GameObjects.Shooters
         {
             Vecteur2D next = NextCoords(right, top, deltaT);
 
-            if (right.HasValue && !(0 <= next.x && next.x + ImageDimentions.x < gameInstance.gameSize.Width))
+            if (right.HasValue && !(0 <= next.X && next.X + ImageDimentions.X < gameInstance.gameSize.Width))
                 return false;
 
-            if (top.HasValue && !(0 <= next.y && next.y + ImageDimentions.y < gameInstance.gameSize.Height))
+            if (top.HasValue && !(0 <= next.Y && next.Y + ImageDimentions.Y < gameInstance.gameSize.Height))
                 return false;
 
             return true;
@@ -54,7 +54,7 @@ namespace SpaceInvaders.GameObjects.Shooters
             if (top.HasValue)
                 dy = (top.Value ? 1 : -1);
 
-            return new Vecteur2D(coords.x + dx * (speed * deltaT), coords.y - dy * (speed * deltaT));
+            return new Vecteur2D(coords.X + dx * (speed * deltaT), coords.Y - dy * (speed * deltaT));
         }
     }
 }

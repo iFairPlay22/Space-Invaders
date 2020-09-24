@@ -53,7 +53,7 @@ namespace SpaceInvaders.GameObjects.Ships
 
         protected Vecteur2D ProjectileCoords()
         {
-            return new Vecteur2D(coords.x + ImageDimentions.x / 2, coords.y);
+            return new Vecteur2D(coords.X + ImageDimentions.X / 2, coords.Y);
         }
 
         #endregion
