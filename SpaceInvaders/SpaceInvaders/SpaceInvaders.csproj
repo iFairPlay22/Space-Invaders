@@ -46,39 +46,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameObjects\Alive\AliveObject.cs" />
-    <Compile Include="GameObjects\Background\BackgroundImage.cs" />
-    <Compile Include="GameObjects\Background\DefeatBackground.cs" />
-    <Compile Include="GameObjects\Background\GameBackground.cs" />
-    <Compile Include="GameObjects\Background\StartingBackground.cs" />
-    <Compile Include="GameObjects\Background\VictoryBackground.cs" />
-    <Compile Include="GameObjects\Alive\Projectiles\EnnemyProjectile.cs" />
-    <Compile Include="GameObjects\Alive\Shooters\Ennemies\Ennemy1.cs" />
-    <Compile Include="GameObjects\Alive\Shooters\Ennemies\Ennemy2.cs" />
-    <Compile Include="GameObjects\Alive\Shooters\Ennemies\EnnemyObject.cs" />
-    <Compile Include="GameObjects\Alive\Shooters\Ennemies\EnnemyContainer.cs" />
-    <Compile Include="GameObjects\MovingObject.cs" />
-    <Compile Include="GameObjects\Team.cs" />
-    <Compile Include="Util\GameException.cs" />
-    <Compile Include="GameObjects\ImageObject.cs" />
-    <Compile Include="GameObjects\Alive\Projectiles\ProjectileObject.cs" />
-    <Compile Include="GameObjects\Alive\Projectiles\UserProjectile.cs" />
-    <Compile Include="GameObjects\Alive\Shooters\MovingShooterObject.cs" />
-    <Compile Include="GameObjects\Alive\Shooters\Users\User.cs" />
-    <Compile Include="GameObjects\Coords\Vecteur2D.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\AliveObject.cs" />
+    <Compile Include="GameObjects\View\Background\BackgroundImage.cs" />
+    <Compile Include="GameObjects\View\Background\DefeatBackground.cs" />
+    <Compile Include="GameObjects\View\Background\GameBackground.cs" />
+    <Compile Include="GameObjects\View\Background\StartingBackground.cs" />
+    <Compile Include="GameObjects\View\Background\VictoryBackground.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\EnnemyProjectile.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\Ennemy1.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\Ennemy2.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\EnnemyObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\EnnemyContainer.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\MovingObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\Team.cs" />
+    <Compile Include="GameObjects\Model\Util\GameException.cs" />
+    <Compile Include="GameObjects\View\ImageObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\ProjectileObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\UserProjectile.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\MovingShooterObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Users\User.cs" />
+    <Compile Include="GameObjects\Model\Util\Vecteur2D.cs" />
+    <Compile Include="GameObjects\Controller\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="GameObjects\Controller\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs" />
-    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\Controller\Game.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\GameObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\GameState.cs" />
-    <Compile Include="Util\RandomNumbers.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <Compile Include="GameObjects\Model\Util\GameState.cs" />
+    <Compile Include="GameObjects\Model\Util\RandomNumbers.cs" />
+    <EmbeddedResource Include="GameObjects\Controller\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -163,6 +163,7 @@
   <ItemGroup>
     <None Include="Resources\win_background.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
