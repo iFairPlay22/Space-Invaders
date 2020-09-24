@@ -1,6 +1,4 @@
-﻿
-
-using SpaceInvaders.GameObjects.Projectile;
+﻿using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Ships;
 using System;
 using System.Windows.Forms;

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Timers;
 
 namespace SpaceInvaders.GameObjects.Shooters
 {
@@ -19,10 +18,12 @@ namespace SpaceInvaders.GameObjects.Shooters
         {
             ennemies = new HashSet<EnnemyObject>();
 
-            List<Func<Vecteur2D, Vecteur2D, EnnemyObject>> list = new List<Func<Vecteur2D, Vecteur2D, EnnemyObject>>();
-            list.Add((Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst));
-            list.Add((Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst));
-            list.Add((Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst));
+            List<Func<Vecteur2D, Vecteur2D, EnnemyObject>> list = new List<Func<Vecteur2D, Vecteur2D, EnnemyObject>>
+            {
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst),
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst),
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst)
+            };
 
             for (int i = 0; i < list.Count; i++)
                 AddLine(

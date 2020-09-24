@@ -1,4 +1,5 @@
-﻿using SpaceInvaders.GameObjects.Ships;
+﻿using SpaceInvaders.GameObjects.Alive;
+using SpaceInvaders.GameObjects.Ships;
 using SpaceInvaders.GameObjects.Shooters;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace SpaceInvaders.GameObjects.Projectiles
 {
-    abstract class ProjectileObject : MovingObject
+    abstract class ProjectileObject : AliveObject
     {
         #region Fields
 
@@ -31,10 +32,10 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// Simple constructor
         /// </summary>
         /// <param name="v">Vecteur</param>
-        public ProjectileObject(Team team, Vecteur2D v, Bitmap image, double projectileSpeed) : 
-            base(team, v, image, projectileSpeed, 0)
+        public ProjectileObject(Team team, Vecteur2D v, Bitmap image, double projectileSpeed, int life) : 
+            base(team, v, image, projectileSpeed, 0, life)
         {
-            this.top = team == Team.PLAYER;
+            top = team == Team.PLAYER;
         }
 
         #endregion
@@ -50,22 +51,20 @@ namespace SpaceInvaders.GameObjects.Projectiles
 
             foreach (GameObject gameObject in Game.game.gameObjects)
                 if (gameObject != this && gameObject.CanCollision(this))
-                {
                     gameObject.OnCollision(this);
-                    this.alive = false;
-                }
+                
         }
 
         public override bool IsAlive()
         {
-            return alive;
+            return base.IsAlive() && alive;
         }
 
         public override void OnCollision(ProjectileObject projectile)
         {
-            if (this.team != projectile.team)
+            if (team != projectile.team)
             {
-                this.alive = false;
+                alive = false;
                 projectile.alive = false;
             }
         }

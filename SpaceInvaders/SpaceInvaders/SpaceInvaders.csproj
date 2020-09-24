@@ -46,24 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\Alive\AliveObject.cs" />
     <Compile Include="GameObjects\Background\BackgroundImage.cs" />
     <Compile Include="GameObjects\Background\DefeatBackground.cs" />
     <Compile Include="GameObjects\Background\GameBackground.cs" />
     <Compile Include="GameObjects\Background\StartingBackground.cs" />
     <Compile Include="GameObjects\Background\VictoryBackground.cs" />
-    <Compile Include="GameObjects\Projectiles\EnnemyProjectile.cs" />
-    <Compile Include="GameObjects\Shooters\Ennemies\Ennemy1.cs" />
-    <Compile Include="GameObjects\Shooters\Ennemies\Ennemy2.cs" />
-    <Compile Include="GameObjects\Shooters\Ennemies\EnnemyObject.cs" />
-    <Compile Include="GameObjects\Shooters\Ennemies\EnnemyContainer.cs" />
+    <Compile Include="GameObjects\Alive\Projectiles\EnnemyProjectile.cs" />
+    <Compile Include="GameObjects\Alive\Shooters\Ennemies\Ennemy1.cs" />
+    <Compile Include="GameObjects\Alive\Shooters\Ennemies\Ennemy2.cs" />
+    <Compile Include="GameObjects\Alive\Shooters\Ennemies\EnnemyObject.cs" />
+    <Compile Include="GameObjects\Alive\Shooters\Ennemies\EnnemyContainer.cs" />
     <Compile Include="GameObjects\MovingObject.cs" />
     <Compile Include="GameObjects\Team.cs" />
     <Compile Include="Util\GameException.cs" />
     <Compile Include="GameObjects\ImageObject.cs" />
-    <Compile Include="GameObjects\Projectiles\ProjectileObject.cs" />
-    <Compile Include="GameObjects\Projectiles\UserProjectile.cs" />
-    <Compile Include="GameObjects\Shooters\MovingShooterObject.cs" />
-    <Compile Include="GameObjects\Shooters\User.cs" />
+    <Compile Include="GameObjects\Alive\Projectiles\ProjectileObject.cs" />
+    <Compile Include="GameObjects\Alive\Projectiles\UserProjectile.cs" />
+    <Compile Include="GameObjects\Alive\Shooters\MovingShooterObject.cs" />
+    <Compile Include="GameObjects\Alive\Shooters\Users\User.cs" />
     <Compile Include="GameObjects\Coords\Vecteur2D.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
