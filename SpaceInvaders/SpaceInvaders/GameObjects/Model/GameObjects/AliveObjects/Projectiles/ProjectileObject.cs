@@ -1,11 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
-using SpaceInvaders.GameObjects.Ships;
-using SpaceInvaders.GameObjects.Shooters;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders.GameObjects.Projectiles
 {

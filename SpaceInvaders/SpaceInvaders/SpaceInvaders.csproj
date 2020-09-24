@@ -63,7 +63,7 @@
     <Compile Include="GameObjects\View\ImageObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\ProjectileObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\UserProjectile.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\MovingShooterObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\ShooterObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Users\User.cs" />
     <Compile Include="GameObjects\Model\Util\Vecteur2D.cs" />
     <Compile Include="GameObjects\Controller\Form1.cs">

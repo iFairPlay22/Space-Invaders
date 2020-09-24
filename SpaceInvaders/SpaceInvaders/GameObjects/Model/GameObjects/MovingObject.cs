@@ -19,7 +19,7 @@ namespace SpaceInvaders.GameObjects.Shooters
             this.speedDecalage = (double)GameException.RequirePositive(speedDecalage);
         }
 
-        public void Accelerate()
+        public virtual void Accelerate()
         {
             if (speed + speedDecalage <= MAX_SPEED)
                 speed += speedDecalage;

@@ -16,11 +16,6 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         private static readonly double ENNEMY_SPEED_DECALAGE = 5;
 
         /// <summary>
-        /// Time between 2 shoots in milliseconds
-        /// </summary>
-        private static readonly int SHOOT_TIME = 5000;
-
-        /// <summary>
         /// Percentage
         /// </summary>
         private static readonly int SHOOT_SUCCES_PERCENTAGE = 75;
@@ -39,7 +34,7 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         /// <param name="coords">Initial coords</param>
 
         public Ennemy2(Vecteur2D src, Vecteur2D dst) :
-            base(src, dst, Properties.Resources.ship4, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_TIME, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
+            base(src, dst, Properties.Resources.ship4, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
         { }
 
         #endregion

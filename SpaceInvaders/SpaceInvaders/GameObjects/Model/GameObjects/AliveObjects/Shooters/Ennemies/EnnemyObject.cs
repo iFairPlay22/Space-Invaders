@@ -38,13 +38,13 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// </summary>
         /// <param name="coords">Initial coords</param>
         /// 
-        public EnnemyObject(Vecteur2D src, Vecteur2D dst, Bitmap image, double speed, double speedDecalage, double shootTime, int shootPercentage, int life) : 
+        public EnnemyObject(Vecteur2D src, Vecteur2D dst, Bitmap image, double speed, double speedDecalage, int shootPercentage, int life) : 
             base(Team.ENNEMY, GameException.RequireNonNull(src), image, speed, speedDecalage, life) 
             {
                 destinationCoords = GameException.RequireNonNull(dst);
                 this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);
                 timer = new Timer { 
-                    Interval = GameException.RequirePositive(shootTime) 
+                    Interval =  1000
                 };
                 timer.Elapsed += (object sender, ElapsedEventArgs e) => {
                     timeToShoot = true;
