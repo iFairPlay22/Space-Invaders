@@ -1,5 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
 using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.View.Sounds;
 using System;
 using System.Drawing;
 
@@ -13,6 +14,8 @@ namespace SpaceInvaders.GameObjects.Ships
         /// Projectile
         /// </summary>
         private ProjectileObject projectile;
+
+        private readonly string soundPath;
 
         protected ProjectileObject Projectile {
             private get { 
@@ -33,9 +36,11 @@ namespace SpaceInvaders.GameObjects.Ships
         /// </summary>
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
-        public MovingShooterObject(Team team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage, int life) : 
+        public MovingShooterObject(Team team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage, int life, string soundPath) : 
             base(team, coords, image, speed, speedDecalage, life)
-        {}
+        {
+            this.soundPath = GameException.RequireNonNull(soundPath);
+        }
 
         #endregion
 
@@ -49,6 +54,8 @@ namespace SpaceInvaders.GameObjects.Ships
         protected virtual void Shoot()
         {
             if (!CanShoot()) throw new InvalidOperationException();
+
+            SongManager.instance.AddVolatileSong(soundPath);
         }
 
         protected Vecteur2D ProjectileCoords()

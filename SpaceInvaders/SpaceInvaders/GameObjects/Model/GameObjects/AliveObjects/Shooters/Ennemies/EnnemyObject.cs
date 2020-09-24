@@ -1,5 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Ships;
+using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
 using System;
 using System.Drawing;
@@ -16,6 +17,11 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// Timer
         /// </summary>
         private readonly Timer timer;
+
+        /// <summary>
+        /// Song to play
+        /// </summary>
+        private static readonly string SONG_PATH = "volatile_fire_1.wav";
 
         /// <summary>
         /// Percentage to shoot between 0 and 100
@@ -39,7 +45,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="coords">Initial coords</param>
         /// 
         public EnnemyObject(Vecteur2D src, Vecteur2D dst, Bitmap image, double speed, double speedDecalage, int shootPercentage, int life) : 
-            base(Team.ENNEMY, GameException.RequireNonNull(src), image, speed, speedDecalage, life) 
+            base(Team.ENNEMY, GameException.RequireNonNull(src), image, speed, speedDecalage, life, SONG_PATH) 
             {
                 destinationCoords = GameException.RequireNonNull(dst);
                 this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);
@@ -85,15 +91,16 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         protected override bool CanShoot()
         {
-            return base.CanShoot() && timeToShoot && IsArrivedToDestination();
+            return base.CanShoot() && IsArrivedToDestination();
         }
 
         protected override void Shoot()
         {
-            base.Shoot();
-
-            if (RandomNumbers.Randint(0, 100) <= shootPercentage)
+            if (timeToShoot && RandomNumbers.Randint(0, 100) <= shootPercentage)
+            {
+                base.Shoot();
                 Projectile = new EnnemyProjectile(ProjectileCoords());
+            }
 
             timeToShoot = false;
             timer.Start();

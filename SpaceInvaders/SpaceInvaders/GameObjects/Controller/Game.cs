@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Background;
 using SpaceInvaders.GameObjects.Shooters;
-using SpaceInvaders.GameObjects.Shooters.Ennemies;
+using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
 
 namespace SpaceInvaders
@@ -115,6 +115,7 @@ namespace SpaceInvaders
         /// </summary>
         public void Load() {
             gameStateManager = new GameStateManager(this);
+            SongManager.instance.Load();
         }
 
         private void BeforeSwitch()

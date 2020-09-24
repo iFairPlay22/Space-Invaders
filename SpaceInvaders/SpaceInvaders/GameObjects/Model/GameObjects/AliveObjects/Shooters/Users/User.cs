@@ -1,5 +1,7 @@
 ﻿using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Ships;
+using SpaceInvaders.GameObjects.View.Sounds;
+using SpaceInvaders.Util;
 using System;
 using System.Windows.Forms;
 
@@ -13,6 +15,11 @@ namespace SpaceInvaders.GameObjects
         /// Ball speed in pixel/second
         /// </summary>
         private static readonly double USER_SPEED = 300;
+
+        /// <summary>
+        /// Song to play
+        /// </summary>
+        private static readonly string SONG_PATH = "volatile_fire_2.wav";
 
         /// <summary>
         /// Ball speed in pixel/second
@@ -41,7 +48,8 @@ namespace SpaceInvaders.GameObjects
                 Properties.Resources.ship3, 
                 USER_SPEED, 
                 ENNEMY_SPEED_DECALAGE, 
-                USER_LIFE
+                USER_LIFE,
+                SONG_PATH
              ) 
                 {}
 
@@ -69,7 +77,6 @@ namespace SpaceInvaders.GameObjects
         protected override void Shoot()
         {
             base.Shoot();
-
             Projectile = new UserProjectile(ProjectileCoords());
         }
 
