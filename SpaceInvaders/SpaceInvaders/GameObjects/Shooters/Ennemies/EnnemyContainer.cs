@@ -1,5 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Shooters.Ennemies;
+using SpaceInvaders.Util;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,40 +19,38 @@ namespace SpaceInvaders.GameObjects.Shooters
         {
             ennemies = new HashSet<EnnemyObject>();
 
+            List<Func<Vecteur2D, Vecteur2D, EnnemyObject>> list = new List<Func<Vecteur2D, Vecteur2D, EnnemyObject>>();
+            list.Add((Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst));
+            list.Add((Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst));
+            list.Add((Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst));
 
-            AddLine(
-                gameInstance,
-                (Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst),
-                2,
-                1
-            );
-
-            AddLine(
-                gameInstance, 
-                (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst), 
-                4,
-                0
-            );
+            for (int i = 0; i < list.Count; i++)
+                AddLine(
+                    gameInstance,
+                    list[i],
+                    RandomNumbers.Randint(1, 5),
+                    i,
+                    list.Count
+                );
 
             foreach (EnnemyObject ennemy in ennemies)
                 Game.game.AddNewGameObject(ennemy);
         }
 
-        private void AddLine(Game gameInstance, Func<Vecteur2D, Vecteur2D, EnnemyObject> createEnnemyFunction, int ennemiesNumber, int index)
+        private void AddLine(Game gameInstance, Func<Vecteur2D, Vecteur2D, EnnemyObject> createEnnemyFunction, int ennemiesNumber, int actualLine, int totalLines)
         {
             GameException.RequireNonNull(createEnnemyFunction);
             GameException.RequireNonNull(gameInstance);
 
-            int width = gameInstance.gameSize.Width;
-            int xSpace = width / (ennemiesNumber + 1);
-            int ySpace = -index * 100;
+            int xSpace = gameInstance.gameSize.Width / (ennemiesNumber + 1);
+            int ySpace = (gameInstance.gameSize.Height / 2) / (totalLines + 1);
 
             for (int i = 1; i <= ennemiesNumber; i++)
             {
                 ennemies.Add(
                     createEnnemyFunction(
-                        new Vecteur2D(i * xSpace, ySpace),
-                        new Vecteur2D(i * xSpace, gameInstance.gameSize.Height / 4 - ySpace)
+                        new Vecteur2D(i * xSpace, (-totalLines + 1 + actualLine) * ySpace),
+                        new Vecteur2D(i * xSpace, (actualLine + 1) * ySpace)
                     )
                 );
             }
