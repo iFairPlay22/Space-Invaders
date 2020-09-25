@@ -15,9 +15,12 @@ namespace SpaceInvaders.GameObjects.Alive
         /// </summary>
         private int life;
 
-        public AliveObject(Team team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage, int life) :
+        protected readonly SoundHandler soundHandler;
+
+        public AliveObject(Team team, Vecteur2D coords, Bitmap image, SoundHandler soundHandler, double speed, double speedDecalage, int life) :
             base(team, coords, image, speed, speedDecalage)
         {
+            this.soundHandler = GameException.RequireNonNull(soundHandler);
             this.life = (int)GameException.RequirePositive(life);
         }
 
@@ -27,8 +30,16 @@ namespace SpaceInvaders.GameObjects.Alive
             life -= damages;
             projectile.life -= damages;
 
-            if (life == 0) 
-                SongManager.instance.AddVolatileSong("volatile_ennemy_dead.wav");
+            CollisionSounds();
+            projectile.CollisionSounds();
+        }
+
+        private void CollisionSounds()
+        {
+            if (life != 0)
+                soundHandler.OnCollision(); //"volatile_ennemy_dead.wav"
+            else
+                soundHandler.OnDeath();
         }
 
         public override bool IsAlive()

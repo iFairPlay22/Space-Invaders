@@ -20,17 +20,17 @@ namespace SpaceInvaders.GameObjects.Shooters
 
             List<Func<Vecteur2D, Vecteur2D, EnnemyObject>> list = new List<Func<Vecteur2D, Vecteur2D, EnnemyObject>>
             {
-                (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst)
-                /*(Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst),
                 (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst),
-                (Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst)*/
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst),
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy1(src, dst),
+                (Vecteur2D src, Vecteur2D dst) => new Ennemy2(src, dst)
             };
 
             for (int i = 0; i < list.Count; i++)
                 AddLine(
                     gameInstance,
                     list[i],
-                    RandomNumbers.Randint(1, 8),
+                    RandomNumbers.Randint(5, 15),
                     i,
                     list.Count
                 );

@@ -4,7 +4,6 @@ using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Timers;
 
 namespace SpaceInvaders.GameObjects.Shooters
@@ -19,11 +18,6 @@ namespace SpaceInvaders.GameObjects.Shooters
         private readonly Timer timer;
 
         /// <summary>
-        /// Song to play
-        /// </summary>
-        private static readonly string SONG_PATH = "volatile_fire_1.wav";
-
-        /// <summary>
         /// Percentage to shoot between 0 and 100
         /// </summary>
         private readonly int shootPercentage;
@@ -36,6 +30,12 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         private Vecteur2D destinationCoords;
 
+        private static SoundHandler ENNEMY_SOUNDS = new SoundHandler(
+            onActionSound: null, //"volatile_fire_2.wav",
+            onCollisionSound: "volatile_ennemy_be_attacked.wav",
+            onDeathSound: "volatile_ennemy_dead.wav"
+        );
+
         #endregion
 
         #region Constructor
@@ -45,7 +45,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="coords">Initial coords</param>
         /// 
         public EnnemyObject(Vecteur2D src, Vecteur2D dst, Bitmap image, double speed, double speedDecalage, int shootPercentage, int life) : 
-            base(Team.ENNEMY, GameException.RequireNonNull(src), image, speed, speedDecalage, life, SONG_PATH) 
+            base(Team.ENNEMY, GameException.RequireNonNull(src), image, ENNEMY_SOUNDS, speed, speedDecalage, life) 
             {
                 destinationCoords = GameException.RequireNonNull(dst);
                 this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);

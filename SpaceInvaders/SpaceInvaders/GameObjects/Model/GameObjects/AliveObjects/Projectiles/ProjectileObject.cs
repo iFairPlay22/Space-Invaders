@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
+using SpaceInvaders.GameObjects.View.Sounds;
 using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.Projectiles
@@ -19,6 +20,12 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// </summary>
         private readonly bool top;
 
+        private static readonly SoundHandler PROJECTILE_SOUNDS = new SoundHandler(
+            onActionSound: null,
+            onCollisionSound: null,
+            onDeathSound: null
+        );
+
         #endregion
 
         #region Constructor
@@ -27,7 +34,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// </summary>
         /// <param name="v">Vecteur</param>
         public ProjectileObject(Team team, Vecteur2D v, Bitmap image, double projectileSpeed, int life) : 
-            base(team, v, image, projectileSpeed, 0, life)
+            base(team, v, image, PROJECTILE_SOUNDS, projectileSpeed, 0, life)
         {
             top = team == Team.PLAYER;
         }

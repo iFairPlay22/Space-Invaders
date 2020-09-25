@@ -15,8 +15,6 @@ namespace SpaceInvaders.GameObjects.Ships
         /// </summary>
         private ProjectileObject projectile;
 
-        private readonly string soundPath;
-
         protected ProjectileObject Projectile {
             private get { 
                 return projectile; 
@@ -36,11 +34,9 @@ namespace SpaceInvaders.GameObjects.Ships
         /// </summary>
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
-        public MovingShooterObject(Team team, Vecteur2D coords, Bitmap image, double speed, double speedDecalage, int life, string soundPath) : 
-            base(team, coords, image, speed, speedDecalage, life)
-        {
-            this.soundPath = GameException.RequireNonNull(soundPath);
-        }
+        public MovingShooterObject(Team team, Vecteur2D coords, Bitmap image, SoundHandler soundHandler, double speed, double speedDecalage, int life) : 
+            base(team, coords, image, soundHandler, speed, speedDecalage, life)
+        {}
 
         #endregion
 
@@ -55,7 +51,7 @@ namespace SpaceInvaders.GameObjects.Ships
         {
             if (!CanShoot()) throw new InvalidOperationException();
 
-            SongManager.instance.AddVolatileSong(soundPath);
+            soundHandler.OnAction();
         }
 
         protected Vecteur2D ProjectileCoords()

@@ -17,11 +17,6 @@ namespace SpaceInvaders.GameObjects
         private static readonly double USER_SPEED = 300;
 
         /// <summary>
-        /// Song to play
-        /// </summary>
-        private static readonly string SONG_PATH = "volatile_fire_2.wav";
-
-        /// <summary>
         /// Ball speed in pixel/second
         /// </summary>
         private static readonly double ENNEMY_SPEED_DECALAGE = 0;
@@ -31,6 +26,11 @@ namespace SpaceInvaders.GameObjects
         /// </summary>
         private static readonly int USER_LIFE = 2;
 
+        private static readonly SoundHandler USER_SOUNDS = new SoundHandler(
+            onActionSound: "volatile_fire_1.wav",
+            onCollisionSound: "volatile_user_be_attacked.wav",
+            onDeathSound: "volatile_defeat.wav"
+        );
         #endregion
 
         #region Constructor
@@ -45,11 +45,11 @@ namespace SpaceInvaders.GameObjects
                     GameException.RequireNonNull(gameInstance).gameSize.Width / 2,
                     gameInstance.gameSize.Height - gameInstance.gameSize.Height / 4
                 ), 
-                Properties.Resources.ship3, 
+                Properties.Resources.ship3,
+                USER_SOUNDS,
                 USER_SPEED, 
                 ENNEMY_SPEED_DECALAGE, 
-                USER_LIFE,
-                SONG_PATH
+                USER_LIFE
              ) 
                 {}
 

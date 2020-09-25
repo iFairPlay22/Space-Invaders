@@ -115,7 +115,6 @@ namespace SpaceInvaders
         /// </summary>
         public void Load() {
             gameStateManager = new GameStateManager(this);
-            SongManager.instance.Load();
         }
 
         private void BeforeSwitch()
@@ -128,6 +127,12 @@ namespace SpaceInvaders
             BeforeSwitch();
 
             AddNewGameObject(new StartingBackground(this));
+
+            SongManager.instance.CreatePlayList(
+                new List<string> {
+                    "background_intro.wav"
+                }
+            );
         }
 
         public void SwitchToGame()
@@ -139,6 +144,14 @@ namespace SpaceInvaders
             AddNewGameObject(new User(this));
 
             AddNewGameObject(new EnnemyContainer(this));
+
+            SongManager.instance.CreatePlayList(
+                new List<string> {
+                    "background_game_1.wav",
+                    "background_game_2.wav",
+                    "background_game_3.wav"
+                }
+            );
         }
 
         public void SwitchToEnd(bool win)
@@ -149,6 +162,14 @@ namespace SpaceInvaders
                 AddNewGameObject(new VictoryBackground(this));
             else
                 AddNewGameObject(new DefeatBackground(this));
+
+
+
+            SongManager.instance.CreatePlayList(
+                new List<string> {
+                    "background_end.wav"
+                }
+            );
 
         }
 

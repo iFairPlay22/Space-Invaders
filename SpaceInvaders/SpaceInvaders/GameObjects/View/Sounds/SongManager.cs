@@ -17,33 +17,28 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         public static readonly SongManager instance = new SongManager();
 
 
-        private readonly List<MediaPlayer> playlistSongs = new List<MediaPlayer>();
+        private List<MediaPlayer> playlistSongs;
         private int index = 0;
 
-        public void Load()
+        public void CreatePlayList(List<string> urls)
         {
-            LoadPlayList(
-                new List<string> { "background_music_1.wav" }
-            );
-
-        }
-
-        private void LoadPlayList(List<string> urls)
-        {
+            if (playlistSongs != null)
+                playlistSongs.ForEach((MediaPlayer m) => m.Stop());
+            
+            index = 0;
+            playlistSongs = new List<MediaPlayer>();
 
             foreach (string url in urls)
-            {
-
                 playlistSongs.Add(
                     CreateSong(
                         url,
                         (object o, EventArgs e) => {
+                            playlistSongs[index].Stop();
                             index = (index + 1) % playlistSongs.Count;
                             playlistSongs[index].Play();
                         }
                     )
                 );
-            }
 
             if (playlistSongs.Count != 0)
                 playlistSongs[0].Play();
@@ -53,17 +48,15 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         {
             CreateSong(
                 url,
-                (object sender, EventArgs e) => { }
+                (object sender, EventArgs e) => {}
             ).Play();
         }
 
         private MediaPlayer CreateSong(string url, EventHandler callback)
         {
-
             MediaPlayer player = new MediaPlayer();
             player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\{url}")));
             player.MediaEnded += callback;
-
             return player;
         }
     }
