@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Background;
+using SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers;
 using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.View.Display;
 using SpaceInvaders.GameObjects.View.Sounds;
@@ -140,6 +141,11 @@ namespace SpaceInvaders
             AddNewGameObject(new GameObjectText(this, user));
 
             AddNewGameObject(new ObjectsContainer(this, user));
+
+            for (int i = 1; i < 4; i++)
+            {
+                AddNewGameObject(new Bunker(new Vecteur2D(i * (gameSize.Width / 4) - 35, 3 * (gameSize.Height / 5))));
+            }
 
             SongManager.instance.CreatePlayList(
                 new List<string> {

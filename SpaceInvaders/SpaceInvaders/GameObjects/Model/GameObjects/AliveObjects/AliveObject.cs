@@ -1,5 +1,4 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
-using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.View.Sounds;
 using System;
 using System.Drawing;
@@ -7,7 +6,7 @@ using System.Drawing;
 namespace SpaceInvaders.GameObjects.Alive
 {
 
-    abstract class AliveObject : MovingObject
+    abstract class AliveObject : ImageObject
     {
 
         /// <summary>
@@ -17,8 +16,8 @@ namespace SpaceInvaders.GameObjects.Alive
 
         protected readonly SoundHandler soundHandler;
 
-        public AliveObject(Team team, Vecteur2D coords, Bitmap image, SoundHandler soundHandler, double speed, double speedDecalage, int life) :
-            base(team, coords, image, speed, speedDecalage)
+        public AliveObject(Team team, Vecteur2D coords, Bitmap image, SoundHandler soundHandler, int life) :
+            base(team, coords, image)
         {
             this.soundHandler = GameException.RequireNonNull(soundHandler);
             this.life = (int)GameException.RequirePositive(life);
@@ -45,6 +44,12 @@ namespace SpaceInvaders.GameObjects.Alive
         public override bool IsAlive()
         {
             return 0 < life;
+        }
+
+        protected void Destroy()
+        {
+            life = 0;
+            soundHandler.OnDeath();
         }
 
         public override string ToString()

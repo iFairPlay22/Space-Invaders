@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\AliveObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Bunkers\Bunker.cs" />
     <Compile Include="GameObjects\View\Backgrounds\BackgroundImage.cs" />
     <Compile Include="GameObjects\View\Backgrounds\DefeatBackground.cs" />
     <Compile Include="GameObjects\View\Backgrounds\GameBackground.cs" />
@@ -59,7 +60,7 @@
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\Ennemy2.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\EnnemyObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\ObjectsContainer.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\MovingObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\Team.cs" />
     <Compile Include="GameObjects\Model\Util\GameException.cs" />
     <Compile Include="GameObjects\View\Display\GameObjectText.cs" />

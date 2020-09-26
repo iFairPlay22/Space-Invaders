@@ -1,12 +1,13 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
 using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.View.Sounds;
 using System;
 using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.Ships
 {
-    abstract class MovingShooterObject : AliveObject
+    abstract class MovingShooterObject : MovingObject
     {
         #region Fields
 
@@ -35,7 +36,7 @@ namespace SpaceInvaders.GameObjects.Ships
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
         public MovingShooterObject(Team team, Vecteur2D coords, Bitmap image, SoundHandler soundHandler, double speed, double speedDecalage, int life) : 
-            base(team, coords, image, soundHandler, speed, speedDecalage, life)
+            base(team, coords, image, soundHandler, life, speed, speedDecalage)
         {}
 
         #endregion

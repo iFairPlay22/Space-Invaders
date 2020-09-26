@@ -30,7 +30,7 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         private Vecteur2D destinationCoords;
 
-        private static SoundHandler ENNEMY_SOUNDS = new SoundHandler(
+        private static readonly SoundHandler ENNEMY_SOUNDS = new SoundHandler(
             onActionSound: "volatile_fire_2.wav",
             onCollisionSound: "volatile_ennemy_be_attacked.wav",
             onDeathSound: "volatile_ennemy_dead.wav"

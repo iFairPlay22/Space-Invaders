@@ -1,18 +1,13 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
+using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.View.Sounds;
 using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.Projectiles
 {
-    abstract class ProjectileObject : AliveObject
+    abstract class ProjectileObject : MovingObject
     {
         #region Fields
-
-        /// <summary>
-        /// True if object have to be print, 
-        /// False else
-        /// </summary>
-        private bool alive = true;
 
         /// <summary>
         /// True if projectile does top
@@ -34,7 +29,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// </summary>
         /// <param name="v">Vecteur</param>
         public ProjectileObject(Team team, Vecteur2D v, Bitmap image, double projectileSpeed, int life) : 
-            base(team, v, image, PROJECTILE_SOUNDS, projectileSpeed, 0, life)
+            base(team, v, image, PROJECTILE_SOUNDS, life, projectileSpeed, 0)
         {
             top = team == Team.PLAYER;
         }
@@ -48,7 +43,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
             if (CanMove(gameInstance, deltaT, null, top))
                 Move(gameInstance, deltaT, null, top);
             else
-                alive = false;
+                Destroy();
 
             foreach (GameObject gameObject in Game.game.gameObjects)
                 if (gameObject != this && gameObject.CanCollision(this))
@@ -56,19 +51,10 @@ namespace SpaceInvaders.GameObjects.Projectiles
                 
         }
 
-        public override bool IsAlive()
-        {
-            return base.IsAlive() && alive;
-        }
-
         public override void OnCollision(ProjectileObject projectile)
         {
-            if (team != projectile.team)
-            {
-                alive = false;
-                projectile.alive = false;
-                soundHandler.OnDeath();
-            }
+            Destroy();
+            projectile.Destroy();
         }
 
         #endregion
