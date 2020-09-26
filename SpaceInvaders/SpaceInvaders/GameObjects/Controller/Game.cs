@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
@@ -133,7 +134,12 @@ namespace SpaceInvaders
 
             AddNewGameObject(new GameBackground(this));
 
-            AddNewGameObject(new ObjectsContainer(this));
+            User user = new User(this);
+            AddNewGameObject(user);
+           
+            AddNewGameObject(new GameObjectText(this, user));
+
+            AddNewGameObject(new ObjectsContainer(this, user));
 
             SongManager.instance.CreatePlayList(
                 new List<string> {

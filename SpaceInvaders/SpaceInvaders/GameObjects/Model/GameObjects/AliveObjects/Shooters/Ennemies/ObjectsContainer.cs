@@ -18,7 +18,7 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         private readonly User user;
 
-        public ObjectsContainer(Game gameInstance) : base(Team.ENNEMY, new Vecteur2D(0, 0))
+        public ObjectsContainer(Game gameInstance, User user) : base(Team.ENNEMY, new Vecteur2D(0, 0))
         {
             ennemies = new HashSet<EnnemyObject>();
 
@@ -42,12 +42,7 @@ namespace SpaceInvaders.GameObjects.Shooters
             foreach (EnnemyObject ennemy in ennemies)
                 Game.game.AddNewGameObject(ennemy);
 
-
-
-            user = new User(gameInstance);
-            Game.game.AddNewGameObject(user);
-
-            Game.game.AddNewGameObject(new Text(new Vecteur2D(10, gameInstance.gameSize.Height - 35), () => user.ToString()));
+            this.user = user;
         }
 
         private void AddLine(Game gameInstance, Func<Vecteur2D, Vecteur2D, EnnemyObject> createEnnemyFunction, int ennemiesNumber, int actualLine, int totalLines)
@@ -109,7 +104,6 @@ namespace SpaceInvaders.GameObjects.Shooters
         {
             return false;
         }
-
 
         public override void OnCollision(ProjectileObject projectile) {}
     }

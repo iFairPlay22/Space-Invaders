@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.View.Display
 {
-    class Text : GameObject
+    abstract class Text : GameObject
     {
         public delegate string StringBuilder();
         private readonly StringBuilder TextBuilder;
