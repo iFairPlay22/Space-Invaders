@@ -58,7 +58,7 @@
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\Ennemy1.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\Ennemy2.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\EnnemyObject.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\EnnemyContainer.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\ObjectsContainer.cs" />
     <Compile Include="GameObjects\Model\GameObjects\MovingObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\Team.cs" />
     <Compile Include="GameObjects\Model\Util\GameException.cs" />

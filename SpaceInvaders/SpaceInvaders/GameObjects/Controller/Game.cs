@@ -141,9 +141,7 @@ namespace SpaceInvaders
 
             AddNewGameObject(new GameBackground(this));
 
-            AddNewGameObject(new User(this));
-
-            AddNewGameObject(new EnnemyContainer(this));
+            AddNewGameObject(new ObjectsContainer(this));
 
             SongManager.instance.CreatePlayList(
                 new List<string> {
@@ -211,7 +209,10 @@ namespace SpaceInvaders
 
             // update each game object
             foreach (GameObject gameObject in gameObjects)
+            {
                 gameObject.Update(this, deltaT);
+                if (!gameStateManager.GameMode()) break;
+            }
             
             // remove dead objects
             gameObjects.RemoveWhere(gameObject => !gameObject.IsAlive());

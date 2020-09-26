@@ -62,6 +62,11 @@ namespace SpaceInvaders.GameObjects
            );
         }
 
+        public bool IsAbove(ImageObject imageObject)
+        {
+            return coords.Y < GameException.RequireNonNull(imageObject).coords.Y;
+        }
+
         public override bool IsAlive()
         {
             return true;

@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.Ships;
 using SpaceInvaders.GameObjects.Shooters.Ennemies;
 using SpaceInvaders.Util;
 using System;
@@ -8,13 +9,15 @@ using System.Linq;
 
 namespace SpaceInvaders.GameObjects.Shooters
 {
-    class EnnemyContainer : GameObject
+    class ObjectsContainer : GameObject
     {
         private readonly HashSet<EnnemyObject> ennemies = new HashSet<EnnemyObject>();
 
         private bool right = true;
 
-        public EnnemyContainer(Game gameInstance) : base(Team.ENNEMY, new Vecteur2D(0, 0))
+        private readonly User user;
+
+        public ObjectsContainer(Game gameInstance) : base(Team.ENNEMY, new Vecteur2D(0, 0))
         {
             ennemies = new HashSet<EnnemyObject>();
 
@@ -37,6 +40,11 @@ namespace SpaceInvaders.GameObjects.Shooters
 
             foreach (EnnemyObject ennemy in ennemies)
                 Game.game.AddNewGameObject(ennemy);
+
+
+
+            user = new User(gameInstance);
+            Game.game.AddNewGameObject(user);
         }
 
         private void AddLine(Game gameInstance, Func<Vecteur2D, Vecteur2D, EnnemyObject> createEnnemyFunction, int ennemiesNumber, int actualLine, int totalLines)
@@ -90,6 +98,8 @@ namespace SpaceInvaders.GameObjects.Shooters
             }
 
             ennemies.RemoveWhere(gameObject => !gameObject.IsAlive());
+
+            if (decalage && ennemies.Any(e => user.IsAbove(e))) Game.game.gameStateManager.FinishGame(false);
         }
 
         public override bool CanCollision(ProjectileObject projectile)
