@@ -1,6 +1,7 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Ships;
 using SpaceInvaders.GameObjects.Shooters.Ennemies;
+using SpaceInvaders.GameObjects.View.Display;
 using SpaceInvaders.Util;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,8 @@ namespace SpaceInvaders.GameObjects.Shooters
 
             user = new User(gameInstance);
             Game.game.AddNewGameObject(user);
+
+            Game.game.AddNewGameObject(new Text(new Vecteur2D(10, gameInstance.gameSize.Height - 35), () => user.ToString()));
         }
 
         private void AddLine(Game gameInstance, Func<Vecteur2D, Vecteur2D, EnnemyObject> createEnnemyFunction, int ennemiesNumber, int actualLine, int totalLines)

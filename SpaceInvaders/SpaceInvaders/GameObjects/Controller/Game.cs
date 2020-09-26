@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Background;
 using SpaceInvaders.GameObjects.Shooters;
+using SpaceInvaders.GameObjects.View.Display;
 using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
 
@@ -61,15 +62,6 @@ namespace SpaceInvaders
         /// </summary>
         public static Game game { get; private set; }
 
-        /// <summary>
-        /// A shared black brush
-        /// </summary>
-        private static Brush blackBrush = new SolidBrush(Color.Black);
-
-        /// <summary>
-        /// A shared simple font
-        /// </summary>
-        private static Font defaultFont = new Font("Times New Roman", 24, FontStyle.Bold, GraphicsUnit.Pixel);
         #endregion
 
 

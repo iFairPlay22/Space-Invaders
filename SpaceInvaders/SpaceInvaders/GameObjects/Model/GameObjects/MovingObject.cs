@@ -31,7 +31,7 @@ namespace SpaceInvaders.GameObjects.Shooters
 
             if (right.HasValue && !(0 <= next.X && next.X + ImageDimentions.X < gameInstance.gameSize.Width))
                 return false;
-
+             
             if (top.HasValue && !(0 <= next.Y && next.Y + ImageDimentions.Y < gameInstance.gameSize.Height))
                 return false;
 

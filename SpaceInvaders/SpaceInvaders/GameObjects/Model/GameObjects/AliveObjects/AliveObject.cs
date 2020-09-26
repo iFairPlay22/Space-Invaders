@@ -46,5 +46,10 @@ namespace SpaceInvaders.GameObjects.Alive
         {
             return 0 < life;
         }
+
+        public override string ToString()
+        {
+            return $"Vie : {life}";
+        }
     }
 }
