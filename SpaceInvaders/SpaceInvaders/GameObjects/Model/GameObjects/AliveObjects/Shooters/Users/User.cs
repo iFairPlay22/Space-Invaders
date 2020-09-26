@@ -29,7 +29,7 @@ namespace SpaceInvaders.GameObjects
         private static readonly SoundHandler USER_SOUNDS = new SoundHandler(
             onActionSound: "volatile_fire_1.wav",
             onCollisionSound: "volatile_user_be_attacked.wav",
-            onDeathSound: "volatile_defeat.wav"
+            onDeathSound: "volatile_user_be_attacked.wav"
         );
         #endregion
 

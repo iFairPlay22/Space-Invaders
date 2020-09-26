@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SpaceInvaders.GameObjects.View.Sounds;
+using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SpaceInvaders.Util

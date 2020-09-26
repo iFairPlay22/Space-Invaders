@@ -163,10 +163,9 @@ namespace SpaceInvaders
             else
                 AddNewGameObject(new DefeatBackground(this));
 
-
-
             SongManager.instance.CreatePlayList(
                 new List<string> {
+                    win ? "volatile_victory.wav" : "volatile_defeat.wav",
                     "background_end.wav"
                 }
             );

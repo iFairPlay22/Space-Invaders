@@ -30,7 +30,7 @@ namespace SpaceInvaders.GameObjects.Shooters
                 AddLine(
                     gameInstance,
                     list[i],
-                    RandomNumbers.Randint(5, 15),
+                    RandomNumbers.Randint(1, 5),
                     i,
                     list.Count
                 );

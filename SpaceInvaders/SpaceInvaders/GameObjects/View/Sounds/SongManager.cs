@@ -20,6 +20,8 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         private List<MediaPlayer> playlistSongs;
         private int index = 0;
 
+        private readonly HashSet<MediaPlayer> volatileSongs = new HashSet<MediaPlayer>();
+
         public void CreatePlayList(List<string> urls)
         {
             if (playlistSongs != null)
@@ -29,16 +31,16 @@ namespace SpaceInvaders.GameObjects.View.Sounds
             playlistSongs = new List<MediaPlayer>();
 
             foreach (string url in urls)
-                playlistSongs.Add(
-                    CreateSong(
-                        url,
-                        (object o, EventArgs e) => {
-                            playlistSongs[index].Stop();
-                            index = (index + 1) % playlistSongs.Count;
-                            playlistSongs[index].Play();
-                        }
-                    )
-                );
+            {
+                MediaPlayer player = new MediaPlayer();
+                player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\{url}")));
+                player.MediaEnded += (object o, EventArgs e) => {
+                    playlistSongs[index].Stop();
+                    index = (index + 1) % playlistSongs.Count;
+                    playlistSongs[index].Play();
+                };
+                playlistSongs.Add(player);
+            }
 
             if (playlistSongs.Count != 0)
                 playlistSongs[0].Play();
@@ -46,18 +48,19 @@ namespace SpaceInvaders.GameObjects.View.Sounds
 
         public void AddVolatileSong(string url)
         {
-            CreateSong(
-                url,
-                (object sender, EventArgs e) => {}
-            ).Play();
-        }
-
-        private MediaPlayer CreateSong(string url, EventHandler callback)
-        {
             MediaPlayer player = new MediaPlayer();
+            
+            // Callbacks
+            player.MediaOpened += (object o, EventArgs e) => {
+                volatileSongs.Add(player);
+                player.Play();
+            };
+            player.MediaEnded += (object o, EventArgs e) => {
+                volatileSongs.Remove(player);
+            };
+
+            // Action
             player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\{url}")));
-            player.MediaEnded += callback;
-            return player;
         }
     }
 

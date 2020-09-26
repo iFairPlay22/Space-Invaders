@@ -37,7 +37,7 @@ namespace SpaceInvaders.GameObjects.Alive
         private void CollisionSounds()
         {
             if (life != 0)
-                soundHandler.OnCollision(); //"volatile_ennemy_dead.wav"
+                soundHandler.OnCollision();
             else
                 soundHandler.OnDeath();
         }

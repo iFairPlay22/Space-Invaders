@@ -67,6 +67,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
             {
                 alive = false;
                 projectile.alive = false;
+                soundHandler.OnDeath();
             }
         }
 
