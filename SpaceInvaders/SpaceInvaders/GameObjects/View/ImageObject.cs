@@ -43,23 +43,46 @@ namespace SpaceInvaders.GameObjects
 
         public override bool CanCollision(ProjectileObject projectile)
         {
+            GameException.RequireNonNull(projectile);
+
             if (team == projectile.team || !projectile.IsAlive()) return false;
 
-            Vecteur2D projectileCoords = GameException.RequireNonNull(projectile).coords;
-            Vecteur2D projectileDimentions = projectile.ImageDimentions;
+            Rectangle intersect = Rectangle.Intersect(
+                new Rectangle(
+                    new Point(
+                        (int) coords.X,
+                        (int) coords.Y
+                    ), 
+                    new Size(
+                        (int) ImageDimentions.X,
+                        (int) ImageDimentions.Y
+                    )
+                ),
+                new Rectangle(
+                    new Point(
+                        (int) projectile.coords.X,
+                        (int) projectile.coords.Y
+                    ),
+                    new Size(
+                        (int) projectile.ImageDimentions.X,
+                        (int) projectile.ImageDimentions.Y
+                    )
+                )
+            );
 
-            Vecteur2D[] res = {
-                projectileCoords,
-                new Vecteur2D(projectileCoords.X + projectileDimentions.X, projectileCoords.Y),
-                new Vecteur2D(projectileCoords.X, projectileCoords.Y + projectileDimentions.Y),
-                new Vecteur2D(projectileCoords.X + projectileDimentions.X, projectileCoords.Y + projectileDimentions.Y),
-            };
+            if (intersect.IsEmpty) return false;
 
-            return res.Any(
-               v => 
-                    (coords.X <= GameException.RequireNonNull(v).X && v.X < coords.X + ImageDimentions.X) && 
-                    (coords.Y <= v.Y && v.Y < coords.Y + ImageDimentions.Y)
-           );
+            for (int x = 0; x < intersect.Width; x++)
+                for (int y = 0; y < intersect.Height; y++)
+                    if (image.GetPixel((int) ImageDimentions.X - x - 1, (int) ImageDimentions.Y - y - 1).A == 255)
+                        return true;
+
+            return false;
+        }
+
+        private bool PixelCollision(ProjectileObject projectile)
+        {
+            return true;
         }
 
         public bool IsAbove(ImageObject imageObject)
