@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using System;
 using System.Drawing;
 
@@ -8,7 +9,7 @@ namespace SpaceInvaders.GameObjects
     {
         #region Fields
 
-        private static Color TRANSPARENT_COLOR = Color.FromArgb(0, 0, 0, 0);
+        private readonly static Color TRANSPARENT_COLOR = Color.FromArgb(0, 0, 0, 0);
         /// <summary>
         /// Image dimentions
         /// </summary>
@@ -17,7 +18,7 @@ namespace SpaceInvaders.GameObjects
         /// <summary>
         /// Image to draw
         /// </summary>
-        private readonly Bitmap image;
+        private readonly Drawable drawable;
 
         private delegate bool PixelColorFunction(int x, int y);
 
@@ -30,10 +31,10 @@ namespace SpaceInvaders.GameObjects
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
 
-        public ImageObject(Team team, Vecteur2D coords, Bitmap image) : base(team, coords)
+        public ImageObject(Team team, Vecteur2D coords, Drawable drawable) : base(team, coords)
         {
-            this.image = GameException.RequireNonNull(image);
-            ImageDimentions = new Vecteur2D(image.Width, image.Height);
+            this.drawable = GameException.RequireNonNull(drawable);
+            ImageDimentions = new Vecteur2D(drawable.Width, drawable.Height);
         }
         #endregion
 
@@ -41,7 +42,13 @@ namespace SpaceInvaders.GameObjects
 
         public override void Draw(Game gameInstance, Graphics graphics)
         {
-            graphics.DrawImage(image, (float)coords.X, (float)coords.Y, image.Width, image.Height);
+            drawable.Draw(
+                graphics, 
+                new Vecteur2D(
+                    (int) coords.X, 
+                    (int) coords.Y
+                )
+            );
         }
 
         public override bool CanCollision(ProjectileObject projectile)
@@ -54,7 +61,7 @@ namespace SpaceInvaders.GameObjects
 
             if (intersect.IsEmpty) return false;
 
-            return IteratePixels(projectile, (x, y) => image.GetPixel(x, y).A == 255);
+            return IteratePixels(projectile, (x, y) => drawable.Image.GetPixel(x, y).A == 255);
         }
 
         public override void OnCollision(ProjectileObject projectile)
@@ -66,9 +73,8 @@ namespace SpaceInvaders.GameObjects
             IteratePixels(
                 projectile, 
                 (x, y) => { 
-                    if (image.GetPixel(x, y).A == 255)
-                        image.SetPixel(x, y, TRANSPARENT_COLOR);
-
+                    if (drawable.Image.GetPixel(x, y).A == 255)
+                        drawable.Image.SetPixel(x, y, TRANSPARENT_COLOR);
                     return false;
                 }
             );

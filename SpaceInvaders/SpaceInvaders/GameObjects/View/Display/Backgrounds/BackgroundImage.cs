@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,10 +14,12 @@ namespace SpaceInvaders.GameObjects.Background
             base(
                 Team.NEUTRAL,
                 new Vecteur2D(0, 0),
-                new Bitmap(image,
-                    new Size(
-                        GameException.RequireNonNull(gameInstance).gameSize.Width,
-                        gameInstance.gameSize.Height
+                new Frame(
+                    new Bitmap(image,
+                        new Size(
+                            GameException.RequireNonNull(gameInstance).gameSize.Width,
+                            gameInstance.gameSize.Height
+                        )
                     )
                 )
             )

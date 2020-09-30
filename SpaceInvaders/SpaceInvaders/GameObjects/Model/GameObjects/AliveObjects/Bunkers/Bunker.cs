@@ -1,12 +1,8 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
 using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Properties;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers
 {
@@ -20,9 +16,8 @@ namespace SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers
         );
 
         public Bunker(Vecteur2D coords) : 
-            base(Team.NEUTRAL, coords, Resources.bunker, BUNKER_SOUNDS, 0)
-        {
-        }
+            base(Team.NEUTRAL, coords, new Frame(Resources.bunker), BUNKER_SOUNDS, 0)
+        {}
 
         public override void Update(Game gameInstance, double deltaT)
         {

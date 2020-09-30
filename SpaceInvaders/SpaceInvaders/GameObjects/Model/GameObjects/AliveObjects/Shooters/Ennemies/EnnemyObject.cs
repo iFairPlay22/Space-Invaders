@@ -1,5 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Ships;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
 using System;
@@ -45,7 +46,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="coords">Initial coords</param>
         /// 
         public EnnemyObject(Vecteur2D src, Vecteur2D dst, Bitmap image, double speed, double speedDecalage, int shootPercentage, int life) : 
-            base(Team.ENNEMY, GameException.RequireNonNull(src), image, ENNEMY_SOUNDS, speed, speedDecalage, life) 
+            base(Team.ENNEMY, GameException.RequireNonNull(src), new Frame(image), ENNEMY_SOUNDS, speed, speedDecalage, life) 
             {
                 destinationCoords = GameException.RequireNonNull(dst);
                 this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);

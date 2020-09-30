@@ -1,5 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
 using SpaceInvaders.GameObjects.Shooters;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using System.Drawing;
 
@@ -29,7 +30,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// </summary>
         /// <param name="v">Vecteur</param>
         public ProjectileObject(Team team, Vecteur2D v, Bitmap image, double projectileSpeed, int life) : 
-            base(team, v, image, PROJECTILE_SOUNDS, life, projectileSpeed, 0)
+            base(team, v, new Frame(image), PROJECTILE_SOUNDS, life, projectileSpeed, 0)
         {
             top = team == Team.PLAYER;
         }

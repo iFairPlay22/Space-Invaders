@@ -1,5 +1,7 @@
 ﻿using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Ships;
+using SpaceInvaders.GameObjects.View.Display.Animations;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
 using System;
@@ -45,8 +47,9 @@ namespace SpaceInvaders.GameObjects
                 new Vecteur2D(
                     GameException.RequireNonNull(gameInstance).gameSize.Width / 2,
                     gameInstance.gameSize.Height - gameInstance.gameSize.Height / 4
-                ), 
-                Properties.Resources.ship3,
+                ),
+                new Animation(Properties.Resources.test2, 4, 4),
+                // new Frame(Properties.Resources.ship3),
                 USER_SOUNDS,
                 USER_SPEED, 
                 ENNEMY_SPEED_DECALAGE, 

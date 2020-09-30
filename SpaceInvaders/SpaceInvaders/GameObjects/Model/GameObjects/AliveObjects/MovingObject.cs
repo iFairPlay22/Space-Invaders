@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Alive;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using System;
 using System.Drawing;
@@ -14,8 +15,8 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         private static readonly double MAX_SPEED = 250;
 
-        public MovingObject(Team team, Vecteur2D coords, Bitmap image, SoundHandler soundHandler, int life, double speed, double speedDecalage) : 
-            base(team, coords, image, soundHandler, life) 
+        public MovingObject(Team team, Vecteur2D coords, Drawable drawable, SoundHandler soundHandler, int life, double speed, double speedDecalage) : 
+            base(team, coords, drawable, soundHandler, life) 
         {
             this.speed = GameException.RequirePositive(speed);
             this.speedDecalage = GameException.RequirePositive(speedDecalage);

@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using System;
 using System.Drawing;
@@ -16,8 +17,8 @@ namespace SpaceInvaders.GameObjects.Alive
 
         protected readonly SoundHandler soundHandler;
 
-        public AliveObject(Team team, Vecteur2D coords, Bitmap image, SoundHandler soundHandler, int life) :
-            base(team, coords, image)
+        public AliveObject(Team team, Vecteur2D coords, Drawable drawable, SoundHandler soundHandler, int life) :
+            base(team, coords, drawable)
         {
             this.soundHandler = GameException.RequireNonNull(soundHandler);
             this.life = (int)GameException.RequirePositive(life);
