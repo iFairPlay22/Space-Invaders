@@ -31,7 +31,8 @@ namespace SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers
 
         public override void OnCollision(ProjectileObject projectile)
         {
-            projectile.OnCollision(projectile);
+            base.OnCollision(projectile);
+            projectile.Destroy();
         }
 
         public override bool IsAlive()

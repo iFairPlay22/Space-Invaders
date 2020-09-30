@@ -1,6 +1,6 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
+using System;
 using System.Drawing;
-using System.Linq;
 
 namespace SpaceInvaders.GameObjects
 {
@@ -8,6 +8,7 @@ namespace SpaceInvaders.GameObjects
     {
         #region Fields
 
+        private static Color TRANSPARENT_COLOR = Color.FromArgb(0, 0, 0, 0);
         /// <summary>
         /// Image dimentions
         /// </summary>
@@ -18,6 +19,8 @@ namespace SpaceInvaders.GameObjects
         /// </summary>
         private readonly Bitmap image;
 
+        private delegate bool PixelColorFunction(int x, int y);
+
         #endregion
 
         #region Constructor
@@ -26,7 +29,7 @@ namespace SpaceInvaders.GameObjects
         /// </summary>
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
-        
+
         public ImageObject(Team team, Vecteur2D coords, Bitmap image) : base(team, coords)
         {
             this.image = GameException.RequireNonNull(image);
@@ -47,42 +50,43 @@ namespace SpaceInvaders.GameObjects
 
             if (team == projectile.team || !projectile.IsAlive()) return false;
 
-            Rectangle intersect = Rectangle.Intersect(
-                new Rectangle(
-                    new Point(
-                        (int) coords.X,
-                        (int) coords.Y
-                    ), 
-                    new Size(
-                        (int) ImageDimentions.X,
-                        (int) ImageDimentions.Y
-                    )
-                ),
-                new Rectangle(
-                    new Point(
-                        (int) projectile.coords.X,
-                        (int) projectile.coords.Y
-                    ),
-                    new Size(
-                        (int) projectile.ImageDimentions.X,
-                        (int) projectile.ImageDimentions.Y
-                    )
-                )
-            );
+            Rectangle intersect = Vecteur2D.Intersect(coords, ImageDimentions, projectile.coords, projectile.ImageDimentions);
 
             if (intersect.IsEmpty) return false;
 
-            for (int x = 0; x < intersect.Width; x++)
-                for (int y = 0; y < intersect.Height; y++)
-                    if (image.GetPixel((int) ImageDimentions.X - x - 1, (int) ImageDimentions.Y - y - 1).A == 255)
+            return IteratePixels(projectile, (x, y) => image.GetPixel(x, y).A == 255);
+        }
+
+        public override void OnCollision(ProjectileObject projectile)
+        {
+
+            if (!CanCollision(projectile))
+                throw new InvalidOperationException();
+
+            IteratePixels(
+                projectile, 
+                (x, y) => { 
+                    if (image.GetPixel(x, y).A == 255)
+                        image.SetPixel(x, y, TRANSPARENT_COLOR);
+
+                    return false;
+                }
+            );
+        }
+
+        private bool IteratePixels(ProjectileObject projectile, PixelColorFunction function)
+        {
+            Rectangle intersect = Vecteur2D.Intersect(coords, ImageDimentions, projectile.coords, projectile.ImageDimentions);
+
+            int startX = (int)(intersect.X - coords.X);
+            int startY = (int)(intersect.Y - coords.Y);
+
+            for (int x = startX; x < startX + intersect.Width; x++)
+                for (int y = startY; y < startY + intersect.Height; y++)
+                    if (function(x, y))
                         return true;
 
             return false;
-        }
-
-        private bool PixelCollision(ProjectileObject projectile)
-        {
-            return true;
         }
 
         public bool IsAbove(ImageObject imageObject)

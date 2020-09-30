@@ -25,6 +25,8 @@ namespace SpaceInvaders.GameObjects.Alive
 
         public override void OnCollision(ProjectileObject projectile)
         {
+            base.OnCollision(projectile);
+
             int damages = Math.Min(life, projectile.life);
             life -= damages;
             projectile.life -= damages;
@@ -46,7 +48,7 @@ namespace SpaceInvaders.GameObjects.Alive
             return 0 < life;
         }
 
-        protected void Destroy()
+        public void Destroy()
         {
             life = 0;
             soundHandler.OnDeath();

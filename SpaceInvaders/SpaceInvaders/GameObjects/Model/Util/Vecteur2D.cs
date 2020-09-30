@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 
 namespace SpaceInvaders
@@ -50,6 +51,20 @@ namespace SpaceInvaders
         {
             
             return new Vecteur2D(GameException.RequireNonNull(a).X / GameException.RequireNonZero(b), a.Y / b);
+        }
+
+        public static Rectangle Intersect(Vecteur2D v1, Vecteur2D d1, Vecteur2D v2, Vecteur2D d2)
+        {
+            return Rectangle.Intersect(
+                new Rectangle(
+                    new Point( (int)v1.X, (int)v1.Y ),
+                    new Size( (int)d1.X, (int)d1.Y )
+                ),
+                new Rectangle(
+                    new Point( (int)v2.X, (int)v2.Y ),
+                    new Size( (int)d2.X, (int)d2.Y )
+                )
+            );
         }
     }
 }
