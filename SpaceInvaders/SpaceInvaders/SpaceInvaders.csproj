@@ -49,19 +49,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\AliveObject.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Bunkers\Bunker.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Bunkers\Bunker.cs" />
     <Compile Include="GameObjects\View\Display\Images\Animation.cs" />
     <Compile Include="GameObjects\View\Display\Backgrounds\BackgroundImage.cs" />
     <Compile Include="GameObjects\View\Display\Backgrounds\DefeatBackground.cs" />
     <Compile Include="GameObjects\View\Display\Backgrounds\GameBackground.cs" />
     <Compile Include="GameObjects\View\Display\Backgrounds\StartingBackground.cs" />
     <Compile Include="GameObjects\View\Display\Backgrounds\VictoryBackground.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\EnnemyProjectile.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\Ennemy1.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\Ennemy2.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\EnnemyObject.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Ennemies\ObjectsContainer.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Projectiles\EnnemyProjectile.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Ennemy1.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Ennemy2.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\EnnemyObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\ObjectsContainer.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\MovingObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\Team.cs" />
     <Compile Include="GameObjects\Model\Util\GameException.cs" />
     <Compile Include="GameObjects\View\Display\Images\Drawable.cs" />
@@ -69,10 +69,10 @@
     <Compile Include="GameObjects\View\Display\Text\GameObjectText.cs" />
     <Compile Include="GameObjects\View\Display\Text\Text.cs" />
     <Compile Include="GameObjects\View\DrawableObject.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\ProjectileObject.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Projectiles\UserProjectile.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\ShooterObject.cs" />
-    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\Shooters\Users\User.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Projectiles\ProjectileObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Projectiles\UserProjectile.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Shooters\ShooterObject.cs" />
+    <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Users\User.cs" />
     <Compile Include="GameObjects\Model\Util\Vecteur2D.cs" />
     <Compile Include="GameObjects\Controller\Form1.cs">
       <SubType>Form</SubType>
@@ -280,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\songs\volatile_ennemy_be_attacked.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\ship0.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

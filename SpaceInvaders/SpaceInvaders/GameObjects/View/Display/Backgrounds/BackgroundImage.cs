@@ -25,11 +25,11 @@ namespace SpaceInvaders.GameObjects.Background
             )
         {}
 
-        public override bool CanCollision(ProjectileObject projectile)
+        public override bool CanCollision(Projectiles.ProjectileObject projectile)
         {
             return false;
         }
-        public override void OnCollision(ProjectileObject projectile)
+        public override void OnCollision(Projectiles.ProjectileObject projectile)
         {
             throw new NotImplementedException();
         }

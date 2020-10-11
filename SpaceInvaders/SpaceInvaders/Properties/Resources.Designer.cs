@@ -158,6 +158,16 @@ namespace SpaceInvaders.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ship0 {
+            get {
+                object obj = ResourceManager.GetObject("ship0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ship1 {
             get {
                 object obj = ResourceManager.GetObject("ship1", resourceCulture);
@@ -181,66 +191,6 @@ namespace SpaceInvaders.Properties {
         internal static System.Drawing.Bitmap ship3 {
             get {
                 object obj = ResourceManager.GetObject("ship3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ship4 {
-            get {
-                object obj = ResourceManager.GetObject("ship4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ship5 {
-            get {
-                object obj = ResourceManager.GetObject("ship5", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ship6 {
-            get {
-                object obj = ResourceManager.GetObject("ship6", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ship7 {
-            get {
-                object obj = ResourceManager.GetObject("ship7", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ship8 {
-            get {
-                object obj = ResourceManager.GetObject("ship8", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ship9 {
-            get {
-                object obj = ResourceManager.GetObject("ship9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

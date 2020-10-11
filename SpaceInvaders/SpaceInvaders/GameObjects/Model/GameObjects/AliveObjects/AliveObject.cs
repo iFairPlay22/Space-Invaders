@@ -16,17 +16,20 @@ namespace SpaceInvaders.GameObjects.Alive
         private int life;
 
         protected readonly SoundHandler soundHandler;
+        private bool destroyPixelsOnCollision;
 
-        public AliveObject(Team team, Vecteur2D coords, Drawable drawable, SoundHandler soundHandler, int life) :
+        public AliveObject(Team team, Vecteur2D coords, Drawable drawable, SoundHandler soundHandler, int life, bool destroyPixelsOnCollision) :
             base(team, coords, drawable)
         {
             this.soundHandler = GameException.RequireNonNull(soundHandler);
             this.life = (int)GameException.RequirePositive(life);
+            this.destroyPixelsOnCollision = destroyPixelsOnCollision;
         }
 
         public override void OnCollision(ProjectileObject projectile)
         {
-            base.OnCollision(projectile);
+            if (destroyPixelsOnCollision)
+                base.OnCollision(projectile);
 
             int damages = Math.Min(life, projectile.life);
             life -= damages;

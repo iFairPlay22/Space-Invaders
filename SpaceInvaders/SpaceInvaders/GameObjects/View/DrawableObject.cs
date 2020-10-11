@@ -1,5 +1,4 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
-using SpaceInvaders.GameObjects.View.Display.Images;
 using System;
 using System.Drawing;
 
@@ -18,7 +17,7 @@ namespace SpaceInvaders.GameObjects
         /// <summary>
         /// Image to draw
         /// </summary>
-        private readonly Drawable drawable;
+        private readonly View.Display.Images.Drawable drawable;
 
         private delegate bool PixelColorFunction(int x, int y);
 
@@ -31,7 +30,7 @@ namespace SpaceInvaders.GameObjects
         /// <param name="coords">Position in pixels</param>
         /// <param name="image">Image to draw</param>
 
-        public ImageObject(Team team, Vecteur2D coords, Drawable drawable) : base(team, coords)
+        public ImageObject(Team team, Vecteur2D coords, View.Display.Images.Drawable drawable) : base(team, coords)
         {
             this.drawable = GameException.RequireNonNull(drawable);
             ImageDimentions = new Vecteur2D(drawable.Width, drawable.Height);
@@ -66,13 +65,12 @@ namespace SpaceInvaders.GameObjects
 
         public override void OnCollision(ProjectileObject projectile)
         {
-
             if (!CanCollision(projectile))
                 throw new InvalidOperationException();
 
             IteratePixels(
-                projectile, 
-                (x, y) => { 
+                projectile,
+                (x, y) => {
                     if (drawable.Image.GetPixel(x, y).A == 255)
                         drawable.Image.SetPixel(x, y, TRANSPARENT_COLOR);
                     return false;
