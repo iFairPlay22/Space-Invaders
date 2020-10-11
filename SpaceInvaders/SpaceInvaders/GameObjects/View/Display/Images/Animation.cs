@@ -5,16 +5,19 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
 {
     class Animation : Drawable
     {
-        private Vecteur2D Position;
+        private readonly int lines, columns;
+        private Vecteur2D Indexes;
 
         public Animation(Bitmap image, int lines, int columns) : 
             base(
                 image,
-                image.Height / (int)GameException.RequirePositive(lines),
-                image.Width / (int)GameException.RequirePositive(columns)
+                image.Width / (int)GameException.RequirePositive(columns),
+                image.Height / (int)GameException.RequirePositive(lines)
             )
         {
-            Position = new Vecteur2D(0, 0);
+            this.lines = lines;
+            this.columns = columns;
+            Indexes = new Vecteur2D(0, 0);
         }
 
         int i = 0;
@@ -31,24 +34,38 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
                     Height
                 ),
                 new Rectangle(
-                    (int) Position.X,
-                    (int) Position.Y,
+                    (int) Indexes.X * Width,
+                    (int) Indexes.Y * Height,
                     Width,
                     Height
                 ), 
                 GraphicsUnit.Pixel
             );
 
-            
+
             Next();
+
         }
 
         private void Next()
         {
-            Position = new Vecteur2D(
-                (Position.X + Width) % Image.Width,
-                (Position.Y + Height) % Image.Height
-            );
+            int x = (int) Indexes.X;
+            int y = (int) Indexes.Y;
+
+            if (Indexes.X + 1 < columns)
+            {
+                x++;
+            } else if (Indexes.Y + 1 < lines)
+            {
+                x = 0;
+                y++;
+            } else
+            {
+                x = 0;
+                y = 0;
+            }
+            
+            Indexes = new Vecteur2D(x, y);
         }
     }
 }

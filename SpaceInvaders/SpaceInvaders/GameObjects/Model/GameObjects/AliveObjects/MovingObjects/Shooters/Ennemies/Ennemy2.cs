@@ -1,4 +1,6 @@
 ﻿
+using SpaceInvaders.GameObjects.View.Display.Animations;
+
 namespace SpaceInvaders.GameObjects.Shooters.Ennemies
 {
     class Ennemy2 : EnnemyObject
@@ -34,7 +36,7 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         /// <param name="coords">Initial coords</param>
 
         public Ennemy2(Vecteur2D src, Vecteur2D dst) :
-            base(src, dst, Properties.Resources.ship2, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
+            base(src, dst, new Animation(Properties.Resources.test2, 4, 4), ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
         { }
 
         #endregion

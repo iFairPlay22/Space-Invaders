@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaceInvaders.GameObjects.View.Display.Animations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         /// <param name="coords">Initial coords</param>
         
         public Ennemy1(Vecteur2D src, Vecteur2D dst) :
-            base(src, dst, Properties.Resources.ship1, ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
+            base(src, dst, new Animation(Properties.Resources.ship3_anim, 1, 2), ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
         {}
 
         #endregion
