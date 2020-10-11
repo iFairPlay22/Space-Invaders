@@ -40,9 +40,7 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
             );
 
             
-            if (i % 25 == 0)
-                Next();
-            i++;
+            Next();
         }
 
         private void Next()

@@ -33,7 +33,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
             foreach (string url in urls)
             {
                 MediaPlayer player = new MediaPlayer();
-                player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\{url}")));
+                player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\songs\{url}")));
                 player.MediaEnded += (object o, EventArgs e) => {
                     playlistSongs[index].Stop();
                     index = (index + 1) % playlistSongs.Count;
@@ -60,7 +60,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
             };
 
             // Action
-            player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\{url}")));
+            player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\songs\{url}")));
         }
     }
 
