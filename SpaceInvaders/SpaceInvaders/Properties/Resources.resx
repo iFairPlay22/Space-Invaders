@@ -133,12 +133,6 @@
   <data name="background_intro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\songs\background_intro.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="bonus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\bonus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bonus2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\bonus2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bunker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images\bunker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -148,38 +142,38 @@
   <data name="loose_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images\loose_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="missile0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images\missile0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="missile1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images\missile1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="missile2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images\missile2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="missile3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images\missile3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="missile4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images\missile4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ship0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\ship0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\animations\ship0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ship1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\ship1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\animations\ship1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ship2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\ship2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\animations\ship2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ship3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\ship3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ship3_anim" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\animations\ship3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shoot1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\shoot1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shoot2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\shoot2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shoot3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\shoot3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shoot4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images\shoot4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ship4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\animations\ship4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="start_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images\start_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="test2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\animations\test2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="volatile_defeat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\songs\volatile_defeat.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

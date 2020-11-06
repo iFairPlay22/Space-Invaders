@@ -29,8 +29,8 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// Simple constructor
         /// </summary>
         /// <param name="v">Vecteur</param>
-        public ProjectileObject(Team team, Vecteur2D v, Bitmap image, double projectileSpeed, int life) : 
-            base(team, v, new Frame(image), PROJECTILE_SOUNDS, life, projectileSpeed, 0)
+        public ProjectileObject(Team team, Vecteur2D v, Drawable image, double projectileSpeed, int life) : 
+            base(team, v, image, PROJECTILE_SOUNDS, life, projectileSpeed, 0)
         {
             top = team == Team.PLAYER;
         }

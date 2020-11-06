@@ -48,8 +48,8 @@ namespace SpaceInvaders.GameObjects
                     GameException.RequireNonNull(gameInstance).gameSize.Width / 2,
                     gameInstance.gameSize.Height - gameInstance.gameSize.Height / 4
                 ),
-                // new Animation(Properties.Resources.test2, 4, 4),
-                new Frame(Properties.Resources.ship0),
+                new Animation(Properties.Resources.ship0, 1, 2),
+                /*new Frame(Properties.Resources.ship0),*/
                 USER_SOUNDS,
                 USER_SPEED, 
                 ENNEMY_SPEED_DECALAGE, 

@@ -35,7 +35,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
                 MediaPlayer player = new MediaPlayer();
                 player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\songs\{url}")));
                 player.MediaEnded += (object o, EventArgs e) => {
-                    playlistSongs[index].Stop();
+                    // playlistSongs[index].Stop();
                     index = (index + 1) % playlistSongs.Count;
                     playlistSongs[index].Play();
                 };
@@ -47,16 +47,16 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         }
 
         public void AddVolatileSong(string url)
-        {
+        { // SoundEffect SFX
             MediaPlayer player = new MediaPlayer();
             
             // Callbacks
             player.MediaOpened += (object o, EventArgs e) => {
-                volatileSongs.Add(player);
+                // volatileSongs.Add(player);
                 player.Play();
             };
             player.MediaEnded += (object o, EventArgs e) => {
-                volatileSongs.Remove(player);
+                // volatileSongs.Remove(player);
             };
 
             // Action

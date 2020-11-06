@@ -22,7 +22,6 @@ namespace SpaceInvaders
         public static Vecteur2D operator +(Vecteur2D a, Vecteur2D b)
         {
             return new Vecteur2D(GameException.RequireNonNull(a).X + GameException.RequireNonNull(b).X, a.Y + b.Y);
-  
         }
 
         public static Vecteur2D operator -(Vecteur2D a, Vecteur2D b)

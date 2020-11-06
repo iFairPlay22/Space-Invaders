@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaceInvaders.GameObjects.View.Display.Images;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,8 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// Simple constructor
         /// </summary>
         /// <param name="v">Vecteur</param>
-        public EnnemyProjectile(Vecteur2D v) :
-            base(Team.ENNEMY, v, SpaceInvaders.Properties.Resources.shoot1, ENNEMY_PROJECTILE_SPEED, ENNEMY_PROJECTILE_LIFE)
+        public EnnemyProjectile(Vecteur2D v, Drawable image) :
+            base(Team.ENNEMY, v, image, ENNEMY_PROJECTILE_SPEED, ENNEMY_PROJECTILE_LIFE)
         {
             this.coords += new Vecteur2D(0, GameException.RequireNonNull(ImageDimentions).Y);
         }

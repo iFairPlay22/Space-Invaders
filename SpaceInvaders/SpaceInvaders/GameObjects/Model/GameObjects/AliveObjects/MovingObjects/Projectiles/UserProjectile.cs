@@ -1,4 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
+using SpaceInvaders.GameObjects.View.Display.Images;
 using System;
 
 namespace SpaceInvaders.GameObjects.Projectile
@@ -25,7 +26,7 @@ namespace SpaceInvaders.GameObjects.Projectile
         /// </summary>
         /// <param name="v">Vecteur</param>
         public UserProjectile(Vecteur2D v) : 
-            base(Team.PLAYER, v, Properties.Resources.shoot1, USER_PROJECTILE_SPEED, USER_PROJECTILE_LIFE) {
+            base(Team.PLAYER, v, new Frame(Properties.Resources.missile0), USER_PROJECTILE_SPEED, USER_PROJECTILE_LIFE) {
             coords += new Vecteur2D(0, -GameException.RequireNonNull(ImageDimentions).Y);
         }
 

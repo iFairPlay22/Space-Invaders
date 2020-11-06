@@ -38,6 +38,8 @@ namespace SpaceInvaders.GameObjects.Shooters
             onDeathSound: "volatile_ennemy_dead.wav"
         );
 
+        private readonly Drawable missileImage;
+
         #endregion
 
         #region Constructor
@@ -46,10 +48,11 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// </summary>
         /// <param name="coords">Initial coords</param>
         /// 
-        public EnnemyObject(Vecteur2D src, Vecteur2D dst, Drawable drawable, double speed, double speedDecalage, int shootPercentage, int life) : 
+        public EnnemyObject(Vecteur2D src, Vecteur2D dst, Drawable drawable, Drawable missileImage, double speed, double speedDecalage, int shootPercentage, int life) : 
             base(Team.ENNEMY, GameException.RequireNonNull(src), drawable, ENNEMY_SOUNDS, speed, speedDecalage, life) 
             {
                 destinationCoords = GameException.RequireNonNull(dst);
+                this.missileImage = missileImage;
                 this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);
                 timer = new Timer { 
                     Interval =  1000
@@ -101,7 +104,7 @@ namespace SpaceInvaders.GameObjects.Shooters
             if (timeToShoot && RandomNumbers.Randint(0, 100) <= shootPercentage)
             {
                 base.Shoot();
-                Projectile = new EnnemyProjectile(ProjectileCoords());
+                Projectile = new EnnemyProjectile(ProjectileCoords(), missileImage);
             }
 
             timeToShoot = false;
