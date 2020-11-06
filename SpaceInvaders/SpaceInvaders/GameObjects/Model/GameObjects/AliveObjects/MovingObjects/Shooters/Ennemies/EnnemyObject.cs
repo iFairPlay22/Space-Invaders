@@ -41,9 +41,9 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// Ennemy sounds
         /// </summary>
         private static readonly SoundHandler ENNEMY_SOUNDS = new SoundHandler(
-            onActionSound: "volatile_fire_2.wav",
-            onCollisionSound: "volatile_ennemy_be_attacked.wav",
-            onDeathSound: "volatile_ennemy_dead.wav"
+            onActionSound: "sfx_fire_2.wav",
+            onCollisionSound: "sfx_ennemy_be_attacked.wav",
+            onDeathSound: "sfx_ennemy_dead.wav"
         );
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers
 
         private static readonly SoundHandler BUNKER_SOUNDS = new SoundHandler(
             onActionSound: null,
-            onCollisionSound: "volatile_ennemy_be_attacked.wav",
+            onCollisionSound: null,
             onDeathSound: null
         );
 

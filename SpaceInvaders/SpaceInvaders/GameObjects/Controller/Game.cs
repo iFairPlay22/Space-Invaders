@@ -50,6 +50,11 @@ namespace SpaceInvaders
         /// </summary>
         public HashSet<Keys> keyPressed = new HashSet<Keys>();
 
+        internal void Pause()
+        {
+            SongManager.instance.PlaySoundEffect("sfx_pause.wav");
+        }
+
         /// <summary>
         /// Game state
         /// </summary>
@@ -126,7 +131,11 @@ namespace SpaceInvaders
 
             SongManager.instance.PlaySongs(
                 new List<string> {
-                    "background_intro.wav"
+                    "background_1.wav",
+                    "background_2.wav",
+                    "background_3.wav",
+                    "background_4.wav",
+                    "background_5.wav"
                 }
             );
         }
@@ -148,14 +157,6 @@ namespace SpaceInvaders
             {
                 AddNewGameObject(new Bunker(new Vecteur2D(i * (gameSize.Width / 4) - 35, 3 * (gameSize.Height / 5))));
             }
-
-            SongManager.instance.PlaySongs(
-                new List<string> {
-                    "background_game_1.wav",
-                    "background_game_2.wav",
-                    "background_game_3.wav"
-                }
-            );
         }
 
         public void SwitchToEnd(bool win)
@@ -166,13 +167,6 @@ namespace SpaceInvaders
                 AddNewGameObject(new VictoryBackground(this));
             else
                 AddNewGameObject(new DefeatBackground(this));
-
-            SongManager.instance.PlaySongs(
-                new List<string> {
-                    win ? "volatile_victory.wav" : "volatile_defeat.wav",
-                    "background_end.wav"
-                }
-            );
 
         }
 

@@ -32,11 +32,11 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         public void Load()
         {
             string[] songs = {
-                "background_end.wav", "background_game_1.wav", "background_game_2.wav",
-                "background_game_3.wav", "background_intro.wav", "volatile_defeat.wav",
-                "volatile_ennemy_be_attacked.wav", "volatile_ennemy_dead.wav", "volatile_fire_1.wav",
-                "volatile_fire_2.wav", "volatile_pause.wav", "volatile_projectile_die.wav",
-                "volatile_user_be_attacked.wav", "volatile_victory.wav"
+                "background_1.wav", "background_2.wav", "background_3.wav",
+                "background_4.wav", "background_5.wav", "sfx_pause.wav",
+                "sfx_user_dead.wav", "sfx_ennemy_be_attacked.wav", 
+                "sfx_ennemy_dead.wav", "sfx_user_be_attacked.wav",
+                "sfx_fire_1.wav", "sfx_fire_2.wav"
             };
 
             Dict = new Dictionary<string, MediaPlayer>();

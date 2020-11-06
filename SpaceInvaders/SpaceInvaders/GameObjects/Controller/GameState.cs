@@ -59,6 +59,7 @@ namespace SpaceInvaders.Util
         {
             if (!GameMode()) throw new InvalidOperationException();
             gameState = gameState == GameState.PAUSED ? GameState.IN_GAME : GameState.PAUSED;
+            gameInstance.Pause();
         }
 
         public bool GameMode()

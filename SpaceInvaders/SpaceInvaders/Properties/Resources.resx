@@ -118,21 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="background_end" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\background_end.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="background_game_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\background_game_1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="background_game_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\background_game_2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="background_game_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\background_game_3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="background_intro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\background_intro.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="bunker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images\bunker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -174,33 +159,6 @@
   </data>
   <data name="start_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images\start_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="volatile_defeat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_defeat.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_ennemy_be_attacked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_ennemy_be_attacked.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_ennemy_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_ennemy_dead.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_fire_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_fire_1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_fire_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_fire_2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_pause.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_projectile_die" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_projectile_die.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_user_be_attacked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_user_be_attacked.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="volatile_victory" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\songs\volatile_victory.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="win_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images\win_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
