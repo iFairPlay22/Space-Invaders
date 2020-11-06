@@ -1,15 +1,22 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.View.Display.Images;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders.GameObjects.Background
 {
-    abstract class BackgroundImage : ImageObject
+    /// <summary>
+    /// Represents a background image 
+    /// This image has the same dimentions as the gameInstance
+    /// </summary>
+    abstract class BackgroundImage : DrawableObject
     {
+
+        /// <summary>
+        /// Increment the indexes (line, column) to draw the following image
+        /// </summary>
+        /// <param name="gameInstance">the gameInstance</param>
+        /// <param name="image">the image to draw</param>
         protected BackgroundImage(Game gameInstance, Bitmap image) :
             base(
                 Team.NEUTRAL,
@@ -25,15 +32,25 @@ namespace SpaceInvaders.GameObjects.Background
             )
         {}
 
-        public override bool CanCollision(Projectiles.ProjectileObject projectile)
+        /// <summary>
+        /// An image can be in collision
+        /// </summary>
+        public override bool CanCollision(ProjectileObject projectile)
         {
             return false;
         }
-        public override void OnCollision(Projectiles.ProjectileObject projectile)
+
+        /// <summary>
+        /// An image can be in collision
+        /// </summary>
+        public override void OnCollision(ProjectileObject projectile)
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException();
         }
 
+        /// <summary>
+        /// Nothing to update
+        /// </summary>
         public override void Update(Game gameInstance, double deltaT)
         {
            

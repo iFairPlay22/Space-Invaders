@@ -4,6 +4,10 @@ using SpaceInvaders.GameObjects.View.Display.Images;
 
 namespace SpaceInvaders.GameObjects.Shooters.Ennemies
 {
+
+    /// <summary>
+    /// Represent a ship1 ennemy
+    /// </summary>
     class Ennemy2 : EnnemyObject
     {
         #region Fields
@@ -31,11 +35,12 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         #endregion
 
         #region Constructor
-        /// <summary>
-        /// Simple constructor
-        /// </summary>
-        /// <param name="coords">Initial coords</param>
 
+        /// <summary>
+        /// Create shooter object
+        /// </summary>
+        /// <param name="src">initial position of the ennemy</param>
+        /// <param name="dst">destination to reach before horizontal movement</param>
         public Ennemy2(Vecteur2D src, Vecteur2D dst) :
             base(src, dst, new Animation(Properties.Resources.ship2, 1, 2), new Frame(Properties.Resources.missile2), ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
         { }

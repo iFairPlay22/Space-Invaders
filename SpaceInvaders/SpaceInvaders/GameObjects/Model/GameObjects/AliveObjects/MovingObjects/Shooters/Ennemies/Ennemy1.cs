@@ -1,13 +1,11 @@
-﻿using SpaceInvaders.GameObjects.Projectiles;
-using SpaceInvaders.GameObjects.View.Display.Animations;
+﻿using SpaceInvaders.GameObjects.View.Display.Animations;
 using SpaceInvaders.GameObjects.View.Display.Images;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders.GameObjects.Shooters.Ennemies
 {
+    /// <summary>
+    /// Represent a ship1 ennemy
+    /// </summary>
     class Ennemy1 : EnnemyObject
     {
         #region Fields
@@ -35,11 +33,12 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         #endregion
 
         #region Constructor
+
         /// <summary>
-        /// Simple constructor
+        /// Create shooter object
         /// </summary>
-        /// <param name="coords">Initial coords</param>
-        
+        /// <param name="src">initial position of the ennemy</param>
+        /// <param name="dst">destination to reach before horizontal movement</param>
         public Ennemy1(Vecteur2D src, Vecteur2D dst) :
             base(src, dst, new Animation(Properties.Resources.ship1, 1, 2), new Frame(Properties.Resources.missile1), ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
         {}

@@ -1,34 +1,32 @@
 ﻿using SpaceInvaders.GameObjects.Projectile;
 using SpaceInvaders.GameObjects.Ships;
 using SpaceInvaders.GameObjects.View.Display.Animations;
-using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
-using SpaceInvaders.Util;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SpaceInvaders.GameObjects
-{ 
+{
+    /// <summary>
+    /// Represents the user ship
+    /// </summary>
     class User : MovingShooterObject
     {
         #region Fields
 
         /// <summary>
-        /// Ball speed in pixel/second
+        /// Moving speed
         /// </summary>
         private static readonly double USER_SPEED = 300;
 
         /// <summary>
-        /// Ball speed in pixel/second
-        /// </summary>
-        private static readonly double ENNEMY_SPEED_DECALAGE = 0;
-
-        /// <summary>
-        /// Ennemy life
+        /// User life
         /// </summary>
         private static readonly int USER_LIFE = 2;
 
+        /// <summary>
+        /// User sounds
+        /// </summary>
         private static readonly SoundHandler USER_SOUNDS = new SoundHandler(
             onActionSound: "volatile_fire_1.wav",
             onCollisionSound: "volatile_user_be_attacked.wav",
@@ -38,9 +36,9 @@ namespace SpaceInvaders.GameObjects
 
         #region Constructor
         /// <summary>
-        /// Simple constructor
+        /// Create a user
         /// </summary>
-        /// <param name="coords">Initial coordsx</param>
+        /// <param name="gameInstance">gameInstance</param>
         public User(Game gameInstance) :
             base(
                 Team.PLAYER,
@@ -52,7 +50,7 @@ namespace SpaceInvaders.GameObjects
                 /*new Frame(Properties.Resources.ship0),*/
                 USER_SOUNDS,
                 USER_SPEED, 
-                ENNEMY_SPEED_DECALAGE, 
+                0, 
                 USER_LIFE
              ) 
                 {}
@@ -62,12 +60,12 @@ namespace SpaceInvaders.GameObjects
         #region Methods
 
         /// <summary>
-        /// Move user to left or right position
+        /// Move user to left or right direction
         /// </summary>
         /// <param name="gameInstance">Game instance</param>
         /// <param name="deltaT">Game deltaT</param>
         /// <param name="right">True if right direction, False else</param>
-
+        /// <returns>True if can move in this direction, false else</returns>
         public override bool CanMove(Game gameInstance, double deltaT, bool? right, bool? top)
         {
 
@@ -78,12 +76,18 @@ namespace SpaceInvaders.GameObjects
 
         }
 
+        /// <summary>
+        /// Shoot a projectile
+        /// </summary>
         protected override void Shoot()
         {
             base.Shoot();
             Projectile = new UserProjectile(ProjectileCoords());
         }
 
+        /// <summary>
+        /// Move and shoot
+        /// </summary>
         public override void Update(Game gameInstance, double deltaT)
         {
             // if space is pressed
@@ -104,6 +108,9 @@ namespace SpaceInvaders.GameObjects
             }
         }
 
+        /// <summary>
+        /// End the game when the user is dying
+        /// </summary>
         public override bool IsAlive()
         {
             bool alive = base.IsAlive();

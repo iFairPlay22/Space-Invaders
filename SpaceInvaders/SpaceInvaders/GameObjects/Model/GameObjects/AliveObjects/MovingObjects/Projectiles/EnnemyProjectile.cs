@@ -1,17 +1,16 @@
 ﻿using SpaceInvaders.GameObjects.View.Display.Images;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SpaceInvaders.GameObjects.Projectiles
 {
+    /// <summary>
+    /// Create an ennemy projectile
+    /// </summary>
     class EnnemyProjectile : ProjectileObject
     {
         #region Fields
 
         /// <summary>
-        /// Ball speed in pixel/second
+        /// Projectile speed in pixels
         /// </summary>
         private static readonly double ENNEMY_PROJECTILE_SPEED = 100;
 
@@ -24,11 +23,12 @@ namespace SpaceInvaders.GameObjects.Projectiles
 
         #region Constructor
         /// <summary>
-        /// Simple constructor
+        /// Create an ennemy projectile
         /// </summary>
-        /// <param name="v">Vecteur</param>
-        public EnnemyProjectile(Vecteur2D v, Drawable image) :
-            base(Team.ENNEMY, v, image, ENNEMY_PROJECTILE_SPEED, ENNEMY_PROJECTILE_LIFE)
+        /// <param name="coords">initial position projectile</param>
+        /// <param name="image">image to draw</param>
+        public EnnemyProjectile(Vecteur2D coords, Drawable image) :
+            base(Team.ENNEMY, coords, image, ENNEMY_PROJECTILE_SPEED, ENNEMY_PROJECTILE_LIFE)
         {
             this.coords += new Vecteur2D(0, GameException.RequireNonNull(ImageDimentions).Y);
         }

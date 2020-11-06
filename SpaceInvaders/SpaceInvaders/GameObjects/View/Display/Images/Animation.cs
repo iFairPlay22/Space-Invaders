@@ -3,11 +3,39 @@ using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.View.Display.Animations
 {
+
+    /// <summary>
+    /// Represents an animation to draw
+    /// </summary>
     class Animation : Drawable
     {
-        private readonly int lines, columns;
+
+        /// <summary>
+        /// The numbers of columns in a single line
+        /// </summary>
+        private readonly int columns;
+
+        /// <summary>
+        /// The numbers of lines in a single row
+        /// </summary>
+        private readonly int lines;
+
+        /// <summary>
+        /// The current position into the base image
+        /// </summary>
         private Vecteur2D Indexes;
 
+        /// <summary>
+        /// A counter to reduce the animation rythm
+        /// </summary>
+        private int i = 0;
+
+        /// <summary>
+        /// Create an animation from an image that can be divided in few images
+        /// </summary>
+        /// <param name="image">the graphics</param>
+        /// <param name="lines">the numbers of lines in a single row</param>
+        /// <param name="columns">the numbers of columns in a single line</param>
         public Animation(Bitmap image, int lines, int columns) : 
             base(
                 image,
@@ -20,8 +48,11 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
             Indexes = new Vecteur2D(0, 0);
         }
 
-        int i = 0;
-
+        /// <summary>
+        /// Draw the current image into the graphics
+        /// </summary>
+        /// <param name="graphics">the graphics</param>
+        /// <param name="destination">top left position represented in pixels</param>
         public override void Draw(Graphics graphics, Vecteur2D destination)
         {
             GameException.RequireNonNull(destination);
@@ -47,6 +78,9 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
 
         }
 
+        /// <summary>
+        /// Increment the indexes (line, column) to draw the following image
+        /// </summary>
         private void Next()
         {
             int x = (int) Indexes.X;

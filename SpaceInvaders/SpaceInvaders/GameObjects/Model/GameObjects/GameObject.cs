@@ -13,10 +13,15 @@ namespace SpaceInvaders
         public readonly Team team;
 
         /// <summary>
-        /// Position coords
+        /// Pixels coordinates of the game object
         /// </summary>
         protected Vecteur2D coords;
 
+        /// <summary>
+        /// Create a game object
+        /// </summary>
+        /// <param name="team">team of the game object</param>
+        /// <param name="coords">pixels coordinates of the game object</param>
         public GameObject(Team team, Vecteur2D coords) {
             this.team = GameException.RequireNonNull(team);
             this.coords = GameException.RequireNonNull(coords);
@@ -37,19 +42,21 @@ namespace SpaceInvaders
         public abstract void Draw(Game gameInstance, Graphics graphics);
 
         /// <summary>
-        /// Determines if object is alive. If false, the object will be removed automatically.
+        /// Determines if object is alive. 
+        /// If false, the object will be removed automatically.
         /// </summary>
         /// <returns>Am I alive ?</returns>
         public abstract bool IsAlive();
 
         /// <summary>
-        /// Determines if object can have a collision
-        /// <returns>Am I alive ?</returns>
+        /// Determines if object can have a collision with a projectile
+        /// </summary>
+        /// <returns>Can I be in collision with this projectile ?</returns>
         public abstract bool CanCollision(ProjectileObject projectile);
 
         /// <summary>
-        /// Determines if object can have a collision
-        /// <returns>Am I alive ?</returns>
+        /// Action done when CanCollision return true
+        /// </summary>
         public abstract void OnCollision(ProjectileObject projectile);
 
     }

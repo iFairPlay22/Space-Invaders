@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows.Media;
+﻿using System.Collections.Generic;
 
 
 // Add WindowsBase + PresentationCore

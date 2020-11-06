@@ -1,23 +1,26 @@
-﻿using SpaceInvaders.GameObjects.Alive;
-using SpaceInvaders.GameObjects.Projectiles;
+﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Shooters;
-using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using System;
-using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.Ships
 {
+    /// <summary>
+    /// Represents a game object that can shoot projectiles
+    /// </summary>
     abstract class MovingShooterObject : MovingObject
     {
         #region Fields
 
         /// <summary>
-        /// Projectile
+        /// The current projectile
         /// </summary>
-        private Projectiles.ProjectileObject projectile;
+        private ProjectileObject projectile;
 
-        protected Projectiles.ProjectileObject Projectile {
+        /// <summary>
+        /// The current projectile
+        /// </summary>
+        protected ProjectileObject Projectile {
             private get { 
                 return projectile; 
             }
@@ -32,10 +35,15 @@ namespace SpaceInvaders.GameObjects.Ships
 
         #region Constructor
         /// <summary>
-        /// Simple constructor
+        /// Create shooter object
         /// </summary>
-        /// <param name="coords">Position in pixels</param>
-        /// <param name="image">Image to draw</param>
+        /// <param name="team">the team of the game object</param>
+        /// <param name="coords">the position of the game object</param>
+        /// <param name="drawable">the image to draw</param>
+        /// <param name="soundHandler">the song container</param>
+        /// <param name="life">the life of the imageObject</param>
+        /// <param name="speed">move speed in pixels</param>
+        /// <param name="speedDecalage">move acceleration in pixels when the direction changes</param>
         public MovingShooterObject(Team team, Vecteur2D coords, View.Display.Images.Drawable drawable, SoundHandler soundHandler, double speed, double speedDecalage, int life) : 
             base(team, coords, drawable, soundHandler, life, speed, speedDecalage)
         {}
@@ -44,18 +52,27 @@ namespace SpaceInvaders.GameObjects.Ships
 
         #region Methods
 
+        /// <summary>
+        /// A shooter object can shoot an object if the precedent projecitle is not alive
+        /// </summary>
         protected virtual bool CanShoot()
         {
             return Projectile == null || (Projectile != null && !Projectile.IsAlive());
         }
 
+        /// <summary>
+        /// Play a sound when shooting
+        /// </summary>
         protected virtual void Shoot()
         {
             if (!CanShoot()) throw new InvalidOperationException();
 
-            soundHandler.OnAction();
+            SoundHandler.OnAction();
         }
 
+        /// <summary>
+        /// Get the started projectile coordinates in pixels
+        /// </summary>
         protected Vecteur2D ProjectileCoords()
         {
             return new Vecteur2D(coords.X + ImageDimentions.X / 2, coords.Y);

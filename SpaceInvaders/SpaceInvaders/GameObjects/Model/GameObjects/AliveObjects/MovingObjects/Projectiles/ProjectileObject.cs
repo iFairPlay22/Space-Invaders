@@ -1,21 +1,25 @@
-﻿using SpaceInvaders.GameObjects.Alive;
-using SpaceInvaders.GameObjects.Shooters;
+﻿using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
-using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.Projectiles
 {
+    /// <summary>
+    /// Represents a projectile
+    /// </summary>
     abstract class ProjectileObject : MovingObject
     {
         #region Fields
 
         /// <summary>
-        /// True if projectile does top
+        /// True if projectile go in the top direction
         /// False for bottom
         /// </summary>
         private readonly bool top;
 
+        /// <summary>
+        /// Projecitle sounds
+        /// </summary>
         private static readonly SoundHandler PROJECTILE_SOUNDS = new SoundHandler(
             onActionSound: null,
             onCollisionSound: null,
@@ -26,11 +30,15 @@ namespace SpaceInvaders.GameObjects.Projectiles
 
         #region Constructor
         /// <summary>
-        /// Simple constructor
+        /// Create shooter object
         /// </summary>
-        /// <param name="v">Vecteur</param>
-        public ProjectileObject(Team team, Vecteur2D v, Drawable image, double projectileSpeed, int life) : 
-            base(team, v, image, PROJECTILE_SOUNDS, life, projectileSpeed, 0)
+        /// <param name="team">the team</param>
+        /// <param name="coords">current position in pixels</param>
+        /// <param name="image">image to draw</param>
+        /// <param name="projectileSpeed">moving speed</param>
+        /// <param name="life">life of the projectoile</param>
+        public ProjectileObject(Team team, Vecteur2D coords, Drawable image, double projectileSpeed, int life) : 
+            base(team, coords, image, PROJECTILE_SOUNDS, life, projectileSpeed, 0)
         {
             top = team == Team.PLAYER;
         }
@@ -39,6 +47,9 @@ namespace SpaceInvaders.GameObjects.Projectiles
 
         #region Methods
 
+        /// <summary>
+        /// Manage move and collisions
+        /// </summary>
         public override void Update(Game gameInstance, double deltaT)
         {
             if (CanMove(gameInstance, deltaT, null, top))
@@ -52,6 +63,9 @@ namespace SpaceInvaders.GameObjects.Projectiles
                 
         }
 
+        /// <summary>
+        /// Destroy the both projectiles
+        /// </summary>
         public override void OnCollision(ProjectileObject projectile)
         {
             Destroy();

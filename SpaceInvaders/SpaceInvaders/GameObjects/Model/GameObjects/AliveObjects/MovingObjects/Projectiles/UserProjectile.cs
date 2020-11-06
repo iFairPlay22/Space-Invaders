@@ -4,12 +4,15 @@ using System;
 
 namespace SpaceInvaders.GameObjects.Projectile
 {
+    /// <summary>
+    /// Create a user projectile
+    /// </summary>
     class UserProjectile : ProjectileObject
     {
         #region Fields
 
         /// <summary>
-        /// Ball speed in pixel/second
+        /// Projectile speed in pixels
         /// </summary>
         private static readonly double USER_PROJECTILE_SPEED = 200;
 
@@ -22,12 +25,12 @@ namespace SpaceInvaders.GameObjects.Projectile
 
         #region Constructor
         /// <summary>
-        /// Simple constructor
+        /// Create an ennemy projectile
         /// </summary>
-        /// <param name="v">Vecteur</param>
-        public UserProjectile(Vecteur2D v) : 
-            base(Team.PLAYER, v, new Frame(Properties.Resources.missile0), USER_PROJECTILE_SPEED, USER_PROJECTILE_LIFE) {
-            coords += new Vecteur2D(0, -GameException.RequireNonNull(ImageDimentions).Y);
+        /// <param name="coords">initial position projectile</param>
+        public UserProjectile(Vecteur2D coords) : 
+            base(Team.PLAYER, coords, new Frame(Properties.Resources.missile0), USER_PROJECTILE_SPEED, USER_PROJECTILE_LIFE) {
+            this.coords += new Vecteur2D(0, -GameException.RequireNonNull(ImageDimentions).Y);
         }
 
         #endregion

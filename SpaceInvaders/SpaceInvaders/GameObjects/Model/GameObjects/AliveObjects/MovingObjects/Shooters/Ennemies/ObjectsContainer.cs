@@ -1,7 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
-using SpaceInvaders.GameObjects.Ships;
 using SpaceInvaders.GameObjects.Shooters.Ennemies;
-using SpaceInvaders.GameObjects.View.Display;
 using SpaceInvaders.Util;
 using System;
 using System.Collections.Generic;
@@ -10,14 +8,32 @@ using System.Linq;
 
 namespace SpaceInvaders.GameObjects.Shooters
 {
+
+    /// <summary>
+    /// Manage the game objects
+    /// </summary>
     class ObjectsContainer : GameObject
     {
+        /// <summary>
+        /// Store all the ennemies
+        /// </summary>
         private readonly HashSet<EnnemyObject> ennemies = new HashSet<EnnemyObject>();
 
+        /// <summary>
+        /// Current direction
+        /// </summary>
         private bool right = true;
 
+        /// <summary>
+        /// Store the user
+        /// </summary>
         private readonly User user;
 
+        /// <summary>
+        /// Create a random numbers of ennemies in the board
+        /// </summary>
+        /// <param name="gameInstance">the gameInstance</param>
+        /// <param name="user">the user</param>
         public ObjectsContainer(Game gameInstance, User user) : base(Team.ENNEMY, new Vecteur2D(0, 0))
         {
             ennemies = new HashSet<EnnemyObject>();
@@ -45,6 +61,9 @@ namespace SpaceInvaders.GameObjects.Shooters
             this.user = user;
         }
 
+        /// <summary>
+        /// Create a line of ennemies
+        /// </summary>
         private void AddLine(Game gameInstance, Func<Vecteur2D, Vecteur2D, EnnemyObject> createEnnemyFunction, int ennemiesNumber, int actualLine, int totalLines)
         {
             GameException.RequireNonNull(createEnnemyFunction);
@@ -64,9 +83,14 @@ namespace SpaceInvaders.GameObjects.Shooters
             }
         }
 
+        /// <summary>
+        /// Nothing to draw
+        /// </summary>
         public override void Draw(Game gameInstance, Graphics graphics) {}
 
-
+        /// <summary>
+        /// Finish the game if all the users are dead
+        /// </summary>
         public override bool IsAlive()
         {
             bool alive = ennemies.Count() != 0;
@@ -76,6 +100,9 @@ namespace SpaceInvaders.GameObjects.Shooters
             return alive;
         }
 
+        /// <summary>
+        /// Manage the ennemy directions
+        /// </summary>
         public override void Update(Game gameInstance, double deltaT)
         {
             bool decalage = ennemies.Any(e => !e.CanMove(gameInstance, deltaT, right, false));
@@ -100,11 +127,17 @@ namespace SpaceInvaders.GameObjects.Shooters
             if (decalage && ennemies.Any(e => user.IsAbove(e))) Game.game.gameStateManager.FinishGame(false);
         }
 
+        /// <summary>
+        /// Can't be in collision
+        /// </summary>
         public override bool CanCollision(ProjectileObject projectile)
         {
             return false;
         }
 
+        /// <summary>
+        /// Nothing to do
+        /// </summary>
         public override void OnCollision(ProjectileObject projectile) {}
     }
 }
