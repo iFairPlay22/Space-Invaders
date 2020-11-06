@@ -13,54 +13,39 @@ namespace SpaceInvaders.GameObjects.View.Sounds
 {
     class SongManager
     {
-        private SongManager() { }
+        private SongManager() {}
         public static readonly SongManager instance = new SongManager();
 
+        private List<string> playlistSongs;
 
-        private List<MediaPlayer> playlistSongs;
-        private int index = 0;
-
-        private readonly HashSet<MediaPlayer> volatileSongs = new HashSet<MediaPlayer>();
-
-        public void CreatePlayList(List<string> urls)
+        public void Load()
         {
-            if (playlistSongs != null)
-                playlistSongs.ForEach((MediaPlayer m) => m.Stop());
-            
-            index = 0;
-            playlistSongs = new List<MediaPlayer>();
-
-            foreach (string url in urls)
-            {
-                MediaPlayer player = new MediaPlayer();
-                player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\songs\{url}")));
-                player.MediaEnded += (object o, EventArgs e) => {
-                    // playlistSongs[index].Stop();
-                    index = (index + 1) % playlistSongs.Count;
-                    playlistSongs[index].Play();
-                };
-                playlistSongs.Add(player);
-            }
-
-            if (playlistSongs.Count != 0)
-                playlistSongs[0].Play();
+            SongMap.instance.Load();
         }
 
-        public void AddVolatileSong(string url)
-        { // SoundEffect SFX
-            MediaPlayer player = new MediaPlayer();
+        public void PlaySongs(List<string> urls)
+        {
+            if (playlistSongs != null)
+            {
+                playlistSongs.ForEach(
+                    (string songName) => SongMap.instance.Stop(songName)
+                );
+            }
             
-            // Callbacks
-            player.MediaOpened += (object o, EventArgs e) => {
-                // volatileSongs.Add(player);
-                player.Play();
-            };
-            player.MediaEnded += (object o, EventArgs e) => {
-                // volatileSongs.Remove(player);
-            };
+            playlistSongs = urls;
 
-            // Action
-            player.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\songs\{url}")));
+
+            if (playlistSongs.Count != 0)
+            {
+                SongMap.instance.MakePlaylist(playlistSongs);
+                SongMap.instance.Play(playlistSongs[0]);
+            }
+            
+        }
+
+        public void PlaySoundEffect(string url)
+        { // SoundEffect SFX
+            SongMap.instance.Play(url);
         }
     }
 

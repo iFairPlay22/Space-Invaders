@@ -42,8 +42,8 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
                 GraphicsUnit.Pixel
             );
 
-
-            Next();
+            if (i++ % 10 == 0)
+                Next();
 
         }
 

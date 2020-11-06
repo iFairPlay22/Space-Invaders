@@ -101,6 +101,7 @@ namespace SpaceInvaders.GameObjects.Shooters
 
         protected override void Shoot()
         {
+
             if (timeToShoot && RandomNumbers.Randint(0, 100) <= shootPercentage)
             {
                 base.Shoot();

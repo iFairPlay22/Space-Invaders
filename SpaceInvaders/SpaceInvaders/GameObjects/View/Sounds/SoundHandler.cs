@@ -36,7 +36,9 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         private void PlaySong(string soundPath)
         {
             if (soundPath != null)
-                SongManager.instance.AddVolatileSong(soundPath);
+            {
+                SongManager.instance.PlaySoundEffect(soundPath);
+            }
         }
     }
 }

@@ -107,7 +107,9 @@ namespace SpaceInvaders
         /// <summary>
         /// Create game objects when launching the game
         /// </summary>
-        public void Load() {
+        public void Load()
+        {
+            SongManager.instance.Load();
             gameStateManager = new GameStateManager(this);
         }
 
@@ -122,7 +124,7 @@ namespace SpaceInvaders
 
             AddNewGameObject(new StartingBackground(this));
 
-            SongManager.instance.CreatePlayList(
+            SongManager.instance.PlaySongs(
                 new List<string> {
                     "background_intro.wav"
                 }
@@ -147,7 +149,7 @@ namespace SpaceInvaders
                 AddNewGameObject(new Bunker(new Vecteur2D(i * (gameSize.Width / 4) - 35, 3 * (gameSize.Height / 5))));
             }
 
-            SongManager.instance.CreatePlayList(
+            SongManager.instance.PlaySongs(
                 new List<string> {
                     "background_game_1.wav",
                     "background_game_2.wav",
@@ -165,7 +167,7 @@ namespace SpaceInvaders
             else
                 AddNewGameObject(new DefeatBackground(this));
 
-            SongManager.instance.CreatePlayList(
+            SongManager.instance.PlaySongs(
                 new List<string> {
                     win ? "volatile_victory.wav" : "volatile_defeat.wav",
                     "background_end.wav"
