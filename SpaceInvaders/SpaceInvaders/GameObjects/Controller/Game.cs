@@ -20,12 +20,12 @@ namespace SpaceInvaders
         /// <summary>
         /// Set of all game objects currently in the game
         /// </summary>
-        public HashSet<GameObject> gameObjects = new HashSet<GameObject>();
+        public readonly HashSet<GameObject> gameObjects = new HashSet<GameObject>();
 
         /// <summary>
         /// Set of new game objects scheduled for addition to the game
         /// </summary>
-        private HashSet<GameObject> pendingNewGameObjects = new HashSet<GameObject>();
+        private readonly HashSet<GameObject> pendingNewGameObjects = new HashSet<GameObject>();
 
         /// <summary>
         /// Schedule a new object for addition in the game.
@@ -50,13 +50,8 @@ namespace SpaceInvaders
         /// </summary>
         public HashSet<Keys> keyPressed = new HashSet<Keys>();
 
-        internal void Pause()
-        {
-            SongManager.instance.PlaySoundEffect("sfx_pause.wav");
-        }
-
         /// <summary>
-        /// Game state
+        /// State of the game
         /// </summary>
         public GameStateManager gameStateManager;
 
@@ -110,7 +105,7 @@ namespace SpaceInvaders
         }
 
         /// <summary>
-        /// Create game objects when launching the game
+        /// Launch the game
         /// </summary>
         public void Load()
         {
@@ -118,11 +113,17 @@ namespace SpaceInvaders
             gameStateManager = new GameStateManager(this);
         }
 
+        /// <summary>
+        /// Function called before each SwitchTo...()
+        /// </summary>
         private void BeforeSwitch()
         {
             gameObjects.Clear();
         }
 
+        /// <summary>
+        /// When the game menu appears
+        /// </summary>
         public void SwitchToStart()
         {
             BeforeSwitch();
@@ -140,6 +141,9 @@ namespace SpaceInvaders
             );
         }
 
+        /// <summary>
+        /// When a new game is launched
+        /// </summary>
         public void SwitchToGame()
         {
             BeforeSwitch();
@@ -159,6 +163,17 @@ namespace SpaceInvaders
             }
         }
 
+        /// <summary>
+        /// When the game is paused
+        /// </summary>
+        public void Pause()
+        {
+            SongManager.instance.PlaySoundEffect("sfx_pause.wav");
+        }
+
+        /// <summary>
+        /// When the game is finished (victory or defeat)
+        /// </summary>
         public void SwitchToEnd(bool win)
         {
             BeforeSwitch();
@@ -186,21 +201,21 @@ namespace SpaceInvaders
         public void Update(double deltaT)
         {
             // init menu --> game
-            if ((gameStateManager.StartMode() || gameStateManager.EndMode()) && keyPressed.Contains(Keys.Space))
+            if ((gameStateManager.StartMode() || gameStateManager.IsEnd()) && keyPressed.Contains(Keys.Space))
             {
                 gameStateManager.StartGame();
                 keyPressed.Remove(Keys.Space);
             }
 
             // game --> pause ?
-            if (gameStateManager.GameMode())
+            if (gameStateManager.IsInGame())
             {
                 if (keyPressed.Contains(Keys.P))
                 {
                     gameStateManager.PausedGame();
                     keyPressed.Remove(Keys.P);
                 }
-                if (gameStateManager.Paused()) return;
+                if (gameStateManager.IsPaused()) return;
             }
 
             // add new game objects
@@ -211,7 +226,7 @@ namespace SpaceInvaders
             foreach (GameObject gameObject in gameObjects)
             {
                 gameObject.Update(this, deltaT);
-                if (!gameStateManager.GameMode()) break;
+                if (!gameStateManager.IsInGame()) break;
             }
             
             // remove dead objects
