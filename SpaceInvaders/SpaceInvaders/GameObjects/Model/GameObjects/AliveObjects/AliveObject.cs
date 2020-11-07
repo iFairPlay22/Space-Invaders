@@ -15,7 +15,7 @@ namespace SpaceInvaders.GameObjects.Alive
         /// <summary>
         /// Game object life
         /// </summary>
-        private int Life;
+        public int Life { get; private set; }
 
         /// <summary>
         /// Song container of the game object
@@ -89,15 +89,6 @@ namespace SpaceInvaders.GameObjects.Alive
         {
             Life = 0;
             SoundHandler.OnDeath();
-        }
-
-        /// <summary>
-        /// Return the life of the game object
-        /// </summary>
-        /// <returns>the life of the game object</returns>
-        public override string ToString()
-        {
-            return $"Vie : {Life}";
         }
     }
 }

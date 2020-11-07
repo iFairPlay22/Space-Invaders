@@ -7,6 +7,7 @@ using SpaceInvaders.GameObjects.Background;
 using SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers;
 using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.View.Display;
+using SpaceInvaders.GameObjects.View.Display.Life;
 using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
 
@@ -153,7 +154,7 @@ namespace SpaceInvaders
             User user = new User(this);
             AddNewGameObject(user);
            
-            AddNewGameObject(new GameObjectText(this, user));
+            AddNewGameObject(new UserLife(user));
 
             AddNewGameObject(new ObjectsContainer(this, user));
 

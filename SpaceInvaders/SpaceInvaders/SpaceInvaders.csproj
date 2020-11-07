@@ -66,8 +66,7 @@
     <Compile Include="GameObjects\Model\Util\GameException.cs" />
     <Compile Include="GameObjects\View\Display\Images\Drawable.cs" />
     <Compile Include="GameObjects\View\Display\Images\Frame.cs" />
-    <Compile Include="GameObjects\View\Display\Text\GameObjectText.cs" />
-    <Compile Include="GameObjects\View\Display\Text\Text.cs" />
+    <Compile Include="GameObjects\View\Display\Life\UserLife.cs" />
     <Compile Include="GameObjects\View\DrawableObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Projectiles\ProjectileObject.cs" />
     <Compile Include="GameObjects\Model\GameObjects\AliveObjects\MovingObjects\Projectiles\UserProjectile.cs" />
