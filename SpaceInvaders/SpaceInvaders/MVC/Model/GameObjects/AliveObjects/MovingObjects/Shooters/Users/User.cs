@@ -111,6 +111,7 @@ namespace SpaceInvaders.GameObjects
         /// <summary>
         /// End the game when the user is dying
         /// </summary>
+        /// <returns>Is the user alive ?</returns>
         public override bool IsAlive()
         {
             bool alive = base.IsAlive();

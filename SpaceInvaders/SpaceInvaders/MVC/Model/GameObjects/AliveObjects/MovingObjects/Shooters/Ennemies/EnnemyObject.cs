@@ -98,6 +98,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// An emmemy can't go to the top direction
         /// </summary>
+        /// <returns>Can the ennemy move ?</returns>
         public override bool CanMove(Game gameInstance, double deltaT, bool? right, bool? top)
         {
             if (top.HasValue && top.Value == true)
@@ -119,6 +120,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// An ennemy can't shoot in the first step
         /// </summary>
+        /// <returns>Can the ennemy shoot ?</returns>
         protected override bool CanShoot()
         {
             return base.CanShoot() && IsArrivedToDestination();

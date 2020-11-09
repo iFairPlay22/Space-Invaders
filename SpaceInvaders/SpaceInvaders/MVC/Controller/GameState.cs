@@ -29,7 +29,7 @@ namespace SpaceInvaders.Util
         /// <summary>
         /// Ball speed in pixel/second
         /// </summary>
-        private GameState gameState = GameState.BEFORE_GAME;
+        private GameState gameState;
         private Game gameInstance;
         #endregion
 
@@ -42,6 +42,7 @@ namespace SpaceInvaders.Util
         {
             this.gameInstance = GameException.RequireNonNull(gameInstance);
             this.gameInstance.SwitchToStart();
+            Init();
         }
 
         #endregion
@@ -51,9 +52,9 @@ namespace SpaceInvaders.Util
         /// <summary>
         /// Programm lauched => BEFORE_GAME
         /// </summary>
-        public bool StartMode()
+        public void Init()
         {
-            return gameState == GameState.BEFORE_GAME;
+            gameState = GameState.BEFORE_GAME;
         }
 
         /// <summary>
@@ -97,12 +98,12 @@ namespace SpaceInvaders.Util
         #region Getters
 
         /// <summary>
-        /// Is the game paused by the user ?
+        /// The game is not launched
         /// </summary>
-        /// <returns>Is the game currently paused ?</returns>
-        public bool IsPaused()
+        /// <returns> Can we see the menu ? </return>
+        public bool StartMode()
         {
-            return gameState == GameState.PAUSED;
+            return gameState == GameState.BEFORE_GAME;
         }
 
         /// <summary>
@@ -112,6 +113,15 @@ namespace SpaceInvaders.Util
         public bool IsInGame()
         {
             return gameState == GameState.IN_GAME || IsPaused();
+        }
+
+        /// <summary>
+        /// Is the game paused by the user ?
+        /// </summary>
+        /// <returns>Is the game currently paused ?</returns>
+        public bool IsPaused()
+        {
+            return gameState == GameState.PAUSED;
         }
 
         /// <summary>

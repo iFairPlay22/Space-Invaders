@@ -49,6 +49,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// Create a media player linked to the song
         /// /// <summary>
         /// <param name="url">the path of the sound</param>
+        /// <returns>The created MediaPlayer instance</returns>
         private MediaPlayer CreateMediaPlayer(string url)
         {
             MediaPlayer mediaPlayer = new MediaPlayer();

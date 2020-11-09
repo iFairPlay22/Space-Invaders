@@ -35,6 +35,7 @@ namespace SpaceInvaders.GameObjects.Background
         /// <summary>
         /// An image can be in collision
         /// </summary>
+        /// <returns>Can a background image be in collision ?</returns>
         public override bool CanCollision(ProjectileObject projectile)
         {
             return false;

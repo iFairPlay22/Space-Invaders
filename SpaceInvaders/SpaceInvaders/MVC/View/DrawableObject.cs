@@ -137,7 +137,7 @@ namespace SpaceInvaders.GameObjects
 
         /// <summary>
         /// By default, a drawable object is always alive
-        /// <returns>True</returns>
+        /// <returns>Is the drawable object alive ?</returns>
         public override bool IsAlive()
         {
             return true;

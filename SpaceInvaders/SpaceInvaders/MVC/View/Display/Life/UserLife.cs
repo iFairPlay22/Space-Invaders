@@ -60,6 +60,7 @@ namespace SpaceInvaders.GameObjects.View.Display.Life
         /// Can't have collision with a projectile
         /// </summary>
         /// <param name="gameInstance">gameInstance</param>
+        /// <returns>Can a userlife be in collision ?</returns>
         public override bool CanCollision(ProjectileObject projectile)
         {
             return false;

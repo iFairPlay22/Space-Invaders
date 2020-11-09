@@ -90,6 +90,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Get the next position of an object in pixels 
         /// </summary>
+        /// <returns>The next position of the game object if it moves</returns>
         private Vector2D NextCoords(bool? right, bool? top, double deltaT)
         {
             int dx = 0, dy = 0;

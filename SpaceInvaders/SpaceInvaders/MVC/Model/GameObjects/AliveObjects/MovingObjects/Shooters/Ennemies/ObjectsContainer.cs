@@ -91,6 +91,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Finish the game if all the users are dead
         /// </summary>
+        /// <returns>Does the block contain any enemies ?</returns>
         public override bool IsAlive()
         {
             bool alive = ennemies.Count() != 0;
@@ -130,6 +131,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Can't be in collision
         /// </summary>
+        /// <returns>Can the block be in collision ?</returns>
         public override bool CanCollision(ProjectileObject projectile)
         {
             return false;

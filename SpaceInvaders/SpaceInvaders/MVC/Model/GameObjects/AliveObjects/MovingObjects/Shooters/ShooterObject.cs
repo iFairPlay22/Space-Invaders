@@ -21,9 +21,17 @@ namespace SpaceInvaders.GameObjects.Ships
         /// The current projectile
         /// </summary>
         protected ProjectileObject Projectile {
+
+            /// <summary>
+            /// Get the current projectile 
+            /// </summary>
             private get { 
                 return projectile; 
             }
+
+            /// <summary>
+            /// Shoot a projectile
+            /// </summary>
             set {
                 projectile = value;
                 if (projectile != null) 
@@ -53,8 +61,9 @@ namespace SpaceInvaders.GameObjects.Ships
         #region Methods
 
         /// <summary>
-        /// A shooter object can shoot an object if the precedent projecitle is not alive
+        /// A shooter object can shoot an object if the precedent projectile is not alive
         /// </summary>
+        /// <returns>Is the last shooted projectile is dead ?</returns>
         protected virtual bool CanShoot()
         {
             return Projectile == null || (Projectile != null && !Projectile.IsAlive());
@@ -73,6 +82,7 @@ namespace SpaceInvaders.GameObjects.Ships
         /// <summary>
         /// Get the started projectile coordinates in pixels
         /// </summary>
+        /// <returns>The next position of the game object if it moves</returns>
         protected Vector2D ProjectileCoords()
         {
             return new Vector2D(coords.X + ImageDimentions.X / 2, coords.Y);
