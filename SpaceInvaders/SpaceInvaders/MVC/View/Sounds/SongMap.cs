@@ -83,11 +83,14 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// </summary>
         public void MakePlaylist(List<string> urls)
         {
+            GameException.RequireNonNull(Dict);
             int length = GameException.RequireNonNull(urls).Count;
 
             for (int i = 0; i < length; i++)
-                GameException.RequireNonNull(Dict)[urls[i]].MediaEnded += (object o, EventArgs e) =>
-                    Play(urls[(i + 1) % length]);
+            {
+                string nextUrl  = urls[(i + 1) % length];
+                Dict[urls[i]].MediaEnded += (object o, EventArgs e) => Play(nextUrl);
+            }
 
         }
     }

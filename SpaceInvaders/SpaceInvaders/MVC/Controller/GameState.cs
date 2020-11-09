@@ -27,10 +27,15 @@ namespace SpaceInvaders.Util
         #region Fields
 
         /// <summary>
-        /// Ball speed in pixel/second
+        /// The current game state
         /// </summary>
         private GameState gameState;
+
+        /// <summary>
+        /// The game instance
+        /// </summary>
         private Game gameInstance;
+        
         #endregion
 
         #region Constructor

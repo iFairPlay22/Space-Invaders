@@ -11,17 +11,17 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         #region Fields
 
         /// <summary>
-        /// Ball speed in pixel/second
+        /// Moving speed
         /// </summary>
         private static readonly double ENNEMY_SPEED = 50;
 
         /// <summary>
-        /// Ball speed in pixel/second
+        /// Speed decalage when direction changes
         /// </summary>
         private static readonly double ENNEMY_SPEED_DECALAGE = 10;
 
         /// <summary>
-        /// Percentage
+        /// Percentage to shoot
         /// </summary>
         private static readonly int SHOOT_SUCCES_PERCENTAGE = 50;
 
@@ -35,7 +35,7 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         #region Constructor
 
         /// <summary>
-        /// Create shooter object
+        /// Create an ennemy1 object
         /// </summary>
         /// <param name="src">initial position of the ennemy</param>
         /// <param name="dst">destination to reach before horizontal movement</param>
