@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Windows.Media;
+using SpaceInvaders.GameObjects.View.Sounds;
 
 namespace SpaceInvaders
 {
@@ -35,7 +35,7 @@ namespace SpaceInvaders
         /// </summary>
         public GameForm()
         {
-            var toto = new MediaPlayer();
+            SongManager.instance.Load();
             InitializeComponent();
             this.ClientSize = new Size(
                 (2 * Screen.PrimaryScreen.Bounds.Width) / 3, 

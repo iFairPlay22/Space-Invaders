@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Media;
 using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Background;
 using SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers;
@@ -76,7 +75,6 @@ namespace SpaceInvaders
         /// <returns></returns>
         public static Game CreateGame(Size gameSize)
         {
-            var toto = new MediaPlayer();
             if (game == null)
                 game = new Game(gameSize);
             return game;
@@ -110,7 +108,6 @@ namespace SpaceInvaders
         /// </summary>
         public void Load()
         {
-            SongManager.instance.Load();
             gameStateManager = new GameStateManager(this);
         }
 
