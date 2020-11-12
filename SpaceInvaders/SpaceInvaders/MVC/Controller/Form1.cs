@@ -40,6 +40,10 @@ namespace SpaceInvaders
         public GameForm()
         {
             InitializeComponent();
+            this.ClientSize = new Size(
+                (2 * Screen.PrimaryScreen.Bounds.Width) / 3, 
+                (2 * Screen.PrimaryScreen.Bounds.Height) / 3
+            );
             game = Game.CreateGame(this.ClientSize);
             watch.Start();
             WorldClock.Start();

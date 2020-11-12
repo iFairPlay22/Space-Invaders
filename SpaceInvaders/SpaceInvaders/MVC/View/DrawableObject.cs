@@ -83,7 +83,7 @@ namespace SpaceInvaders.GameObjects
 
             if (intersect.IsEmpty) return false;
 
-            return IteratePixels(projectile, (x, y) => drawable.Image.GetPixel(x, y).A == 255);
+            return IteratePixels(projectile, (x, y) => 0 < drawable.Image.GetPixel(x, y).A);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace SpaceInvaders.GameObjects
             IteratePixels(
                 projectile,
                 (x, y) => {
-                    if (drawable.Image.GetPixel(x, y).A == 255)
+                    if (0 < drawable.Image.GetPixel(x, y).A)
                         drawable.Image.SetPixel(x, y, TRANSPARENT_COLOR);
                     return false;
                 }

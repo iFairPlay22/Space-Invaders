@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
@@ -110,7 +109,7 @@ namespace SpaceInvaders
         /// </summary>
         public void Load()
         {
-            SongManager.instance.Load();
+            //SongManager.instance.Load();
             gameStateManager = new GameStateManager(this);
         }
 
@@ -131,7 +130,7 @@ namespace SpaceInvaders
 
             AddNewGameObject(new StartingBackground(this));
 
-            SongManager.instance.PlaySongs(
+            /*SongManager.instance.PlaySongs(
                 new List<string> {
                     "background_1.wav",
                     "background_2.wav",
@@ -139,7 +138,7 @@ namespace SpaceInvaders
                     "background_4.wav",
                     "background_5.wav"
                 }
-            );
+            );*/
         }
 
         /// <summary>
