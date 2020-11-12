@@ -60,7 +60,7 @@
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Ennemy1.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Ennemy2.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\EnnemyObject.cs" />
-    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\ObjectsContainer.cs" />
+    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\EnnemiesContainer.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\MovingObject.cs" />
     <Compile Include="MVC\Model\GameObjects\Team.cs" />
     <Compile Include="MVC\Model\Util\GameException.cs" />

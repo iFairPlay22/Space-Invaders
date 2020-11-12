@@ -3,6 +3,7 @@ using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.View.Display.Images;
 using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Properties;
+using System.Drawing;
 
 namespace SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers
 {
@@ -26,7 +27,9 @@ namespace SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers
         /// </summary>
         public Bunker(Vector2D coords) : 
             base(Team.NEUTRAL, coords, new Frame(Resources.bunker), BUNKER_SOUNDS, 0, true)
-        {}
+        {
+            this.coords -= new Vector2D(this.ImageDimentions.X / 2, 0);
+        }
 
         /// <summary>
         /// Nothing to do

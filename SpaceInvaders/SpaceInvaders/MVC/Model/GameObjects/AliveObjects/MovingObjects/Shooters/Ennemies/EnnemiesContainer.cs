@@ -1,4 +1,5 @@
-﻿using SpaceInvaders.GameObjects.Projectiles;
+﻿using SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers;
+using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.Shooters.Ennemies;
 using SpaceInvaders.Util;
 using System;
@@ -36,6 +37,21 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="user">the user</param>
         public ObjectsContainer(Game gameInstance, User user) : base(Team.ENNEMY, new Vector2D(0, 0))
         {
+
+            int bunkersNb = 4;
+
+            for (int i = 1; i < bunkersNb; i++)
+            {
+                Game.game.AddNewGameObject(
+                    new Bunker(
+                        new Vector2D(
+                            i * (Game.game.gameSize.Width / bunkersNb), 
+                            3 * (Game.game.gameSize.Height / 5)
+                        )
+                    )
+                );
+            }
+
             ennemies = new HashSet<EnnemyObject>();
 
             List<Func<Vector2D, Vector2D, EnnemyObject>> list = new List<Func<Vector2D, Vector2D, EnnemyObject>>

@@ -154,11 +154,6 @@ namespace SpaceInvaders
             AddNewGameObject(new UserLife(user));
 
             AddNewGameObject(new ObjectsContainer(this, user));
-
-            for (int i = 1; i < 4; i++)
-            {
-                AddNewGameObject(new Bunker(new Vector2D(i * (gameSize.Width / 4) - 35, 3 * (gameSize.Height / 5))));
-            }
         }
 
         /// <summary>
