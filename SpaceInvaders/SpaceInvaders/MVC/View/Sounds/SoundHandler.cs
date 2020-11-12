@@ -68,7 +68,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         {
             if (soundPath != null)
             {
-                // SongManager.instance.PlaySoundEffect(soundPath);
+                SongManager.instance.PlaySoundEffect(soundPath);
             }
         }
     }

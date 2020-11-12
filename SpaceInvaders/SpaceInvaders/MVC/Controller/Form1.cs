@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace SpaceInvaders
 {
@@ -39,6 +35,7 @@ namespace SpaceInvaders
         /// </summary>
         public GameForm()
         {
+            var toto = new MediaPlayer();
             InitializeComponent();
             this.ClientSize = new Size(
                 (2 * Screen.PrimaryScreen.Bounds.Width) / 3, 
@@ -61,7 +58,7 @@ namespace SpaceInvaders
         {
             BufferedGraphics bg = BufferedGraphicsManager.Current.Allocate(e.Graphics, e.ClipRectangle);
             Graphics g = bg.Graphics;
-            g.Clear(Color.White);
+            g.Clear(System.Drawing.Color.White);
 
             game.Draw(g);
 

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Media;
 using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Background;
 using SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers;
 using SpaceInvaders.GameObjects.Shooters;
-using SpaceInvaders.GameObjects.View.Display;
 using SpaceInvaders.GameObjects.View.Display.Life;
 using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
@@ -76,6 +76,7 @@ namespace SpaceInvaders
         /// <returns></returns>
         public static Game CreateGame(Size gameSize)
         {
+            var toto = new MediaPlayer();
             if (game == null)
                 game = new Game(gameSize);
             return game;
@@ -109,7 +110,7 @@ namespace SpaceInvaders
         /// </summary>
         public void Load()
         {
-            //SongManager.instance.Load();
+            SongManager.instance.Load();
             gameStateManager = new GameStateManager(this);
         }
 
@@ -130,7 +131,7 @@ namespace SpaceInvaders
 
             AddNewGameObject(new StartingBackground(this));
 
-            /*SongManager.instance.PlaySongs(
+            SongManager.instance.PlaySongs(
                 new List<string> {
                     "background_1.wav",
                     "background_2.wav",
@@ -138,7 +139,7 @@ namespace SpaceInvaders
                     "background_4.wav",
                     "background_5.wav"
                 }
-            );*/
+            );
         }
 
         /// <summary>
