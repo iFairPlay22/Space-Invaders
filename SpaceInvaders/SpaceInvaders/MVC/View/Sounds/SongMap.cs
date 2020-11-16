@@ -14,7 +14,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// <summary>
         /// Create a singleton : get the unique instance
         /// </summary>
-        public static readonly SongMap instance = new SongMap();
+        public static readonly SongMap Instance = new SongMap();
 
         /// <summary>
         /// Create a singleton : private construtor
@@ -22,27 +22,65 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         private SongMap() { }
 
         /// <summary>
-        /// Each filename is linked with its MediaPlayer
+        /// Each filename is linked with its MediaPlayer 
+        /// Specified to SFX
         /// </summary>
-        private Dictionary<string, MediaPlayer> Dict;
+        private readonly Dictionary<string, MediaPlayer> SFXDict = new Dictionary<string, MediaPlayer>();
+
+        /// <summary>
+        /// Each filename is linked with its MediaPlayer 
+        /// Specified to songs
+        /// </summary>
+        private readonly List<MediaPlayer> Songs = new List<MediaPlayer>();
 
         /// <summary>
         /// Load all the songs (background music and sound effects)
         /// </summary>
         public void Load()
         {
-            string[] songs = {
-                "background_1.wav", "background_2.wav", "background_3.wav",
-                "background_4.wav", "background_5.wav", "sfx_pause.wav",
-                "sfx_user_dead.wav", "sfx_ennemy_be_attacked.wav", 
+            // SFX
+
+            List<string> sfx = new List<string>{
+                "sfx_pause.wav", "sfx_user_dead.wav", "sfx_ennemy_be_attacked.wav", 
                 "sfx_ennemy_dead.wav", "sfx_user_be_attacked.wav",
                 "sfx_fire_1.wav", "sfx_fire_2.wav"
             };
 
-            Dict = new Dictionary<string, MediaPlayer>();
+            LoadSFX(sfx);
 
-            for (int i = 0; i < songs.Length; i++)
-                Dict.Add(songs[i], CreateMediaPlayer(songs[i]));
+            // Playlist of songs
+
+            List<string> songs = new List<string>();
+            for (int i = 1; i <= 5; i++)
+                songs.Add($"background_{i}.wav");
+
+            LoadPlaylist(songs);
+        }
+
+        /// <summary>
+        /// Load few sound effect
+        /// </summary>
+        /// <param name="urls">paths of the SFX to load</param>
+        private void LoadSFX(List<string> urls)
+        {
+            for (int i = 0; i < urls.Count; i++)
+                SFXDict.Add(urls[i], CreateMediaPlayer(urls[i]));
+        }
+
+        /// <summary>
+        /// Load a playlist
+        /// </summary>
+        /// <param name="urls">paths of the sounds to load</param>
+        private void LoadPlaylist(List<string> urls)
+        {
+            for (int i = 0; i < urls.Count; i++)
+                Songs.Add(CreateMediaPlayer(urls[i]));
+
+            int length = urls.Count;
+
+            for (int i = 0; i < length; i++)
+                Songs[i].MediaEnded += (object o, EventArgs e) => Songs[(i + 1) % length].Play();
+            
         }
 
         /// <summary>
@@ -54,44 +92,45 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         {
             MediaPlayer mediaPlayer = new MediaPlayer();
             mediaPlayer.Open(new Uri(Path.Combine(Environment.CurrentDirectory, $@"..\..\Resources\songs\{url}")));
-            mediaPlayer.MediaEnded += (object o, EventArgs e) =>
-            {
-                mediaPlayer.Stop();
-            };
+            mediaPlayer.MediaEnded += (object o, EventArgs e) => mediaPlayer.Stop();
+
             return mediaPlayer;
         }
-
+        
         /// <summary>
-        /// Play a song
+        /// Play a sound
         /// </summary>
-        public void Play(string url)
+        public void PlaySFX(string url)
         {
-            GameException.RequireNonNull(Dict)[url].Play();
+            GameException.RequireNonNull(SFXDict)[url].Play();
         }
 
         /// <summary>
-        /// Stop a song
+        /// Stop a SFX
         /// </summary>
-        public void Stop(string url)
+        public void StopSFX(string url)
         {
-            GameException.RequireNonNull(Dict)[url].Stop();
+            GameException.RequireNonNull(SFXDict)[url].Stop();
         }
 
         /// <summary>
-        /// Create a playlist
-        /// url[0] -> url[1] -> ... -> url[n] -> url[0]
+        /// Play the playlist
         /// </summary>
-        public void MakePlaylist(List<string> urls)
+        public void PlayPlaylist()
         {
-            GameException.RequireNonNull(Dict);
-            int length = GameException.RequireNonNull(urls).Count;
+            StopPlaylist();
 
-            for (int i = 0; i < length; i++)
-            {
-                string nextUrl  = urls[(i + 1) % length];
-                Dict[urls[i]].MediaEnded += (object o, EventArgs e) => Play(nextUrl);
-            }
+            if (GameException.RequireNonNull(Songs).Count != 0)
+                Songs[0].Play();
+        }
 
+        /// <summary>
+        /// Stop a the playlist
+        /// </summary>
+        public void StopPlaylist()
+        {
+            foreach (MediaPlayer songs in GameException.RequireNonNull(Songs))
+                songs.Stop();
         }
     }
 }

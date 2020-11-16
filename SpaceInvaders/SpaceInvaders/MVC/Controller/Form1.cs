@@ -35,7 +35,7 @@ namespace SpaceInvaders
         /// </summary>
         public GameForm()
         {
-            SongManager.instance.Load();
+            SongMap.Instance.Load();
             InitializeComponent();
             this.ClientSize = new Size(
                 (2 * Screen.PrimaryScreen.Bounds.Width) / 3, 

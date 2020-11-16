@@ -38,9 +38,23 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="user">the user</param>
         public ObjectsContainer() : base(Team.ENNEMY, new Vector2D(0, 0))
         {
+            CreateMiniBoss();
             CreateEnnemies();
             CreateBunkers();
             this.User = CreateUser();
+        }
+
+        /// <summary>
+        /// Create a line of MiniBoss
+        /// </summary>
+        private void CreateMiniBoss()
+        {
+            AddLine(
+                (Vector2D src, Vector2D dst) => new MiniBoss(src, dst),        // Create a MiniBoss
+                Game.Instance.GameSize.Height / 10,                            // Insert to 1/10 game height
+                1,                                                             // MiniBoss number
+                Ennemies                                                       // Stock the created elements                                                              // MiniBoss number
+            );  
         }
 
         /// <summary>
@@ -48,10 +62,10 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// </summary>
         private void CreateEnnemies()
         {
-            for (int i = 1; i < 5; i++)
+            for (int i = 2; i < 5; i++)
                 AddLine(
                     (Vector2D src, Vector2D dst) => RandomEnnemy(src, dst),    // Create subclass of EnnemyObjects
-                    i * (Game.Instance.GameSize.Height / 10),                  // Insert to [1/10, 4/10] game height
+                    i * (Game.Instance.GameSize.Height / 10),                  // Insert to 2/10 game height
                     RandomNumbers.Randint(2, 5),                               // Ennemies number
                     Ennemies                                                   // Stock the created elements
                 );
@@ -124,12 +138,14 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <returns>A object that extends EnnemyObject</returns>
         public static EnnemyObject RandomEnnemy(Vector2D src, Vector2D dst)
         {
-            switch (RandomNumbers.Randint(0, 1))
+            switch (RandomNumbers.Randint(0, 2))
             {
                 case 0:
                     return new Ennemy1(src, dst);
                 case 1:
                     return new Ennemy2(src, dst);
+                case 2:
+                    return new Ennemy3(src, dst);
                 default:
                     throw new IndexOutOfRangeException();
             }

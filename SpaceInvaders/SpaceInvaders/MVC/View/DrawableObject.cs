@@ -98,10 +98,34 @@ namespace SpaceInvaders.GameObjects
                 projectile,
                 (x, y) => {
                     if (0 < drawable.Image.GetPixel(x, y).A)
-                        drawable.Image.SetPixel(x, y, TRANSPARENT_COLOR);
+                        RemovePixelsWithRange(x, y, 5);
                     return false;
                 }
             );
+        }
+
+        /// <summary>
+        /// Replace the colored pixels of an image by trabsoarent pixels
+        /// </summary>
+        /// <param name="x">starting from x - range pos to x + range</param>
+        /// <param name="y">starting from y - range pos to y + range</param>
+        /// <param name="range">the range to apply</param>
+        private void RemovePixelsWithRange(int x, int y, int range)
+        {
+            // X pixel => Range [x - range, x + range]
+            for (int i = x - range; i < x + range; i++)
+
+                // If index i exists
+                if (0 <= i && i < this.ImageDimentions.X)
+
+                    // Y pixel => Range [y - range, y + range]
+                    for (int j = y - range; j < y + range; j++)
+
+                        // If index j exists
+                        if (0 <= j && j < this.ImageDimentions.Y && 0 < drawable.Image.GetPixel(i, j).A)
+
+                            // Replace the pixel by a transparent one
+                            drawable.Image.SetPixel(i, j, TRANSPARENT_COLOR);
         }
 
         /// <summary>

@@ -51,6 +51,8 @@
     <Compile Include="MVC\Model\GameObjects\AliveObjects\AliveObject.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Bunkers\Bunker.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Basic\BasicEnnemy.cs" />
+    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Basic\Ennemy3.cs" />
+    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\MiniBoss\MiniBoss.cs" />
     <Compile Include="MVC\View\Display\Images\Animation.cs" />
     <Compile Include="MVC\View\Display\Backgrounds\BackgroundImage.cs" />
     <Compile Include="MVC\View\Display\Backgrounds\DefeatBackground.cs" />
@@ -82,7 +84,6 @@
     </Compile>
     <Compile Include="MVC\Controller\Game.cs" />
     <Compile Include="MVC\Model\GameObjects\GameObject.cs" />
-    <Compile Include="MVC\View\Sounds\SongManager.cs" />
     <Compile Include="MVC\View\Sounds\SongMap.cs" />
     <Compile Include="MVC\View\Sounds\SoundHandler.cs" />
     <Compile Include="Program.cs" />
@@ -313,6 +314,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\animations\ship0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\boss1_missile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\animations\boss1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

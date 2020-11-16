@@ -84,7 +84,7 @@ namespace SpaceInvaders.GameObjects.Ships
         /// Get the started projectile coordinates in pixels
         /// </summary>
         /// <returns>The next position of the game object if it moves</returns>
-        protected Vector2D ProjectileCoords()
+        protected virtual Vector2D ProjectileCoords()
         {
             return new Vector2D(Coords.X + ImageDimentions.X / 2, Coords.Y);
         }

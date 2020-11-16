@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using SpaceInvaders.GameObjects;
 using SpaceInvaders.GameObjects.Background;
-using SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers;
 using SpaceInvaders.GameObjects.Shooters;
 using SpaceInvaders.GameObjects.View.Display.Life;
-using SpaceInvaders.GameObjects.View.Sounds;
 using SpaceInvaders.Util;
+using SpaceInvaders.GameObjects.View.Sounds;
 
 namespace SpaceInvaders
 {
@@ -128,15 +126,7 @@ namespace SpaceInvaders
 
             AddNewGameObject(new StartingBackground());
 
-            SongManager.instance.PlaySongs(
-                new List<string> {
-                    "background_1.wav",
-                    "background_2.wav",
-                    "background_3.wav",
-                    "background_4.wav",
-                    "background_5.wav"
-                }
-            );
+            SongMap.Instance.PlayPlaylist();
         }
 
         /// <summary>
@@ -160,7 +150,7 @@ namespace SpaceInvaders
         /// </summary>
         public void Pause()
         {
-            SongManager.instance.PlaySoundEffect("sfx_pause.wav");
+            SongMap.Instance.PlaySFX("sfx_pause.wav");
         }
 
         /// <summary>

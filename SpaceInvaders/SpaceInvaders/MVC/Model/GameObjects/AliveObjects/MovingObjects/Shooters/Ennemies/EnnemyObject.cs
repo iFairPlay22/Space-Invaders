@@ -144,6 +144,15 @@ namespace SpaceInvaders.GameObjects.Shooters
                 Shoot();
         }
 
+        // <summary>
+        /// Get the started projectile coordinates in pixels
+        /// </summary>
+        /// <returns>The next position of the game object if it moves</returns>
+        protected override Vector2D ProjectileCoords()
+        {
+            return base.ProjectileCoords() + new Vector2D(0, ImageDimentions.Y);
+        }
+
         #endregion
     }
 }

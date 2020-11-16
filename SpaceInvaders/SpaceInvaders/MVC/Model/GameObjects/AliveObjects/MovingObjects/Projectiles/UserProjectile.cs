@@ -13,7 +13,7 @@ namespace SpaceInvaders.GameObjects.Projectile
         /// <summary>
         /// Projectile speed in pixels
         /// </summary>
-        private static readonly double USER_PROJECTILE_SPEED = 200;
+        private static readonly double USER_PROJECTILE_SPEED = 500;
 
         /// <summary>
         /// Projectile life
