@@ -38,13 +38,10 @@ namespace SpaceInvaders.GameObjects
         /// <summary>
         /// Create a user
         /// </summary>
-        public User() :
+        public User(Vector2D coords) :
             base(
                 Team.PLAYER,
-                new Vector2D(
-                    Game.Instance.GameSize.Width / 2,
-                    Game.Instance.GameSize.Height - Game.Instance.GameSize.Height / 4
-                ),
+                coords,
                 new Animation(Properties.Resources.ship0, 1, 2),
                 USER_SOUNDS,
                 USER_SPEED, 
@@ -88,6 +85,7 @@ namespace SpaceInvaders.GameObjects
         /// </summary>
         public override void Update(Game gameInstance, double deltaT)
         {
+
             // if space is pressed and can shoot, shoot a projectile
             if (gameInstance.KeyPressed.Contains(Keys.Space) && CanShoot())
                 Shoot();
@@ -99,19 +97,6 @@ namespace SpaceInvaders.GameObjects
             if ((right || left) && CanMove(gameInstance, deltaT, right, null))
                 Move(gameInstance, deltaT, right, null);
 
-        }
-
-        /// <summary>
-        /// End the game when the user is dying
-        /// </summary>
-        /// <returns>Is the user alive ?</returns>
-        public override bool IsAlive()
-        {
-            bool alive = base.IsAlive();
-            
-            if (!alive) Game.Instance.GameStateManager.FinishGame(false);
-
-            return alive;
         }
 
         #endregion

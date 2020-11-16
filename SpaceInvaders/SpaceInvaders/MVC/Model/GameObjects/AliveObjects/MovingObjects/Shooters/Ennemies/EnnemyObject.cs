@@ -111,16 +111,6 @@ namespace SpaceInvaders.GameObjects.Shooters
         }
 
         /// <summary>
-        /// First step : move to the bottom direction
-        /// </summary>
-        public void MoveDown(Game gameInstance, double deltaT)
-        {
-            double decalage = (IsArrivedToDestination() ? 500 : 100) * deltaT;
-            if (Coords.Y < GameException.RequireNonNull(gameInstance).GameSize.Height)
-                Coords += new Vector2D(0, decalage);
-        }
-
-        /// <summary>
         /// An ennemy can't shoot in the first step
         /// </summary>
         /// <returns>Can the ennemy shoot ?</returns>

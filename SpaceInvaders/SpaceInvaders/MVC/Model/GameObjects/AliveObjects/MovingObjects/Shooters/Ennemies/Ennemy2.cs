@@ -15,7 +15,7 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         /// <summary>
         /// Moving speed
         /// </summary>
-        private static readonly double ENNEMY_SPEED = 75;
+        private static readonly double ENNEMY_SPEED = 50;
 
         /// <summary>
         /// Speed decalage when direction changes

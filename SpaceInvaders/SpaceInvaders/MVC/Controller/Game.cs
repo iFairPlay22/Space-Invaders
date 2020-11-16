@@ -148,12 +148,11 @@ namespace SpaceInvaders
 
             AddNewGameObject(new GameBackground());
 
-            User user = new User();
-            AddNewGameObject(user);
-           
-            AddNewGameObject(new UserLife(user));
+            ObjectsContainer objectsContainer = new ObjectsContainer();
 
-            AddNewGameObject(new ObjectsContainer( user));
+            AddNewGameObject(objectsContainer);
+
+            AddNewGameObject(new UserLife(objectsContainer.User));
         }
 
         /// <summary>

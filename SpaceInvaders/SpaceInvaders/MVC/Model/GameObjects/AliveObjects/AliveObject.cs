@@ -69,7 +69,7 @@ namespace SpaceInvaders.GameObjects.Alive
         /// </summary>
         private void CollisionSounds()
         {
-            if (IsAlive())
+            if (0 < Life)
                 SoundHandler.OnCollision();
             else
                 SoundHandler.OnDeath();
