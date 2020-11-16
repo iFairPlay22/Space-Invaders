@@ -14,7 +14,7 @@ namespace SpaceInvaders.Util
         private static readonly Random random = new Random();
 
         /// <summary>
-        ///   Generate a random number between min and max
+        ///   Generate a random number in [min, max]
         /// </summary>
         /// <param name="min">the min value</param>
         /// <param name="max">the max value</param>
@@ -23,7 +23,7 @@ namespace SpaceInvaders.Util
         {
             lock (random)
             {
-                return random.Next(min, max);
+                return random.Next(min, max + 1);
             }
         }
     }

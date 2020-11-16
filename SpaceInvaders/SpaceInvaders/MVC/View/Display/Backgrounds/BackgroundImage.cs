@@ -15,17 +15,16 @@ namespace SpaceInvaders.GameObjects.Background
         /// <summary>
         /// Increment the indexes (line, column) to draw the following image
         /// </summary>
-        /// <param name="gameInstance">the gameInstance</param>
         /// <param name="image">the image to draw</param>
-        protected BackgroundImage(Game gameInstance, Bitmap image) :
+        protected BackgroundImage(Bitmap image) :
             base(
                 Team.NEUTRAL,
                 new Vector2D(0, 0),
                 new Frame(
                     new Bitmap(image,
                         new Size(
-                            GameException.RequireNonNull(gameInstance).GameSize.Width,
-                            gameInstance.GameSize.Height
+                            Game.Instance.GameSize.Width,
+                            Game.Instance.GameSize.Height
                         )
                     )
                 )

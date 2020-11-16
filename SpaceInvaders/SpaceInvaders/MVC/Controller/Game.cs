@@ -108,7 +108,7 @@ namespace SpaceInvaders
         /// </summary>
         public void Load()
         {
-            GameStateManager = new GameStateManager(this);
+            GameStateManager = new GameStateManager();
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace SpaceInvaders
         {
             BeforeSwitch();
 
-            AddNewGameObject(new StartingBackground(this));
+            AddNewGameObject(new StartingBackground());
 
             SongManager.instance.PlaySongs(
                 new List<string> {
@@ -146,14 +146,14 @@ namespace SpaceInvaders
         {
             BeforeSwitch();
 
-            AddNewGameObject(new GameBackground(this));
+            AddNewGameObject(new GameBackground());
 
-            User user = new User(this);
+            User user = new User();
             AddNewGameObject(user);
            
             AddNewGameObject(new UserLife(user));
 
-            AddNewGameObject(new ObjectsContainer(this, user));
+            AddNewGameObject(new ObjectsContainer( user));
         }
 
         /// <summary>
@@ -173,9 +173,9 @@ namespace SpaceInvaders
             BeforeSwitch();
 
             if (win) 
-                AddNewGameObject(new VictoryBackground(this));
+                AddNewGameObject(new VictoryBackground());
             else
-                AddNewGameObject(new DefeatBackground(this));
+                AddNewGameObject(new DefeatBackground());
 
         }
 

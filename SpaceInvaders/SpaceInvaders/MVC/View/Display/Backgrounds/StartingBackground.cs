@@ -11,9 +11,8 @@ namespace SpaceInvaders.GameObjects.Background
         /// <summary>
         /// Create the background image
         /// </summary>
-        /// <param name="gameInstance">the gameInstance</param>
-        public StartingBackground(Game gameInstance) :
-            base(gameInstance, Properties.Resources.start_background)
+        public StartingBackground() :
+            base(Properties.Resources.start_background)
         { }
     }
 }

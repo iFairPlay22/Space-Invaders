@@ -11,9 +11,8 @@ namespace SpaceInvaders.GameObjects.Background
         /// <summary>
         /// Create the background image
         /// </summary>
-        /// <param name="gameInstance">the gameInstance</param>
-        public VictoryBackground(Game gameInstance) :
-            base(gameInstance, Properties.Resources.win_background)
+        public VictoryBackground() :
+            base(Properties.Resources.win_background)
         { }
     }
 }

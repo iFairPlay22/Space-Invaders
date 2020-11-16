@@ -38,16 +38,14 @@ namespace SpaceInvaders.GameObjects
         /// <summary>
         /// Create a user
         /// </summary>
-        /// <param name="gameInstance">gameInstance</param>
-        public User(Game gameInstance) :
+        public User() :
             base(
                 Team.PLAYER,
                 new Vector2D(
-                    GameException.RequireNonNull(gameInstance).GameSize.Width / 2,
-                    gameInstance.GameSize.Height - gameInstance.GameSize.Height / 4
+                    Game.Instance.GameSize.Width / 2,
+                    Game.Instance.GameSize.Height - Game.Instance.GameSize.Height / 4
                 ),
                 new Animation(Properties.Resources.ship0, 1, 2),
-                /*new Frame(Properties.Resources.ship0),*/
                 USER_SOUNDS,
                 USER_SPEED, 
                 0, 

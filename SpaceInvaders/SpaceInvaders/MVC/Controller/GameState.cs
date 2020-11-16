@@ -42,10 +42,9 @@ namespace SpaceInvaders.Util
         /// <summary>
         /// Create the GameStateManager
         /// </summary>
-        /// <param name="gameInstance">the game</param>
-        public GameStateManager(Game gameInstance)
+        public GameStateManager()
         {
-            this.GameInstance = GameException.RequireNonNull(gameInstance);
+            this.GameInstance = Game.Instance;
             this.GameInstance.SwitchToStart();
             Init();
         }

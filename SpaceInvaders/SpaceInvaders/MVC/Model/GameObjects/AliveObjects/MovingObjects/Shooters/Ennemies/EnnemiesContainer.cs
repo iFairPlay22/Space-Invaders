@@ -18,90 +18,99 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Store all the ennemies
         /// </summary>
-        private readonly HashSet<EnnemyObject> ennemies = new HashSet<EnnemyObject>();
-
-        /// <summary>
-        /// Current direction
-        /// </summary>
-        private bool right = true;
+        private readonly HashSet<EnnemyObject> Ennemies = new HashSet<EnnemyObject>();
 
         /// <summary>
         /// Store the user
         /// </summary>
-        private readonly User user;
+        private readonly User User;
+
+        /// <summary>
+        /// Current direction
+        /// </summary>
+        private bool RightDirection = true;
 
         /// <summary>
         /// Create a random numbers of ennemies in the board
         /// </summary>
-        /// <param name="gameInstance">the gameInstance</param>
         /// <param name="user">the user</param>
-        public ObjectsContainer(Game gameInstance, User user) : base(Team.ENNEMY, new Vector2D(0, 0))
+        public ObjectsContainer(User user) : base(Team.ENNEMY, new Vector2D(0, 0))
         {
+            // Create ennemies
 
-            int bunkersNb = 4;
-
-            for (int i = 1; i < bunkersNb; i++)
-            {
-                Game.Instance.AddNewGameObject(
-                    new Bunker(
-                        new Vector2D(
-                            i * (Game.Instance.GameSize.Width / bunkersNb), 
-                            3 * (Game.Instance.GameSize.Height / 5)
-                        )
-                    )
-                );
-            }
-
-            ennemies = new HashSet<EnnemyObject>();
-
-            List<Func<Vector2D, Vector2D, EnnemyObject>> list = new List<Func<Vector2D, Vector2D, EnnemyObject>>
-            {
-                (Vector2D src, Vector2D dst) => new Ennemy1(src, dst),
-                (Vector2D src, Vector2D dst) => new Ennemy2(src, dst),
-                (Vector2D src, Vector2D dst) => new Ennemy1(src, dst),
-                (Vector2D src, Vector2D dst) => new Ennemy2(src, dst)
-            };
-
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 1; i < 5; i++)
                 AddLine(
-                    gameInstance,
-                    list[i],
-                    RandomNumbers.Randint(1, 5),
-                    i,
-                    list.Count
+                    (Vector2D src, Vector2D dst) => RandomEnnemy(src, dst),    // Create subclass of EnnemyObjects
+                    i * (Game.Instance.GameSize.Height / 10),                  // Insert to [1/10, 4/10] game height
+                    RandomNumbers.Randint(2, 5),                               // Ennemies number
+                    Ennemies
                 );
 
-            foreach (EnnemyObject ennemy in ennemies)
-                Game.Instance.AddNewGameObject(ennemy);
+            // Create bunkers
 
-            this.user = user;
+            AddLine(
+                (Vector2D src, Vector2D dst) => new Bunker(dst),            // Create Bunkers
+                3 * (Game.Instance.GameSize.Height / 5),                    // Insert to 3/5 game height
+                RandomNumbers.Randint(2, 3)                                 // Bunkers number
+            );
+
+            this.User = user;
         }
 
         /// <summary>
-        /// Create a line of ennemies
+        /// Create a line of ennemies in a specific height
         /// </summary>
-        private void AddLine(Game gameInstance, Func<Vector2D, Vector2D, EnnemyObject> createEnnemyFunction, int ennemiesNumber, int actualLine, int totalLines)
+        /// <param name="factory">a factory that create a instance (that extends GameObject)</param>
+        /// <param name="actualHeight">the height to insert objects</param>
+        /// <param name="entityNb">the number of instance that you want to create</param>
+        /// <param name="list">a optional list to stock the created instances</param>
+        private void AddLine<v>(
+            Func<Vector2D, Vector2D, v> factory,
+            int actualHeight,
+            int entityNb,
+            HashSet<v> list = null
+        ) where v : GameObject
         {
-            GameException.RequireNonNull(createEnnemyFunction);
-            GameException.RequireNonNull(gameInstance);
+            int size = (int) GameException.RequireNonZero(entityNb) * 2;
+            int dx = Game.Instance.GameSize.Width / size;
+            int startX = -(Game.Instance.GameSize.Height - actualHeight);
 
-            int xSpace = gameInstance.GameSize.Width / (ennemiesNumber + 1);
-            int ySpace = (gameInstance.GameSize.Height / 2) / (totalLines + 1);
-
-            for (int i = 1; i <= ennemiesNumber; i++)
+            for (int i = 1; i < size; i += 2)
             {
-                ennemies.Add(
-                    createEnnemyFunction(
-                        new Vector2D(i * xSpace, (-totalLines + 1 + actualLine) * ySpace),
-                        new Vector2D(i * xSpace, (actualLine + 1) * ySpace)
-                    )
+                v entity = factory(
+                    new Vector2D(i * dx, startX),           // Begin coords
+                    new Vector2D(i * dx, actualHeight)      // Destination coords
                 );
+                Game.Instance.AddNewGameObject(entity);
+                if (list != null) list.Add(entity);
+            }
+
+        }
+
+        /// <summary>
+        /// Create a random EnnemyObject
+        /// </summary>>
+        /// <param name="src">initial position of the ennemy</param>
+        /// <param name="dst">destination to reach before horizontal movement</param>
+        /// <returns>A object that extends EnnemyObject</returns>
+        public static EnnemyObject RandomEnnemy(Vector2D src, Vector2D dst)
+        {
+            switch (RandomNumbers.Randint(0, 1))
+            {
+                case 0:
+                    return new Ennemy1(src, dst);
+                case 1:
+                    return new Ennemy2(src, dst);
+                default:
+                    throw new IndexOutOfRangeException();
             }
         }
 
         /// <summary>
         /// Nothing to draw
         /// </summary>
+        /// <param name="gameInstance">the game instance</param>
+        /// <param name="graphics">the graphics to draw in</param>
         public override void Draw(Game gameInstance, Graphics graphics) {}
 
         /// <summary>
@@ -110,7 +119,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <returns>Does the block contain any enemies ?</returns>
         public override bool IsAlive()
         {
-            bool alive = ennemies.Count() != 0;
+            bool alive = Ennemies.Count() != 0;
             
             if (!alive) Game.Instance.GameStateManager.FinishGame(true);
 
@@ -120,13 +129,15 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Manage the ennemy directions
         /// </summary>
+        /// <param name="gameInstance">the game instance</param>
+        /// <param name="deltaT">deltaT</param>
         public override void Update(Game gameInstance, double deltaT)
         {
-            bool decalage = ennemies.Any(e => !e.CanMove(gameInstance, deltaT, right, false));
+            bool decalage = Ennemies.Any(e => !e.CanMove(gameInstance, deltaT, RightDirection, false));
            
-            if (decalage) right = !right;
+            if (decalage) RightDirection = !RightDirection;
 
-            foreach (EnnemyObject ennemy in ennemies)
+            foreach (EnnemyObject ennemy in Ennemies)
             {
                 bool isArrivedToDestination = ennemy.IsArrivedToDestination();
 
@@ -135,18 +146,19 @@ namespace SpaceInvaders.GameObjects.Shooters
                     ennemy.MoveDown(gameInstance, deltaT);
                     if (isArrivedToDestination) ennemy.Accelerate();
                 }
-                else if (ennemy.CanMove(gameInstance, deltaT, right, null))
-                    ennemy.Move(gameInstance, deltaT, right, null);
+                else if (ennemy.CanMove(gameInstance, deltaT, RightDirection, null))
+                    ennemy.Move(gameInstance, deltaT, RightDirection, null);
             }
 
-            ennemies.RemoveWhere(gameObject => !gameObject.IsAlive());
+            Ennemies.RemoveWhere(gameObject => !gameObject.IsAlive());
 
-            if (decalage && ennemies.Any(e => user.IsAbove(e))) Game.Instance.GameStateManager.FinishGame(false);
+            if (decalage && Ennemies.Any(e => User.IsAbove(e))) Game.Instance.GameStateManager.FinishGame(false);
         }
 
         /// <summary>
         /// Can't be in collision
         /// </summary>
+        /// <param name="projectile">a projectile</param>
         /// <returns>Can the block be in collision ?</returns>
         public override bool CanCollision(ProjectileObject projectile)
         {
@@ -156,6 +168,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Nothing to do
         /// </summary>
+        /// <param name="projectile">a projectile</param>
         public override void OnCollision(ProjectileObject projectile) {}
     }
 }
