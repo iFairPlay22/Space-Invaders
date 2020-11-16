@@ -1,6 +1,5 @@
 ﻿using SpaceInvaders.GameObjects.Projectiles;
 using SpaceInvaders.GameObjects.View.Display.Images;
-using System;
 
 namespace SpaceInvaders.GameObjects.Projectile
 {

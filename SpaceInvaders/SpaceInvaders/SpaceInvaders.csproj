@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="MVC\Model\GameObjects\AliveObjects\AliveObject.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Bunkers\Bunker.cs" />
+    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Basic\BasicEnnemy.cs" />
     <Compile Include="MVC\View\Display\Images\Animation.cs" />
     <Compile Include="MVC\View\Display\Backgrounds\BackgroundImage.cs" />
     <Compile Include="MVC\View\Display\Backgrounds\DefeatBackground.cs" />
@@ -57,8 +58,8 @@
     <Compile Include="MVC\View\Display\Backgrounds\StartingBackground.cs" />
     <Compile Include="MVC\View\Display\Backgrounds\VictoryBackground.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Projectiles\EnnemyProjectile.cs" />
-    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Ennemy1.cs" />
-    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Ennemy2.cs" />
+    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Basic\Ennemy1.cs" />
+    <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\Basic\Ennemy2.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\EnnemyObject.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\Shooters\Ennemies\EnnemiesContainer.cs" />
     <Compile Include="MVC\Model\GameObjects\AliveObjects\MovingObjects\MovingObject.cs" />

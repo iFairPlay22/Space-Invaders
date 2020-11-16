@@ -1,5 +1,4 @@
-﻿
-namespace SpaceInvaders.GameObjects.Background
+﻿namespace SpaceInvaders.GameObjects.Background
 {
 
     /// <summary>
