@@ -59,23 +59,18 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
             graphics.DrawImage(
                 Image,
                 new Rectangle(
-                    (int) destination.X,
-                    (int) destination.Y,
-                    Width, 
-                    Height
+                    (int) destination.X, (int) destination.Y,
+                    Width, Height
                 ),
                 new Rectangle(
-                    (int) Indexes.X * Width,
-                    (int) Indexes.Y * Height,
-                    Width,
-                    Height
+                    (int) Indexes.X * Width, (int) Indexes.Y * Height,
+                    Width, Height
                 ), 
                 GraphicsUnit.Pixel
             );
 
             if (i++ % 10 == 0)
                 Next();
-
         }
 
         /// <summary>
@@ -83,23 +78,16 @@ namespace SpaceInvaders.GameObjects.View.Display.Animations
         /// </summary>
         private void Next()
         {
-            int x = (int) Indexes.X;
-            int y = (int) Indexes.Y;
 
             if (Indexes.X + 1 < columns)
-            {
-                x++;
-            } else if (Indexes.Y + 1 < lines)
-            {
-                x = 0;
-                y++;
-            } else
-            {
-                x = 0;
-                y = 0;
-            }
+                Indexes += new Vector2D(1, 0);
+
+            else if (Indexes.Y + 1 < lines)            
+                Indexes = new Vector2D(0, Indexes.Y + 1);
+
+             else            
+                Indexes = new Vector2D(0, 0);
             
-            Indexes = new Vector2D(x, y);
         }
     }
 }

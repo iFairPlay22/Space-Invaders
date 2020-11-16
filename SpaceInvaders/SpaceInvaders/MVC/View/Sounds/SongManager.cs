@@ -2,24 +2,42 @@
 
 
 // Add WindowsBase + PresentationCore
-// https://www.spriters-resource.com/search/?q=mario
-// https://themushroomkingdom.net/media/smb/wav
-// https://themushroomkingdom.net/mp3.shtml
 
 namespace SpaceInvaders.GameObjects.View.Sounds
 {
+
+    /// <summary>
+    /// Represents the interface between the game (Game + SoundHandlers)
+    /// and the MediaPlayers (SongMap)
+    /// <summary>
     class SongManager
     {
+        /// <summary>
+        /// Create a singleton
+        /// <summary>
         private SongManager() {}
+
+        /// <summary>
+        /// Get the unique SongManager instance
+        /// <summary>
         public static readonly SongManager instance = new SongManager();
 
+        /// <summary>
+        /// The last playlist used 
+        /// <summary>
         private List<string> playlistSongs;
 
+        /// <summary>
+        /// Load all the MediaPlayers before playing any songs
+        /// <summary>
         public void Load()
         {
             SongMap.instance.Load();
         }
 
+        /// <summary>
+        /// Play a playlist
+        /// <summary>
         public void PlaySongs(List<string> urls)
         {
             if (playlistSongs != null)
@@ -40,8 +58,11 @@ namespace SpaceInvaders.GameObjects.View.Sounds
             
         }
 
+        /// <summary>
+        /// Play a sound effect
+        /// <summary>
         public void PlaySoundEffect(string url)
-        { // SoundEffect SFX
+        { 
             SongMap.instance.Play(url);
         }
     }

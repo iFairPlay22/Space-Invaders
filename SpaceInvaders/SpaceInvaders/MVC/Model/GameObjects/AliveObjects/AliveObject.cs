@@ -37,9 +37,11 @@ namespace SpaceInvaders.GameObjects.Alive
         /// <param name="soundHandler">the song container</param>
         /// <param name="life">the life of the imageObject</param>
         /// <param name="destroyPixelsOnCollision">the comportment of the object on collision</param>
-        public AliveObject(Team team, Vector2D coords, Drawable drawable, SoundHandler soundHandler, int life, bool destroyPixelsOnCollision) :
+        public AliveObject(Team team, Vector2D coords, Drawable drawable, SoundHandler soundHandler, 
+                                int life, bool destroyPixelsOnCollision) :
             base(team, coords, drawable)
         {
+            this.Coords -= new Vector2D(this.ImageDimentions.X / 2, 0);
             this.SoundHandler = GameException.RequireNonNull(soundHandler);
             this.Life = (int)GameException.RequirePositive(life);
             this.DestroyPixelsOnCollision = destroyPixelsOnCollision;
@@ -67,7 +69,7 @@ namespace SpaceInvaders.GameObjects.Alive
         /// </summary>
         private void CollisionSounds()
         {
-            if (Life != 0)
+            if (IsAlive())
                 SoundHandler.OnCollision();
             else
                 SoundHandler.OnDeath();

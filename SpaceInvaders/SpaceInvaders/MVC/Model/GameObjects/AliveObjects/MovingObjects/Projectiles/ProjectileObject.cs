@@ -15,7 +15,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// True if projectile go in the top direction
         /// False for bottom
         /// </summary>
-        private readonly bool top;
+        private readonly bool TopDirection;
 
         /// <summary>
         /// Projecitle sounds
@@ -40,7 +40,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         public ProjectileObject(Team team, Vector2D coords, Drawable image, double projectileSpeed, int life) : 
             base(team, coords, image, PROJECTILE_SOUNDS, life, projectileSpeed, 0)
         {
-            top = team == Team.PLAYER;
+            TopDirection = team == Team.PLAYER;
         }
 
         #endregion
@@ -52,12 +52,12 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// </summary>
         public override void Update(Game gameInstance, double deltaT)
         {
-            if (CanMove(gameInstance, deltaT, null, top))
-                Move(gameInstance, deltaT, null, top);
+            if (CanMove(gameInstance, deltaT, null, TopDirection))
+                Move(gameInstance, deltaT, null, TopDirection);
             else
                 Destroy();
 
-            foreach (GameObject gameObject in Game.game.gameObjects)
+            foreach (GameObject gameObject in Game.Instance.GameObjects)
                 if (gameObject != this && gameObject.CanCollision(this))
                     gameObject.OnCollision(this);
                 

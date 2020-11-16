@@ -35,7 +35,7 @@ namespace SpaceInvaders.GameObjects.Ships
             set {
                 projectile = value;
                 if (projectile != null) 
-                    Game.game.AddNewGameObject(projectile);
+                    Game.Instance.AddNewGameObject(projectile);
             } 
         }
 
@@ -52,7 +52,8 @@ namespace SpaceInvaders.GameObjects.Ships
         /// <param name="life">the life of the imageObject</param>
         /// <param name="speed">move speed in pixels</param>
         /// <param name="speedDecalage">move acceleration in pixels when the direction changes</param>
-        public ShooterObject(Team team, Vector2D coords, View.Display.Images.Drawable drawable, SoundHandler soundHandler, double speed, double speedDecalage, int life) : 
+        public ShooterObject(Team team, Vector2D coords, View.Display.Images.Drawable drawable, 
+                                    SoundHandler soundHandler, double speed, double speedDecalage, int life) : 
             base(team, coords, drawable, soundHandler, life, speed, speedDecalage)
         {}
 
@@ -85,7 +86,7 @@ namespace SpaceInvaders.GameObjects.Ships
         /// <returns>The next position of the game object if it moves</returns>
         protected Vector2D ProjectileCoords()
         {
-            return new Vector2D(coords.X + ImageDimentions.X / 2, coords.Y);
+            return new Vector2D(Coords.X + ImageDimentions.X / 2, Coords.Y);
         }
 
         #endregion

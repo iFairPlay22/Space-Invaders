@@ -29,9 +29,14 @@ namespace SpaceInvaders.GameObjects.Projectile
         /// </summary>
         /// <param name="coords">initial position projectile</param>
         public UserProjectile(Vector2D coords) : 
-            base(Team.PLAYER, coords, new Frame(Properties.Resources.missile0), USER_PROJECTILE_SPEED, USER_PROJECTILE_LIFE) {
-            this.coords += new Vector2D(0, -GameException.RequireNonNull(ImageDimentions).Y);
-        }
+            base(
+                Team.PLAYER, 
+                coords, 
+                new Frame(Properties.Resources.missile0), 
+                USER_PROJECTILE_SPEED, 
+                USER_PROJECTILE_LIFE
+            ) 
+            { }
 
         #endregion
     }

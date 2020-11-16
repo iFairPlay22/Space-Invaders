@@ -27,17 +27,13 @@ namespace SpaceInvaders.GameObjects.Model.GameObjects.AliveObjects.Bunkers
         /// </summary>
         public Bunker(Vector2D coords) : 
             base(Team.NEUTRAL, coords, new Frame(Resources.bunker), BUNKER_SOUNDS, 0, true)
-        {
-            this.coords -= new Vector2D(this.ImageDimentions.X / 2, 0);
-        }
+        { }
 
         /// <summary>
         /// Nothing to do
         /// </summary>
         public override void Update(Game gameInstance, double deltaT)
-        {
-
-        }
+        { }
 
         /// <summary>
         /// Update the pixels and destroy the projectile

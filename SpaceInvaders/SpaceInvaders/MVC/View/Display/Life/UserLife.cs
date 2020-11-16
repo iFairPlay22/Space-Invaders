@@ -32,7 +32,7 @@ namespace SpaceInvaders.GameObjects.View.Display.Life
         /// </summary>
         /// <param name="user">the user instance</param>
         public UserLife(User user) :
-            base(Team.NEUTRAL, new Vector2D(MARGIN, Game.game.gameSize.Height - DRAWABLE.Height - MARGIN))
+            base(Team.NEUTRAL, new Vector2D(MARGIN, Game.Instance.GameSize.Height - DRAWABLE.Height - MARGIN))
         {
             this.user = user;
         }
@@ -49,8 +49,8 @@ namespace SpaceInvaders.GameObjects.View.Display.Life
                 DRAWABLE.Draw(
                     graphics,
                     new Vector2D(
-                        coords.X + i * DRAWABLE.Width,
-                        coords.Y
+                        Coords.X + i * DRAWABLE.Width,
+                        Coords.Y
                     )
                 );
             }

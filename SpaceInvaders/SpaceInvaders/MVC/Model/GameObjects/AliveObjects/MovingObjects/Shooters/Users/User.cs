@@ -43,8 +43,8 @@ namespace SpaceInvaders.GameObjects
             base(
                 Team.PLAYER,
                 new Vector2D(
-                    GameException.RequireNonNull(gameInstance).gameSize.Width / 2,
-                    gameInstance.gameSize.Height - gameInstance.gameSize.Height / 4
+                    GameException.RequireNonNull(gameInstance).GameSize.Width / 2,
+                    gameInstance.GameSize.Height - gameInstance.GameSize.Height / 4
                 ),
                 new Animation(Properties.Resources.ship0, 1, 2),
                 /*new Frame(Properties.Resources.ship0),*/
@@ -90,22 +90,17 @@ namespace SpaceInvaders.GameObjects
         /// </summary>
         public override void Update(Game gameInstance, double deltaT)
         {
-            // if space is pressed
-            if (gameInstance.keyPressed.Contains(Keys.Space) && CanShoot())
-            {
-                // shoot a projectile
+            // if space is pressed and can shoot, shoot a projectile
+            if (gameInstance.KeyPressed.Contains(Keys.Space) && CanShoot())
                 Shoot();
-            }
 
-            bool right = gameInstance.keyPressed.Contains(Keys.Right);
-            bool left = gameInstance.keyPressed.Contains(Keys.Left);
+            bool right = gameInstance.KeyPressed.Contains(Keys.Right);
+            bool left = gameInstance.KeyPressed.Contains(Keys.Left);
 
-            // if right or left arrow is pressed and can move
+            // if right or left arrow is pressed and can move, move
             if ((right || left) && CanMove(gameInstance, deltaT, right, null))
-            {
-                // move player to right or left direction
                 Move(gameInstance, deltaT, right, null);
-            }
+
         }
 
         /// <summary>
@@ -116,7 +111,7 @@ namespace SpaceInvaders.GameObjects
         {
             bool alive = base.IsAlive();
             
-            if (!alive) Game.game.gameStateManager.FinishGame(false);
+            if (!alive) Game.Instance.GameStateManager.FinishGame(false);
 
             return alive;
         }

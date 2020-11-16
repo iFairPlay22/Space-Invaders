@@ -42,11 +42,11 @@ namespace SpaceInvaders.GameObjects.Shooters
 
             for (int i = 1; i < bunkersNb; i++)
             {
-                Game.game.AddNewGameObject(
+                Game.Instance.AddNewGameObject(
                     new Bunker(
                         new Vector2D(
-                            i * (Game.game.gameSize.Width / bunkersNb), 
-                            3 * (Game.game.gameSize.Height / 5)
+                            i * (Game.Instance.GameSize.Width / bunkersNb), 
+                            3 * (Game.Instance.GameSize.Height / 5)
                         )
                     )
                 );
@@ -72,7 +72,7 @@ namespace SpaceInvaders.GameObjects.Shooters
                 );
 
             foreach (EnnemyObject ennemy in ennemies)
-                Game.game.AddNewGameObject(ennemy);
+                Game.Instance.AddNewGameObject(ennemy);
 
             this.user = user;
         }
@@ -85,8 +85,8 @@ namespace SpaceInvaders.GameObjects.Shooters
             GameException.RequireNonNull(createEnnemyFunction);
             GameException.RequireNonNull(gameInstance);
 
-            int xSpace = gameInstance.gameSize.Width / (ennemiesNumber + 1);
-            int ySpace = (gameInstance.gameSize.Height / 2) / (totalLines + 1);
+            int xSpace = gameInstance.GameSize.Width / (ennemiesNumber + 1);
+            int ySpace = (gameInstance.GameSize.Height / 2) / (totalLines + 1);
 
             for (int i = 1; i <= ennemiesNumber; i++)
             {
@@ -112,7 +112,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         {
             bool alive = ennemies.Count() != 0;
             
-            if (!alive) Game.game.gameStateManager.FinishGame(true);
+            if (!alive) Game.Instance.GameStateManager.FinishGame(true);
 
             return alive;
         }
@@ -141,7 +141,7 @@ namespace SpaceInvaders.GameObjects.Shooters
 
             ennemies.RemoveWhere(gameObject => !gameObject.IsAlive());
 
-            if (decalage && ennemies.Any(e => user.IsAbove(e))) Game.game.gameStateManager.FinishGame(false);
+            if (decalage && ennemies.Any(e => user.IsAbove(e))) Game.Instance.GameStateManager.FinishGame(false);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SpaceInvaders.GameObjects;
@@ -19,12 +20,12 @@ namespace SpaceInvaders
         /// <summary>
         /// Set of all game objects currently in the game
         /// </summary>
-        public readonly HashSet<GameObject> gameObjects = new HashSet<GameObject>();
+        public readonly HashSet<GameObject> GameObjects = new HashSet<GameObject>();
 
         /// <summary>
         /// Set of new game objects scheduled for addition to the game
         /// </summary>
-        private readonly HashSet<GameObject> pendingNewGameObjects = new HashSet<GameObject>();
+        private readonly HashSet<GameObject> PendingNewGameObjects = new HashSet<GameObject>();
 
         /// <summary>
         /// Schedule a new object for addition in the game.
@@ -33,7 +34,7 @@ namespace SpaceInvaders
         /// <param name="gameObject">object to add</param>
         public void AddNewGameObject(GameObject gameObject)
         {
-            pendingNewGameObjects.Add(gameObject);
+            PendingNewGameObjects.Add(gameObject);
         }
 
         #endregion
@@ -42,17 +43,17 @@ namespace SpaceInvaders
         /// <summary>
         /// Size of the game area
         /// </summary>
-        public Size gameSize;
+        public Size GameSize;
 
         /// <summary>
         /// State of the keyboard
         /// </summary>
-        public HashSet<Keys> keyPressed = new HashSet<Keys>();
+        public HashSet<Keys> KeyPressed = new HashSet<Keys>();
 
         /// <summary>
         /// State of the game
         /// </summary>
-        public GameStateManager gameStateManager;
+        public GameStateManager GameStateManager;
 
         #endregion
 
@@ -61,7 +62,7 @@ namespace SpaceInvaders
         /// <summary>
         /// Singleton for easy access
         /// </summary>
-        public static Game game { get; private set; }
+        public static Game Instance { get; private set; }
 
         #endregion
 
@@ -71,13 +72,12 @@ namespace SpaceInvaders
         /// Singleton constructor
         /// </summary>
         /// <param name="gameSize">Size of the game area</param>
-        /// 
         /// <returns></returns>
         public static Game CreateGame(Size gameSize)
         {
-            if (game == null)
-                game = new Game(gameSize);
-            return game;
+            if (Instance == null)
+                Instance = new Game(gameSize);
+            return Instance;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace SpaceInvaders
         /// <param name="gameSize">Size of the game area</param>
         private Game(Size gameSize)
         {
-            this.gameSize = gameSize;
+            this.GameSize = gameSize;
         }
 
         #endregion
@@ -100,7 +100,7 @@ namespace SpaceInvaders
         /// <param name="key">key to ignore</param>
         public void ReleaseKey(Keys key)
         {
-            keyPressed.Remove(key);
+            KeyPressed.Remove(key);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace SpaceInvaders
         /// </summary>
         public void Load()
         {
-            gameStateManager = new GameStateManager(this);
+            GameStateManager = new GameStateManager(this);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace SpaceInvaders
         /// </summary>
         private void BeforeSwitch()
         {
-            gameObjects.Clear();
+            GameObjects.Clear();
         }
 
         /// <summary>
@@ -167,6 +167,7 @@ namespace SpaceInvaders
         /// <summary>
         /// When the game is finished (victory or defeat)
         /// </summary>
+        /// <param name="win">Did the user win ?</param>
         public void SwitchToEnd(bool win)
         {
             BeforeSwitch();
@@ -184,46 +185,60 @@ namespace SpaceInvaders
         /// <param name="g">Graphics to draw in</param>
         public void Draw(Graphics g)
         {
-            foreach (GameObject gameObject in gameObjects)
+            foreach (GameObject gameObject in GameObjects)
                 gameObject.Draw(this, g);       
         }
 
         /// <summary>
-        /// Update game
+        /// Update game state, and then game logic
         /// </summary>
+        /// <param name="deltaT">deltaT</param>
         public void Update(double deltaT)
         {
             // init menu --> game
-            if ((gameStateManager.StartMode() || gameStateManager.IsEnd()) && keyPressed.Contains(Keys.Space))
+            if ((GameStateManager.StartMode() || GameStateManager.IsEnd()) && KeyPressed.Contains(Keys.Space))
             {
-                gameStateManager.StartGame();
-                keyPressed.Remove(Keys.Space);
+                GameStateManager.StartGame();
+                ReleaseKey(Keys.Space);
             }
 
             // game --> pause ?
-            if (gameStateManager.IsInGame())
+            if (GameStateManager.IsInGame())
             {
-                if (keyPressed.Contains(Keys.P))
+                if (KeyPressed.Contains(Keys.P))
                 {
-                    gameStateManager.PausedGame();
-                    keyPressed.Remove(Keys.P);
+                    GameStateManager.PausedGame();
+                    ReleaseKey(Keys.P);
                 }
-                if (gameStateManager.IsPaused()) return;
+                if (GameStateManager.IsPaused()) return;
             }
 
+            UpdateGameLogic(deltaT);
+            
+        }
+
+        /// <summary>
+        /// Update game logic
+        /// - Add game objects if necessary ;
+        /// - Update game objects ;
+        /// - Remove dead game objects ;
+        /// </summary>
+        /// <param name="deltaT">deltaT</param>
+        private void UpdateGameLogic(double deltaT)
+        {
             // add new game objects
-            gameObjects.UnionWith(pendingNewGameObjects);
-            pendingNewGameObjects.Clear();
+            GameObjects.UnionWith(PendingNewGameObjects);
+            PendingNewGameObjects.Clear();
 
             // update each game object
-            foreach (GameObject gameObject in gameObjects)
+            foreach (GameObject gameObject in GameObjects)
             {
                 gameObject.Update(this, deltaT);
-                if (!gameStateManager.IsInGame()) break;
+                if (!GameStateManager.IsInGame()) break;
             }
-            
+
             // remove dead objects
-            gameObjects.RemoveWhere(gameObject => !gameObject.IsAlive());
+            GameObjects.RemoveWhere(gameObject => !gameObject.IsAlive());
         }
         #endregion
     }

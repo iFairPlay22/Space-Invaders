@@ -6,7 +6,7 @@ namespace SpaceInvaders
     static class Program
     {
         /// <summary>
-        /// Point d'entrée principal de l'application.
+        /// Lauch the application
         /// </summary>
         [STAThread]
         static void Main()

@@ -9,13 +9,15 @@ namespace SpaceInvaders
     /// </summary>
     abstract class GameObject
     {
-
-        public readonly Team team;
+        /// <summary>
+        /// Team of the game object
+        /// </summary>
+        public readonly Team Team;
 
         /// <summary>
         /// Pixels coordinates of the game object
         /// </summary>
-        protected Vector2D coords;
+        protected Vector2D Coords;
 
         /// <summary>
         /// Create a game object
@@ -23,8 +25,8 @@ namespace SpaceInvaders
         /// <param name="team">team of the game object</param>
         /// <param name="coords">pixels coordinates of the game object</param>
         public GameObject(Team team, Vector2D coords) {
-            this.team = GameException.RequireNonNull(team);
-            this.coords = GameException.RequireNonNull(coords);
+            this.Team = GameException.RequireNonNull(team);
+            this.Coords = GameException.RequireNonNull(coords);
         }
 
         /// <summary>

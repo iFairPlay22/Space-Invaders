@@ -29,12 +29,12 @@ namespace SpaceInvaders.Util
         /// <summary>
         /// The current game state
         /// </summary>
-        private GameState gameState;
+        private GameState GameState;
 
         /// <summary>
         /// The game instance
         /// </summary>
-        private Game gameInstance;
+        private readonly Game GameInstance;
         
         #endregion
 
@@ -45,8 +45,8 @@ namespace SpaceInvaders.Util
         /// <param name="gameInstance">the game</param>
         public GameStateManager(Game gameInstance)
         {
-            this.gameInstance = GameException.RequireNonNull(gameInstance);
-            this.gameInstance.SwitchToStart();
+            this.GameInstance = GameException.RequireNonNull(gameInstance);
+            this.GameInstance.SwitchToStart();
             Init();
         }
 
@@ -59,7 +59,7 @@ namespace SpaceInvaders.Util
         /// </summary>
         public void Init()
         {
-            gameState = GameState.BEFORE_GAME;
+            GameState = GameState.BEFORE_GAME;
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace SpaceInvaders.Util
         {
             if (!(StartMode() || IsEnd())) throw new InvalidOperationException();
 
-            gameState = GameState.IN_GAME;
-            gameInstance.SwitchToGame();
+            GameState = GameState.IN_GAME;
+            GameInstance.SwitchToGame();
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace SpaceInvaders.Util
         public void PausedGame()
         {
             if (!IsInGame()) throw new InvalidOperationException();
-            gameState = gameState == GameState.PAUSED ? GameState.IN_GAME : GameState.PAUSED;
-            gameInstance.Pause();
+            GameState = GameState == GameState.PAUSED ? GameState.IN_GAME : GameState.PAUSED;
+            GameInstance.Pause();
         }
 
         /// <summary>
@@ -92,10 +92,10 @@ namespace SpaceInvaders.Util
             if (!IsInGame()) throw new InvalidOperationException();
 
             // win or loose
-            gameState = win ? GameState.WIN : GameState.GAME_OVER;
+            GameState = win ? GameState.WIN : GameState.GAME_OVER;
        
             // release key
-            gameInstance.SwitchToEnd(win);
+            GameInstance.SwitchToEnd(win);
         }
 
         #endregion
@@ -108,7 +108,7 @@ namespace SpaceInvaders.Util
         /// <returns> Can we see the menu ? </return>
         public bool StartMode()
         {
-            return gameState == GameState.BEFORE_GAME;
+            return GameState == GameState.BEFORE_GAME;
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace SpaceInvaders.Util
         /// <returns>The user is playing or the game is paused ?</returns>
         public bool IsInGame()
         {
-            return gameState == GameState.IN_GAME || IsPaused();
+            return GameState == GameState.IN_GAME || IsPaused();
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace SpaceInvaders.Util
         /// <returns>Is the game currently paused ?</returns>
         public bool IsPaused()
         {
-            return gameState == GameState.PAUSED;
+            return GameState == GameState.PAUSED;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace SpaceInvaders.Util
         /// <returns>The user is playing or paused the game ?</returns>
         public bool IsEnd()
         {
-            return gameState == GameState.GAME_OVER || gameState == GameState.WIN;
+            return GameState == GameState.GAME_OVER || GameState == GameState.WIN;
         }
 
         #endregion

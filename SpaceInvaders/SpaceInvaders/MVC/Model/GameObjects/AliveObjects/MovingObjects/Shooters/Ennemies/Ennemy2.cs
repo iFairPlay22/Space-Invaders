@@ -42,7 +42,19 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
         /// <param name="src">initial position of the ennemy</param>
         /// <param name="dst">destination to reach before horizontal movement</param>
         public Ennemy2(Vector2D src, Vector2D dst) :
-            base(src, dst, new Animation(Properties.Resources.ship2, 1, 2), new Frame(Properties.Resources.missile2), ENNEMY_SPEED, ENNEMY_SPEED_DECALAGE, SHOOT_SUCCES_PERCENTAGE, ENNEMY_LIFE)
+            base(
+                src, 
+                dst, 
+                new Animation(
+                    Properties.Resources.ship2, 
+                    1, 2
+                ), 
+                new Frame(Properties.Resources.missile2), 
+                ENNEMY_SPEED, 
+                ENNEMY_SPEED_DECALAGE, 
+                SHOOT_SUCCES_PERCENTAGE, 
+                ENNEMY_LIFE
+            )
         { }
 
         #endregion

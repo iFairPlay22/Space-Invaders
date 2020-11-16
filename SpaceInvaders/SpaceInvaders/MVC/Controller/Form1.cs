@@ -13,18 +13,18 @@ namespace SpaceInvaders
         /// <summary>
         /// Instance of the game
         /// </summary>
-        private Game game;
+        private readonly Game Game;
 
         #region time management
         /// <summary>
         /// Game watch
         /// </summary>
-        Stopwatch watch = new Stopwatch();
+        private readonly Stopwatch Watch = new Stopwatch();
 
         /// <summary>
         /// Last update time
         /// </summary>
-        long lastTime = 0;
+        private long LastTime = 0;
         #endregion
            
         #endregion
@@ -41,10 +41,9 @@ namespace SpaceInvaders
                 (2 * Screen.PrimaryScreen.Bounds.Width) / 3, 
                 (2 * Screen.PrimaryScreen.Bounds.Height) / 3
             );
-            game = Game.CreateGame(this.ClientSize);
-            watch.Start();
+            Game = Game.CreateGame(this.ClientSize);
+            Watch.Start();
             WorldClock.Start();
-
         }
         #endregion
 
@@ -60,7 +59,7 @@ namespace SpaceInvaders
             Graphics g = bg.Graphics;
             g.Clear(System.Drawing.Color.White);
 
-            game.Draw(g);
+            Game.Draw(g);
 
             bg.Render();
             bg.Dispose();
@@ -78,17 +77,17 @@ namespace SpaceInvaders
             int maxDelta = 5;
 
             // get time with millisecond precision
-            long nt = watch.ElapsedMilliseconds;
+            long nt = Watch.ElapsedMilliseconds;
             // compute ellapsed time since last call to update
-            double deltaT = (nt - lastTime);
+            double deltaT = (nt - LastTime);
 
             for (; deltaT >= maxDelta; deltaT -= maxDelta)
-                game.Update(maxDelta / 1000.0);
+                Game.Update(maxDelta / 1000.0);
 
-            game.Update(deltaT / 1000.0);
+            Game.Update(deltaT / 1000.0);
 
             // remember the time of this update
-            lastTime = nt;
+            LastTime = nt;
 
             Invalidate();
 
@@ -101,7 +100,7 @@ namespace SpaceInvaders
         /// <param name="e"></param>
         private void GameForm_KeyDown(object sender, KeyEventArgs e)
         {
-            game.keyPressed.Add(e.KeyCode);
+            Game.KeyPressed.Add(e.KeyCode);
         }
 
         /// <summary>
@@ -111,14 +110,19 @@ namespace SpaceInvaders
         /// <param name="e"></param>
         private void GameForm_KeyUp(object sender, KeyEventArgs e)
         {
-            game.keyPressed.Remove(e.KeyCode);
+            Game.KeyPressed.Remove(e.KeyCode);
         }
 
         #endregion
 
+        /// <summary>
+        /// Load the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameForm_Load(object sender, EventArgs e)
         {
-            game.Load();
+            Game.Load();
         }
     }
 }

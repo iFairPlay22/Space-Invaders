@@ -29,9 +29,7 @@ namespace SpaceInvaders.GameObjects.Projectiles
         /// <param name="image">image to draw</param>
         public EnnemyProjectile(Vector2D coords, Drawable image) :
             base(Team.ENNEMY, coords, image, ENNEMY_PROJECTILE_SPEED, ENNEMY_PROJECTILE_LIFE)
-        {
-            this.coords += new Vector2D(0, GameException.RequireNonNull(ImageDimentions).Y);
-        }
+        { }
 
         #endregion
 

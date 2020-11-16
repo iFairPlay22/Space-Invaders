@@ -61,8 +61,8 @@ namespace SpaceInvaders.GameObjects
             drawable.Draw(
                 graphics, 
                 new Vector2D(
-                    (int) coords.X, 
-                    (int) coords.Y
+                    (int) Coords.X, 
+                    (int) Coords.Y
                 )
             );
         }
@@ -77,9 +77,9 @@ namespace SpaceInvaders.GameObjects
         {
             GameException.RequireNonNull(projectile);
 
-            if (team == projectile.team || !projectile.IsAlive()) return false;
+            if (Team == projectile.Team || !projectile.IsAlive()) return false;
 
-            Rectangle intersect = Vector2D.Intersect(coords, ImageDimentions, projectile.coords, projectile.ImageDimentions);
+            Rectangle intersect = Vector2D.Intersect(Coords, ImageDimentions, projectile.Coords, projectile.ImageDimentions);
 
             if (intersect.IsEmpty) return false;
 
@@ -112,10 +112,10 @@ namespace SpaceInvaders.GameObjects
         /// <returns>True if function(x, t) return true</returns>
         private bool IteratePixels(ProjectileObject projectile, PixelColorFunction function)
         {
-            Rectangle intersect = Vector2D.Intersect(coords, ImageDimentions, projectile.coords, projectile.ImageDimentions);
+            Rectangle intersect = Vector2D.Intersect(Coords, ImageDimentions, projectile.Coords, projectile.ImageDimentions);
 
-            int startX = (int)(intersect.X - coords.X);
-            int startY = (int)(intersect.Y - coords.Y);
+            int startX = (int)(intersect.X - Coords.X);
+            int startY = (int)(intersect.Y - Coords.Y);
 
             for (int x = startX; x < startX + intersect.Width; x++)
                 for (int y = startY; y < startY + intersect.Height; y++)
@@ -132,7 +132,7 @@ namespace SpaceInvaders.GameObjects
         /// <returns>True if the gameObject is above of imageObject </returns>
         public bool IsAbove(DrawableObject imageObject)
         {
-            return coords.Y < GameException.RequireNonNull(imageObject).coords.Y;
+            return Coords.Y < GameException.RequireNonNull(imageObject).Coords.Y;
         }
 
         /// <summary>

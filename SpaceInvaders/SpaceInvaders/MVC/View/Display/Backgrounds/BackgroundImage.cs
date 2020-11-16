@@ -24,8 +24,8 @@ namespace SpaceInvaders.GameObjects.Background
                 new Frame(
                     new Bitmap(image,
                         new Size(
-                            GameException.RequireNonNull(gameInstance).gameSize.Width,
-                            gameInstance.gameSize.Height
+                            GameException.RequireNonNull(gameInstance).GameSize.Width,
+                            gameInstance.GameSize.Height
                         )
                     )
                 )

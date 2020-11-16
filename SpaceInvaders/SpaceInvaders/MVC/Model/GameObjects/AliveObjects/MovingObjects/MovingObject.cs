@@ -13,12 +13,12 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Move speed in pixels
         /// </summary>
-        private double speed;
+        private double Speed;
 
         /// <summary>
         /// Move acceleration in pixels when the direction changes
         /// </summary>
-        private readonly double speedDecalage;
+        private readonly double SpeedDecalage;
 
         /// <summary>
         /// Max speed of any alive objects in pixels
@@ -35,11 +35,12 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="life">the life of the imageObject</param>
         /// <param name="speed">move speed in pixels</param>
         /// <param name="speedDecalage">move acceleration in pixels when the direction changes</param>
-        public MovingObject(Team team, Vector2D coords, Drawable drawable, SoundHandler soundHandler, int life, double speed, double speedDecalage) : 
+        public MovingObject(Team team, Vector2D coords, Drawable drawable, SoundHandler soundHandler, int life, 
+                                    double speed, double speedDecalage) : 
             base(team, coords, drawable, soundHandler, life, false) 
         {
-            this.speed = GameException.RequirePositive(speed);
-            this.speedDecalage = GameException.RequirePositive(speedDecalage);
+            this.Speed = GameException.RequirePositive(speed);
+            this.SpeedDecalage = GameException.RequirePositive(speedDecalage);
         }
 
         /// <summary>
@@ -47,8 +48,8 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// </summary>
         public virtual void Accelerate()
         {
-            if (speed + speedDecalage <= MAX_SPEED)
-                speed += speedDecalage;
+            if (Speed + SpeedDecalage <= MAX_SPEED)
+                Speed += SpeedDecalage;
         }
 
         /// <summary>
@@ -64,10 +65,10 @@ namespace SpaceInvaders.GameObjects.Shooters
         {
             Vector2D next = NextCoords(right, top, deltaT);
 
-            if (right.HasValue && !(0 <= next.X && next.X + ImageDimentions.X < gameInstance.gameSize.Width))
+            if (right.HasValue && !(0 <= next.X && next.X + ImageDimentions.X < gameInstance.GameSize.Width))
                 return false;
              
-            if (top.HasValue && !(0 <= next.Y && next.Y + ImageDimentions.Y < gameInstance.gameSize.Height))
+            if (top.HasValue && !(0 <= next.Y && next.Y + ImageDimentions.Y < gameInstance.GameSize.Height))
                 return false;
 
             return true;
@@ -84,7 +85,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         {
             if (!CanMove(gameInstance, deltaT, right, top)) throw new InvalidOperationException();
 
-            coords = NextCoords(right, top, deltaT);
+            Coords = NextCoords(right, top, deltaT);
         }
 
         /// <summary>
@@ -99,8 +100,23 @@ namespace SpaceInvaders.GameObjects.Shooters
 
             if (top.HasValue)
                 dy = (top.Value ? 1 : -1);
+            
+            return new Vector2D(
+                GetNextPosition(Coords.X, dx, deltaT), 
+                GetNextPosition(Coords.Y, -dy, deltaT)
+            );
+        }
 
-            return new Vector2D(coords.X + dx * (speed * deltaT), coords.Y - dy * (speed * deltaT));
+        /// <summary>
+        /// Get the next x or y position of an object in pixels
+        /// </summary>
+        /// <param name="pos">x or y</param>
+        /// <param name="dir">dx or dy</param>
+        /// <param name="deltaT">deltaT</param>
+        /// <returns>The next x or y position of the game object in pixels if it moves</returns>
+        private double GetNextPosition(double pos, int dir, double deltaT)
+        {
+            return pos + dir * (Speed * deltaT);
         }
     }
 }

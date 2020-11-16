@@ -18,24 +18,24 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Timer
         /// </summary>
-        private readonly Timer timer;
+        private readonly Timer Timer;
 
         /// <summary>
         /// Percentage to shoot by second between 0 and 100
         /// </summary>
-        private readonly int shootPercentage;
+        private readonly int ShootPercentage;
 
         /// <summary>
         /// True if it's time to try a shoot
         /// False else
         /// </summary>
-        private bool timeToShoot = true;
+        private bool TimeToShoot = true;
 
         /// <summary>
         /// The ennemies are going to the bottom in direction of 
         /// the destinationCoords, and then in right/left direction
         /// </summary>
-        private readonly Vector2D destinationCoords;
+        private readonly Vector2D DestinationCoords;
 
         /// <summary>
         /// Ennemy sounds
@@ -49,7 +49,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <summary>
         /// Each ennemy group have a specific missile image
         /// </summary>
-        private readonly Drawable missileImage;
+        private readonly Drawable MissileImage;
 
         #endregion
 
@@ -65,18 +65,21 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="speedDecalage">move acceleration in pixels when the direction changes</param>
         /// <param name="shootPercentage">percentage to shoot by second between 0 and 100</param>
         /// <param name="life">life of the imageObject</param>
-        public EnnemyObject(Vector2D src, Vector2D dst, Drawable drawable, Drawable missileImage, double speed, double speedDecalage, int shootPercentage, int life) : 
+        public EnnemyObject(Vector2D src, Vector2D dst, Drawable drawable, Drawable missileImage, double speed, 
+                                        double speedDecalage, int shootPercentage, int life) : 
             base(Team.ENNEMY, GameException.RequireNonNull(src), drawable, ENNEMY_SOUNDS, speed, speedDecalage, life) 
             {
-                destinationCoords = GameException.RequireNonNull(dst);
-                this.missileImage = missileImage;
-                this.shootPercentage = (int) GameException.RequirePositive(shootPercentage);
-                timer = new Timer { 
-                    Interval =  1000
-                };
-                timer.Elapsed += (object sender, ElapsedEventArgs e) => {
-                    timeToShoot = true;
-                    timer.Stop();
+                DestinationCoords = GameException.RequireNonNull(dst);
+                MissileImage = missileImage;
+                ShootPercentage = (int) GameException.RequirePositive(shootPercentage);
+
+                // Every seconds, ...
+                Timer = new Timer { Interval =  1000 };
+
+                // ..., the ennemy can try a shoot
+                Timer.Elapsed += (object sender, ElapsedEventArgs e) => {
+                    TimeToShoot = true;
+                    Timer.Stop();
                 };
             }
 
@@ -92,7 +95,7 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <returns>Are we in the second step ?</returns>
         public bool IsArrivedToDestination()
         {
-            return destinationCoords.Y < coords.Y;
+            return DestinationCoords.Y < Coords.Y;
         }
 
         /// <summary>
@@ -108,13 +111,13 @@ namespace SpaceInvaders.GameObjects.Shooters
         }
 
         /// <summary>
-        /// First step : move to the bottom directiob
+        /// First step : move to the bottom direction
         /// </summary>
         public void MoveDown(Game gameInstance, double deltaT)
         {
             double decalage = (IsArrivedToDestination() ? 500 : 100) * deltaT;
-            if (coords.Y < GameException.RequireNonNull(gameInstance).gameSize.Height)
-                coords += new Vector2D(0, decalage);
+            if (Coords.Y < GameException.RequireNonNull(gameInstance).GameSize.Height)
+                Coords += new Vector2D(0, decalage);
         }
 
         /// <summary>
@@ -132,14 +135,14 @@ namespace SpaceInvaders.GameObjects.Shooters
         protected override void Shoot()
         {
 
-            if (timeToShoot && RandomNumbers.Randint(0, 100) <= shootPercentage)
+            if (TimeToShoot && RandomNumbers.Randint(0, 100) <= ShootPercentage)
             {
                 base.Shoot();
-                Projectile = new EnnemyProjectile(ProjectileCoords(), missileImage);
+                Projectile = new EnnemyProjectile(ProjectileCoords(), MissileImage);
             }
 
-            timeToShoot = false;
-            timer.Start();
+            TimeToShoot = false;
+            Timer.Start();
         }
 
         /// <summary>
