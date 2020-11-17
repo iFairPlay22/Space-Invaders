@@ -37,10 +37,10 @@ namespace SpaceInvaders.GameObjects.Shooters
         /// <param name="speedDecalage">move acceleration in pixels when the direction changes</param>
         public MovingObject(Team team, Vector2D coords, Drawable drawable, SoundHandler soundHandler, int life, 
                                     double speed, double speedDecalage) : 
-            base(team, coords, drawable, soundHandler, life, false) 
+            base(team, coords, drawable, soundHandler, life) 
         {
-            this.Speed = GameException.RequirePositive(speed);
-            this.SpeedDecalage = GameException.RequirePositive(speedDecalage);
+            Speed = GameException.RequirePositive(speed);
+            SpeedDecalage = GameException.RequirePositive(speedDecalage);
         }
 
         /// <summary>

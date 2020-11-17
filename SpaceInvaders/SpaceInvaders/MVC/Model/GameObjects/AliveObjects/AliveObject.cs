@@ -23,12 +23,6 @@ namespace SpaceInvaders.GameObjects.Alive
         protected readonly SoundHandler SoundHandler;
 
         /// <summary>
-        /// True if the common pixels with a projecitle must be destroyed
-        /// (replaced by transparent pixels), false else
-        /// </summary>
-        private readonly bool DestroyPixelsOnCollision;
-
-        /// <summary>
         /// Create an alive object
         /// </summary>
         /// <param name="team">the team of the game object</param>
@@ -36,15 +30,12 @@ namespace SpaceInvaders.GameObjects.Alive
         /// <param name="drawable">the image to draw</param>
         /// <param name="soundHandler">the song container</param>
         /// <param name="life">the life of the imageObject</param>
-        /// <param name="destroyPixelsOnCollision">the comportment of the object on collision</param>
-        public AliveObject(Team team, Vector2D coords, Drawable drawable, SoundHandler soundHandler, 
-                                int life, bool destroyPixelsOnCollision) :
+        public AliveObject(Team team, Vector2D coords, Drawable drawable, SoundHandler soundHandler, int life) :
             base(team, coords, drawable)
         {
-            this.Coords -= new Vector2D(this.ImageDimentions.X / 2, 0);
-            this.SoundHandler = GameException.RequireNonNull(soundHandler);
-            this.Life = (int)GameException.RequirePositive(life);
-            this.DestroyPixelsOnCollision = destroyPixelsOnCollision;
+            Coords -= new Vector2D(ImageDimentions.X / 2, 0);
+            SoundHandler = GameException.RequireNonNull(soundHandler);
+            Life = (int)GameException.RequirePositive(life);
         }
 
         /// <summary>
@@ -53,9 +44,6 @@ namespace SpaceInvaders.GameObjects.Alive
         /// <param name="projectile">the projectile</param>
         public override void OnCollision(ProjectileObject projectile)
         {
-            if (DestroyPixelsOnCollision)
-                base.OnCollision(projectile);
-
             int damages = Math.Min(Life, projectile.Life);
             Life -= damages;
             projectile.Life -= damages;

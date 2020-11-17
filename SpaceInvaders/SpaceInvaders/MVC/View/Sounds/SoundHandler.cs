@@ -11,17 +11,17 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// <summary>
         /// Sound to play when a game object do an action (ex: shoot)
         /// </summary>
-        private readonly string onActionSound;
+        private readonly string OnActionSound;
 
         /// <summary>
         /// Sound to play when a game object is in collision with another object (ex: shooted)
         /// </summary>
-        private readonly string onCollisionSound;
+        private readonly string OnCollisionSound;
 
         /// <summary>
         /// Sound to play when a game object is dying
         /// </summary>
-        private readonly string onDeathSound;
+        private readonly string OnDeathSound;
 
         /// <summary>
         /// Create a sound container
@@ -31,9 +31,9 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// <param name="onDeathSound">sound to play when a game object is dying</param>
         public SoundHandler(string onActionSound, string onCollisionSound, string onDeathSound)
         {
-            this.onActionSound = onActionSound;
-            this.onCollisionSound = onCollisionSound;
-            this.onDeathSound = onDeathSound;
+            OnActionSound = onActionSound;
+            OnCollisionSound = onCollisionSound;
+            OnDeathSound = onDeathSound;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// </summary>
         public void OnAction()
         {
-            PlaySong(onActionSound);
+            PlaySong(OnActionSound);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// </summary>
         public void OnCollision()
         {
-            PlaySong(onCollisionSound);
+            PlaySong(OnCollisionSound);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace SpaceInvaders.GameObjects.View.Sounds
         /// </summary>
         public void OnDeath()
         {
-            PlaySong(onDeathSound);
+            PlaySong(OnDeathSound);
         }
 
         /// <summary>
