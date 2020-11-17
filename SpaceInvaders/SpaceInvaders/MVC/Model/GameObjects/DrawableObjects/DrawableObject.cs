@@ -24,7 +24,7 @@ namespace SpaceInvaders.GameObjects
         /// <summary>
         /// Image to draw
         /// </summary>
-        private readonly View.Display.Images.Drawable drawable;
+        private readonly View.Display.Images.Drawable Drawable;
 
         /// <summary>
         /// Function that make an action in the (x, y) pixel of the image
@@ -44,7 +44,7 @@ namespace SpaceInvaders.GameObjects
         /// <param name="drawable">image to draw</param>
         public DrawableObject(Team team, Vector2D coords, View.Display.Images.Drawable drawable) : base(team, coords)
         {
-            this.drawable = GameException.RequireNonNull(drawable);
+            Drawable = GameException.RequireNonNull(drawable);
             ImageDimentions = new Vector2D(drawable.Width, drawable.Height);
         }
         #endregion
@@ -58,7 +58,7 @@ namespace SpaceInvaders.GameObjects
         /// <param name="graphics">graphics</param>
         public override void Draw(Game gameInstance, Graphics graphics)
         {
-            drawable.Draw(
+            Drawable.Draw(
                 graphics, 
                 new Vector2D(
                     (int) Coords.X, 
@@ -83,7 +83,7 @@ namespace SpaceInvaders.GameObjects
 
             if (intersect.IsEmpty) return false;
 
-            return IteratePixels(projectile, (x, y) => 0 < drawable.Image.GetPixel(x, y).A);
+            return IteratePixels(projectile, (x, y) => 0 < Drawable.Image.GetPixel(x, y).A);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace SpaceInvaders.GameObjects
             IteratePixels(
                 projectile,
                 (x, y) => {
-                    if (0 < drawable.Image.GetPixel(x, y).A)
+                    if (0 < Drawable.Image.GetPixel(x, y).A)
                         RemovePixelsInRange(x, y, 5);
                     return false;
                 }
@@ -122,10 +122,10 @@ namespace SpaceInvaders.GameObjects
                     for (int j = y - range; j < y + range; j++)
 
                         // If index j exists
-                        if (0 <= j && j < ImageDimentions.Y && 0 < drawable.Image.GetPixel(i, j).A)
+                        if (0 <= j && j < ImageDimentions.Y && 0 < Drawable.Image.GetPixel(i, j).A)
 
                             // Replace the pixel by a transparent one
-                            drawable.Image.SetPixel(i, j, TRANSPARENT_COLOR);
+                            Drawable.Image.SetPixel(i, j, TRANSPARENT_COLOR);
         }
 
         /// <summary>

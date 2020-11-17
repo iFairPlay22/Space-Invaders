@@ -10,12 +10,12 @@ namespace SpaceInvaders.GameObjects.View.Display.Life
     /// <summary>
     /// Draw hearts (user life)
     /// </summary>
-    class UserLife : GameObject
+    class UserLife : DrawableObject
     {
         /// <summary>
         /// User game object
         /// </summary>
-        private readonly User user;
+        private readonly User User;
 
         /// <summary>
         /// The animation to draw
@@ -32,9 +32,9 @@ namespace SpaceInvaders.GameObjects.View.Display.Life
         /// </summary>
         /// <param name="user">the user instance</param>
         public UserLife(User user) :
-            base(Team.NEUTRAL, new Vector2D(MARGIN, Game.Instance.GameSize.Height - DRAWABLE.Height - MARGIN))
+            base(Team.NEUTRAL, new Vector2D(MARGIN, Game.Instance.GameSize.Height - DRAWABLE.Height - MARGIN), DRAWABLE)
         {
-            this.user = user;
+            User = user;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace SpaceInvaders.GameObjects.View.Display.Life
         /// <param name="graphics">graphics</param>
         public override void Draw(Game gameInstance, Graphics graphics)
         {
-            for (int i = 0; i < user.Life; i++)
+            for (int i = 0; i < User.Life; i++)
             {
                 DRAWABLE.Draw(
                     graphics,
@@ -82,7 +82,7 @@ namespace SpaceInvaders.GameObjects.View.Display.Life
         /// <returns>Is the user alive ?</returns>
         public override bool IsAlive()
         {
-            return user.IsAlive();
+            return User.IsAlive();
         }
     }
 }
