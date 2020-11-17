@@ -1,0 +1,2 @@
+Pour visualiser le fichier, veuillez vous rendre sur le site internet draw.io.
+Vous pourrez ensuite charger le fichier "graph_chart_draw.io".
