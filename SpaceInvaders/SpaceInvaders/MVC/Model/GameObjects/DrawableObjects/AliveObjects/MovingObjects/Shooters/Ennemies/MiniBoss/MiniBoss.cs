@@ -45,9 +45,12 @@ namespace SpaceInvaders.GameObjects.Shooters.Ennemies
                 dst,
                 new Animation(
                     Properties.Resources.boss1,
-                    1, 2
+                    1, 17
                 ),
-                new Frame(Properties.Resources.boss1_missile),
+                new Animation(
+                    Properties.Resources.boss1_missile,
+                    17, 1
+                ),
                 ENNEMY_SPEED,
                 ENNEMY_SPEED_DECALAGE,
                 SHOOT_SUCCES_PERCENTAGE,
